@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Auto de Renta | Broker de Reservaciones Profesional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap');
+        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; }
+        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; z-index: 100; transition: transform 0.3s; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .step-number { font-size: 8rem; opacity: 0.1; line-height: 1; position: absolute; top: -20px; right: 10px; font-weight: 900; }
+        .btn-bounce:hover { animation: bounce 0.5s infinite alternate; }
+        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Botón de WhatsApp Flotante -->
+    <a href="https://wa.me/527792179612?text=Hola!%20Vengo%20de%20tu%20sitio%20web,%20me%20gustar%C3%ADa%20una%20cotizaci%C3%B3n%20para%20rentar%20un%20auto." class="whatsapp-float bg-green-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center animate-bounce">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Navbar -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <!-- Mini Logo Carita -->
+                    <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 20,70 Q 50,100 80,70" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
+                        <circle cx="35" cy="55" r="7" fill="#1e3a8a" />
+                        <circle cx="65" cy="55" r="7" fill="#1e3a8a" />
+                    </svg>
+                    <div>
+                        <span class="text-xl font-black text-blue-900 leading-none block uppercase tracking-tight">TU AUTO</span>
+                        <span class="text-sm font-bold text-orange-500 tracking-[0.2em] uppercase">de Renta</span>
+                    </div>
+                </div>
+                <div class="hidden lg:flex space-x-8 font-semibold text-slate-600">
+                    <a href="#proceso" class="hover:text-orange-500">¿Cómo funciona?</a>
+                    <a href="#ventajas" class="hover:text-orange-500">Ventajas</a>
+                    <a href="#cobertura" class="hover:text-orange-500">Cobertura</a>
+                </div>
+                <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-black transition-all text-sm uppercase tracking-widest flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-24 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-orange-500/20 text-orange-300 px-4 py-2 rounded-full text-xs font-bold mb-6 border border-orange-500/30">
+                    MÁS DE 20 AÑOS DE EXPERIENCIA EN EL SECTOR
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-[1.1]">No rentes solo, <br><span class="text-orange-400">renta con un experto.</span></h1>
+                <p class="text-xl text-blue-100 mb-10 leading-relaxed max-w-lg">Buscamos la mejor tarifa entre las marcas líderes. Garantizamos disponibilidad, seguros claros y atención personalizada 24/7.</p>
+                
+                <div class="bg-white p-3 rounded-2xl shadow-2xl">
+                    <div class="flex flex-col md:flex-row gap-3">
+                        <div class="flex-1 p-3 bg-slate-50 rounded-xl">
+                            <label class="block text-slate-400 text-[10px] font-black uppercase mb-1">Tu próximo destino</label>
+                            <select id="destino" class="w-full text-slate-900 font-bold focus:outline-none bg-transparent cursor-pointer">
+                                <option>Aeropuerto Cancún (CUN)</option>
+                                <option>Aeropuerto CDMX (AICM)</option>
+                                <option>Los Cabos (SJD)</option>
+                                <option>Monterrey (MTY)</option>
+                                <option>Guadalajara (GDL)</option>
+                                <option>Tulum (TQO)</option>
+                                <option>Otro destino...</option>
+                            </select>
+                        </div>
+                        <a href="https://wa.me/527792179612?text=Hola!%20Quiero%20cotizar%20la%20renta%20de%20un%20auto." class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-black transition-all flex items-center justify-center gap-3 shadow-lg shadow-orange-600/30 btn-bounce text-center">
+                            COTIZAR POR WHATSAPP <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-3 text-center uppercase font-bold tracking-widest"><i class="fas fa-lock"></i> Respuesta inmediata y asesoría en seguros incluida</p>
+                </div>
+            </div>
+            <div class="hidden md:block relative">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800" alt="Entrega de Llaves" class="rounded-[3rem] shadow-2xl relative z-10 border-4 border-white/10 grayscale-[20%] hover:grayscale-0 transition-all duration-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- Marcas Aliadas (ORDEN ACTUALIZADO) -->
+    <section class="py-12 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="text-center text-slate-400 font-bold text-[10px] tracking-[0.4em] mb-10 uppercase">Gestionamos con los mejores</h3>
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- MEX Rent a Car Primero -->
+                <span class="text-2xl font-black italic text-blue-900">MEX <small class="text-xs">Rent a Car</small></span>
+                <span class="text-2xl font-black italic text-green-600">Europcar</span>
+                <span class="text-2xl font-black italic text-blue-800">National</span>
+                <span class="text-2xl font-black italic text-red-600">Budget</span>
+                <span class="text-2xl font-black italic text-yellow-500">Hertz</span>
+                <span class="text-2xl font-black italic text-red-500">Avis</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Proceso -->
+    <section id="proceso" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl font-black text-slate-900 mb-4 uppercase tracking-tight">Así trabajamos por ti</h2>
+                <div class="w-20 h-1.5 bg-orange-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="relative bg-white p-8 rounded-3xl shadow-sm card-hover">
+                    <span class="step-number text-blue-900">1</span>
+                    <h3 class="text-xl font-black mb-3 text-blue-900 uppercase">Dinos tu plan</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">¿A dónde vas y cuántos son? Por WhatsApp resolvemos tus dudas de seguros y coberturas de inmediato sin tecnicismos complicados.</p>
+                </div>
+                <div class="relative bg-white p-8 rounded-3xl shadow-sm card-hover border-2 border-orange-500/20">
+                    <span class="step-number text-orange-500">2</span>
+                    <h3 class="text-xl font-black mb-3 text-orange-500 uppercase">Comparamos</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">No solo buscamos precio, buscamos la marca que tenga mejor flota disponible y condiciones claras en ese destino específico.</p>
+                </div>
+                <div class="relative bg-white p-8 rounded-3xl shadow-sm card-hover">
+                    <span class="step-number text-blue-900">3</span>
+                    <h3 class="text-xl font-black mb-3 text-blue-900 uppercase">Viajas Seguro</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed">Recibes tu confirmación oficial. Si algo sucede en el mostrador, nosotros intervenimos directamente para que tu viaje no se detenga.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ventajas -->
+    <section id="ventajas" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+            <div class="order-2 md:order-1">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-blue-50 p-6 rounded-2xl border-b-4 border-blue-900">
+                        <i class="fas fa-shield-alt text-blue-900 mb-4 text-2xl"></i>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2 uppercase">Cero Sorpresas</h4>
+                        <p class="text-xs text-slate-500">Te explicamos qué incluye cada seguro para que no pagues ni un peso extra en el mostrador.</p>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-2xl border-b-4 border-orange-500">
+                        <i class="fas fa-user-tie text-orange-500 mb-4 text-2xl"></i>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2 uppercase">Asesoría VIP</h4>
+                        <p class="text-xs text-slate-500">Gestionamos upgrades y beneficios adicionales gracias a nuestras relaciones comerciales de años.</p>
+                    </div>
+                    <div class="bg-slate-100 p-6 rounded-2xl border-b-4 border-slate-900">
+                        <i class="fas fa-clock text-slate-900 mb-4 text-2xl"></i>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2 uppercase">Inmediatez</h4>
+                        <p class="text-xs text-slate-500">Reservaciones confirmadas en minutos directo a tu correo y teléfono.</p>
+                    </div>
+                    <div class="bg-green-50 p-6 rounded-2xl border-b-4 border-green-600">
+                        <i class="fas fa-dollar-sign text-green-600 mb-4 text-2xl"></i>
+                        <h4 class="font-bold text-slate-900 text-sm mb-2 uppercase">Tarifa Broker</h4>
+                        <p class="text-xs text-slate-500">Tenemos acceso a tarifas especiales que no se publican en las páginas directas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl font-black text-slate-900 mb-6 uppercase leading-tight">Tu tranquilidad <br>es nuestra <span class="text-orange-500 italic">especialidad.</span></h2>
+                <p class="text-slate-600 mb-8 leading-relaxed">Olvídate de formularios interminables y chats con robots. Habla con un profesional que ha dirigido las marcas más grandes del país. Asegura tu movilidad con el respaldo de 25 años de experiencia.</p>
+                <a href="https://wa.me/527792179612" class="inline-flex items-center gap-3 font-black text-blue-900 border-b-2 border-orange-500 pb-1 hover:text-orange-500 transition-colors uppercase text-sm tracking-widest">
+                    Chatea con Jasso ahora <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                    <svg width="30" height="30" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 20,70 Q 50,100 80,70" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
+                        <circle cx="35" cy="55" r="7" fill="white" />
+                        <circle cx="65" cy="55" r="7" fill="white" />
+                    </svg>
+                    <span class="font-black text-white uppercase tracking-tighter">TU AUTO DE RENTA <small class="text-orange-400 block text-[9px] font-bold">BY JASSO MOBILITY</small></span>
+                </div>
+                <p class="text-slate-400 text-sm max-w-sm">Broker especializado en la gestión de reservaciones automotrices. Somos tu representante directo ante las arrendadoras líderes.</p>
+            </div>
+            <div class="flex flex-col items-center md:items-end gap-6">
+                <p class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">Contacto Directo</p>
+                <a href="https://wa.me/527792179612" class="text-2xl md:text-4xl font-black text-green-400 hover:text-white transition-colors">
+                    779 217 9612
+                </a>
+                <div class="flex gap-8 text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="mailto:albjasso@gmail.com" class="hover:text-white transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 text-center">
+            <p class="text-slate-600 text-[9px] font-bold uppercase tracking-[0.4em]">© 2026 Tu Auto de Renta | Los logotipos e imágenes son propiedad de sus respectivos dueños.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
