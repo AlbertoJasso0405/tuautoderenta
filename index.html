@@ -3,183 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Auto de Renta | Movilidad Nacional</title>
+    <title>Tu Auto de Renta - Jasso Mobility</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; background-color: #ffffff; }
-        .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); }
-        .city-card:hover {
-            background-color: #1e3a8a;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1464851707681-f9d5fdaccea8?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
         }
-        .modal-enter { animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .custom-gradient-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px dashed #94a3b8;
+        }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="bg-gray-50 font-sans">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="35" cy="45" r="7" fill="#1e3a8a" />
-                    <circle cx="65" cy="45" r="7" fill="#1e3a8a" />
-                    <path d="M 20,60 Q 50,90 80,60" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
-                </svg>
-                <div class="leading-none">
-                    <span class="font-black text-2xl text-blue-900 block uppercase tracking-tighter">TU AUTO</span>
-                    <span class="text-orange-500 font-black text-2xl block uppercase tracking-tighter -mt-1">de Renta</span>
-                    <span class="text-slate-400 font-bold text-[9px] tracking-[0.25em] uppercase block mt-1">BY JASSO MOBILITY</span>
+    <!-- Navegación -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <div class="bg-blue-600 p-2 rounded-lg mr-2">
+                        <i class="fas fa-car text-white text-2xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-gray-800">Tu Auto de Renta <span class="text-blue-600 block text-xs">Jasso Mobility</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#inicio" class="text-gray-600 hover:text-blue-600 px-3 py-2 font-medium">Inicio</a>
+                        <a href="#destinos" class="text-gray-600 hover:text-blue-600 px-3 py-2 font-medium">Destinos</a>
+                        <a href="#consejos" class="text-gray-600 hover:text-blue-600 px-3 py-2 font-medium">Consejos</a>
+                        <a href="https://wa.me/527792179612" class="bg-green-500 text-white px-6 py-2 rounded-full font-bold hover:bg-green-600 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i>Cotizar
+                        </a>
+                    </div>
                 </div>
             </div>
-            
-            <div class="hidden lg:flex gap-8 text-[11px] font-black text-slate-500 uppercase tracking-widest">
-                <a href="#experiencia" class="hover:text-orange-500 transition-colors">Servicios</a>
-                <a href="#cobertura" class="hover:text-orange-500 transition-colors">Destinos</a>
-            </div>
-
-            <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-8 py-3 rounded-full font-black text-xs hover:bg-orange-500 transition-all uppercase tracking-wider">
-                Reservar: 779 217 9612
-            </a>
         </div>
     </nav>
 
-    <header class="hero-gradient text-white py-28 px-4 relative">
-        <div class="max-w-6xl mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.1]">Tu destino nos mueve,<br><span class="text-orange-400 italic font-light">nosotros te llevamos.</span></h1>
-            <p class="text-xl text-blue-100/80 mb-12 font-light max-w-3xl mx-auto">
-                Soluciones integrales de movilidad con cobertura en las principales ciudades de México. Seguridad y confianza en cada kilómetro.
-            </p>
-            
-            <div class="bg-white p-2 rounded-2xl shadow-2xl max-w-2xl mx-auto flex flex-col md:flex-row gap-2">
-                <div class="flex-1 p-3 text-left">
-                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1 ml-2 text-center md:text-left">¿A dónde viajas?</label>
-                    <input type="text" placeholder="Busca tu ciudad o aeropuerto..." class="w-full text-slate-800 font-bold focus:outline-none px-2 text-center md:text-left">
-                </div>
-                <button class="bg-orange-500 hover:bg-blue-900 text-white px-10 py-4 rounded-xl font-black transition-all uppercase text-sm">
-                    Consultar
-                </button>
+    <!-- Hero Section -->
+    <header id="inicio" class="hero-gradient h-[500px] flex items-center justify-center text-center text-white px-4">
+        <div>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Renta de Autos en Todo México</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-200">Seguridad, transparencia y el mejor servicio nacional para tu próximo viaje.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#destinos" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-bold text-lg transition">Ver Destinos</a>
+                <a href="tel:7792179612" class="bg-white hover:bg-gray-100 text-blue-900 px-8 py-3 rounded-lg font-bold text-lg transition underline">779 217 9612</a>
             </div>
         </div>
     </header>
 
-    <section id="experiencia" class="py-24 px-4 bg-white">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-slate-50 text-blue-900 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:bg-blue-900 group-hover:text-white transition-all duration-300">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <h4 class="font-black text-blue-900 uppercase text-lg mb-4">Seguridad Garantizada</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Unidades de modelo reciente inspeccionadas bajo los más altos estándares de calidad.</p>
-            </div>
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-slate-50 text-orange-500 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                </div>
-                <h4 class="font-black text-blue-900 uppercase text-lg mb-4">Alcance Nacional</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Estamos presentes en los puntos estratégicos y aeropuertos más importantes del país.</p>
-            </div>
-            <div class="text-center group">
-                <div class="w-20 h-20 bg-slate-50 text-slate-800 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:bg-slate-800 group-hover:text-white transition-all duration-300">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h4 class="font-black text-blue-900 uppercase text-lg mb-4">Atención Inmediata</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Asistencia personalizada 24/7 para que tu única preocupación sea disfrutar el viaje.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="cobertura" class="py-24 bg-slate-50">
-        <div class="max-w-6xl mx-auto px-4">
+    <!-- Sección de Destinos Actualizada -->
+    <section id="destinos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-blue-900 uppercase tracking-tighter">Nuestros Destinos Principales</h2>
-                <p class="mt-4 text-slate-500 font-medium italic text-sm">Explora nuestra presencia en la República Mexicana</p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nuestros Destinos Principales</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Tenemos unidades listas para entregarte en los puntos más importantes del país.</p>
             </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="destinos-grid"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Destino 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?auto=format&fit=crop&q=80&w=400" alt="Ciudad de México" class="h-48 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">CDMX / Bajío</h3>
+                        <p class="text-gray-600 text-sm mb-4">Entregas en Aeropuerto y puntos clave de Querétaro y León.</p>
+                        <span class="text-blue-600 font-semibold">Desde $799/día</span>
+                    </div>
+                </div>
+
+                <!-- Destino 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1512813583141-b9219a658148?auto=format&fit=crop&q=80&w=400" alt="Cancún" class="h-48 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Cancún / Riviera</h3>
+                        <p class="text-gray-600 text-sm mb-4">Disfruta el Caribe con total libertad de movimiento.</p>
+                        <span class="text-blue-600 font-semibold">Desde $850/día</span>
+                    </div>
+                </div>
+
+                <!-- Destino 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1585938389612-a552a28d6914?auto=format&fit=crop&q=80&w=400" alt="Monterrey" class="h-48 w-full object-cover">
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2 text-gray-800">Monterrey / Norte</h3>
+                        <p class="text-gray-600 text-sm mb-4">Ideal para viajes de negocios y recorridos industriales.</p>
+                        <span class="text-blue-600 font-semibold">Desde $900/día</span>
+                    </div>
+                </div>
+
+                <!-- CUADRO DE OTROS DESTINOS (NUEVO) -->
+                <div class="custom-gradient-card rounded-xl p-8 flex flex-col items-center justify-center text-center card-hover relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe-americas text-6xl text-blue-900"></i>
+                    </div>
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-map-marked-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-bold text-2xl mb-4 text-blue-900">¿Vas a otro destino?</h3>
+                    <p class="text-gray-700 mb-6 font-medium">
+                        ¡Llegamos a donde tú vayas! Tenemos red de entrega en los <span class="text-blue-700 font-bold">32 estados</span> de la República.
+                    </p>
+                    <a href="https://wa.me/527792179612?text=Hola,%20busco%20rentar%20un%20auto%20en%20un%20destino%20fuera%20de%20lista" 
+                       class="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 transition w-full shadow-lg">
+                       Personalizar Viaje
+                    </a>
+                    <p class="mt-4 text-xs text-gray-500 italic">Cotización inmediata vía WhatsApp</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div id="city-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-sm">
-        <div class="bg-white rounded-[2rem] overflow-hidden max-w-2xl w-full shadow-2xl modal-enter">
-            <div class="relative h-80 w-full">
-                <img id="modal-img" src="" alt="Destino" class="w-full h-full object-cover">
-                <button onclick="closeModal()" class="absolute top-4 right-4 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors">✕</button>
-            </div>
-            <div class="p-8 text-center">
-                <h3 id="modal-title" class="text-3xl font-black text-blue-900 mb-2 uppercase italic italic tracking-tighter">CIUDAD</h3>
-                <p class="text-slate-400 mb-6 font-bold uppercase tracking-[0.3em] text-[10px]">Movilidad BY JASSO MOBILITY</p>
-                <a href="https://wa.me/527792179612" class="inline-block bg-orange-500 text-white px-10 py-4 rounded-full font-black text-xs uppercase tracking-widest shadow-lg shadow-orange-500/30">Reservar en este destino</a>
-            </div>
-        </div>
-    </div>
-
-    <footer class="bg-slate-950 text-white py-20 px-4">
-        <div class="max-w-7xl mx-auto text-center md:text-left grid md:grid-cols-2 gap-16 items-center">
+    <!-- Beneficios Express -->
+    <section class="py-16 bg-blue-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
-                <span class="font-black text-2xl text-white block uppercase tracking-tighter">TU AUTO <span class="text-orange-500">de Renta</span></span>
-                <span class="text-slate-600 font-bold text-[10px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
-                <p class="text-slate-500 text-xs leading-relaxed max-w-sm">
-                    Conectando personas y destinos a través de una red de movilidad confiable y profesional en todo México.
-                </p>
+                <i class="fas fa-shield-alt text-4xl mb-4 text-blue-300"></i>
+                <h4 class="text-xl font-bold mb-2">Seguro Incluido</h4>
+                <p class="text-blue-100">Sin cargos ocultos al recibir tu auto.</p>
             </div>
-            <div class="flex flex-col md:items-end gap-4">
-                <h5 class="font-black text-[10px] uppercase tracking-widest text-orange-500 mb-2">Central de Reservas</h5>
-                <a href="tel:7792179612" class="text-4xl font-black hover:text-orange-400 transition-colors">779 217 9612</a>
-                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest">Atención Nacional 24/7</p>
+            <div>
+                <i class="fas fa-headset text-4xl mb-4 text-blue-300"></i>
+                <h4 class="text-xl font-bold mb-2">Soporte 24/7</h4>
+                <p class="text-blue-100">Asistencia en carretera en todo el país.</p>
+            </div>
+            <div>
+                <i class="fas fa-check-circle text-4xl mb-4 text-blue-300"></i>
+                <h4 class="text-xl font-bold mb-2">Proceso Fácil</h4>
+                <p class="text-blue-100">Renta con pocos requisitos y mucha confianza.</p>
             </div>
         </div>
-        <div class="mt-20 pt-8 border-t border-white/5 text-center">
-            <p class="text-[8px] text-slate-700 uppercase tracking-[0.8em]">© 2026 TU AUTO DE RENTA | HIDALGO, MÉXICO</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="mb-8">
+                <span class="text-white text-2xl font-bold">Tu Auto de Renta</span>
+                <p class="mt-2">Tu socio de confianza en movilidad nacional.</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/527792179612" class="hover:text-white text-2xl"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="text-sm">&copy; 2024 Jasso Mobility. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/527792179612" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all z-50">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-    </a>
-
-    <script>
-        const destinos = [
-            { nombre: "Los Cabos", img: "https://images.unsplash.com/photo-1591026074125-976901842065?q=80&w=1200" },
-            { nombre: "CDMX", img: "https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?q=80&w=1200" },
-            { nombre: "Cancún", img: "https://images.unsplash.com/photo-1510097469068-1923999a73ca?q=80&w=1200" },
-            { nombre: "Monterrey", img: "https://images.unsplash.com/photo-1599839441993-cc467e2a9348?q=80&w=1200" },
-            { nombre: "Guadalajara", img: "https://images.unsplash.com/photo-1600100414002-463878b4046b?q=80&w=1200" },
-            { nombre: "Querétaro", img: "https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?q=80&w=1200" },
-            { nombre: "Mérida", img: "https://images.unsplash.com/photo-1621213346261-240a5e8f47ce?q=80&w=1200" },
-            { nombre: "Tijuana", img: "https://images.unsplash.com/photo-1599427421247-7c8fc891200c?q=80&w=1200" },
-            { nombre: "Puebla", img: "https://images.unsplash.com/photo-1598463229913-90d2975949d2?q=80&w=1200" },
-            { nombre: "Hidalgo", img: "https://images.unsplash.com/photo-1623869910411-71ca3ba52be1?q=80&w=1200" }
-        ];
-
-        const grid = document.getElementById('destinos-grid');
-
-        destinos.forEach(dest => {
-            const btn = document.createElement('button');
-            btn.className = "city-card bg-white p-5 rounded-2xl border border-slate-200 text-center font-black text-slate-700 uppercase text-[10px] tracking-widest transition-all";
-            btn.innerText = dest.nombre;
-            btn.onclick = () => openModal(dest);
-            grid.appendChild(btn);
-        });
-
-        function openModal(dest) {
-            document.getElementById('modal-img').src = dest.img;
-            document.getElementById('modal-title').innerText = dest.nombre;
-            document.getElementById('city-modal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('city-modal').classList.add('hidden');
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('city-modal')) {
-                closeModal();
-            }
-        }
-    </script>
 </body>
 </html>
