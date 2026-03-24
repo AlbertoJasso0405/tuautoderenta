@@ -82,12 +82,37 @@
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Destino</label>
                             <select id="res_destino" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
                                 <option value="">Elegir...</option>
+                                <option value="Acapulco">Acapulco</option>
                                 <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
                                 <option value="Cancún">Cancún</option>
-                                <option value="Monterrey">Monterrey</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="Ciudad Juárez">Ciudad Juárez</option>
+                                <option value="Ciudad Obregón">Ciudad Obregón</option>
+                                <option value="Culiacán">Culiacán</option>
+                                <option value="Durango">Durango</option>
                                 <option value="Guadalajara">Guadalajara</option>
+                                <option value="Hermosillo">Hermosillo</option>
+                                <option value="Hidalgo">Hidalgo</option>
+                                <option value="Huatulco">Huatulco</option>
+                                <option value="Ixtapa">Ixtapa</option>
+                                <option value="La Paz">La Paz</option>
+                                <option value="León">León</option>
+                                <option value="Loreto">Loreto</option>
                                 <option value="Los Cabos">Los Cabos</option>
+                                <option value="Mazatlán">Mazatlán</option>
+                                <option value="Mexicali">Mexicali</option>
+                                <option value="Monterrey">Monterrey</option>
                                 <option value="Mérida">Mérida</option>
+                                <option value="Oaxaca">Oaxaca</option>
+                                <option value="Playa del Carmen">Playa del Carmen</option>
+                                <option value="Puebla">Puebla</option>
+                                <option value="Puerto Escondido">Puerto Escondido</option>
+                                <option value="Querétaro">Querétaro</option>
+                                <option value="Saltillo">Saltillo</option>
+                                <option value="Tijuana">Tijuana</option>
+                                <option value="Toluca">Toluca</option>
+                                <option value="Torreón">Torreón</option>
+                                <option value="Veracruz">Veracruz</option>
                                 <option value="Otro">Otro</option>
                             </select>
                         </div>
@@ -128,7 +153,7 @@
     <section class="py-16 bg-slate-50 px-4">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="destinos-grid"></div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="destinos-grid"></div>
         </div>
     </section>
 
@@ -139,7 +164,6 @@
                 <span class="font-black text-xl text-white block uppercase tracking-tighter">TU AUTO <span class="text-orange-500">de Renta</span></span>
                 <span class="text-slate-600 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
                 
-                <!-- Enlace de Facebook movido abajo -->
                 <a href="https://www.facebook.com/share/129uK2k8mXk/" target="_blank" class="flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all group">
                     <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     <span class="text-[10px] font-black uppercase tracking-widest">Síguenos en Facebook</span>
@@ -153,11 +177,20 @@
     </footer>
 
     <script>
-        // Cargar destinos
-        const destinos = ["CDMX", "Cancún", "Monterrey", "Guadalajara", "Los Cabos", "Mérida", "Puebla", "Hidalgo", "Querétaro", "Tijuana"];
+        // Lista completa de destinos (Originales + Nuevos)
+        const destinos = [
+            "Acapulco", "CDMX", "Cancún", "Chihuahua", "Ciudad Juárez", 
+            "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
+            "Hermosillo", "Hidalgo", "Huatulco", "Ixtapa", "La Paz", 
+            "León", "Loreto", "Los Cabos", "Mazatlán", "Mexicali", 
+            "Monterrey", "Mérida", "Oaxaca", "Playa del Carmen", 
+            "Puebla", "Puerto Escondido", "Querétaro", "Saltillo", 
+            "Tijuana", "Toluca", "Torreón", "Veracruz"
+        ];
+        
         const grid = document.getElementById('destinos-grid');
         
-        destinos.forEach(dest => {
+        destinos.sort().forEach(dest => {
             const btn = document.createElement('button');
             btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all";
             btn.innerText = dest;
@@ -178,7 +211,9 @@
             const h_fin = document.getElementById('res_hora_fin').value;
 
             if(!nombre || !destino || !f_ini || !f_fin || !h_ini || !h_fin) {
-                alert("Por favor completa todos los campos (Nombre, Destino, Fechas y Horarios).");
+                // Usamos un modal o aviso interno en lugar de alert() para mejor UI
+                const msg = "Por favor completa todos los campos (Nombre, Destino, Fechas y Horarios).";
+                alert(msg);
                 return;
             }
 
