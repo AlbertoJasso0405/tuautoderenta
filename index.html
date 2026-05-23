@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Auto de Renta | Motor de Reservaciones</title>
+    <title>Tu Auto de Renta | Motor de Reservaciones Oficial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; background-color: #ffffff; }
         .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); }
@@ -39,7 +40,7 @@
                     <span class="text-slate-400 font-bold text-[8px] tracking-[0.2em] uppercase block mt-1">BY JASSO MOBILITY</span>
                 </div>
             </div>
-            
+
             <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest">
                 779 217 9612
             </a>
@@ -52,7 +53,7 @@
             <div>
                 <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
                 <p class="text-lg text-blue-100/80 mb-8 font-light">
-                    Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility.
+                    Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Tus datos de contacto se guardan de forma segura para darte un servicio personalizado.
                 </p>
                 <div class="hidden md:flex gap-4 items-center">
                     <div class="flex -space-x-2">
@@ -60,11 +61,11 @@
                         <div class="w-8 h-8 rounded-full bg-blue-700 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">★</div>
                         <div class="w-8 h-8 rounded-full bg-blue-800 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">♥</div>
                     </div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Seguro, rápido y confiable</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Seguro, rápido y sin cargos sorpresa</span>
                 </div>
             </div>
 
-            <!-- Panel de Reservación -->
+            <!-- Panel de Reservación Actualizado con Campo de Teléfono -->
             <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
@@ -72,19 +73,28 @@
                 </div>
 
                 <form id="reserva-form" class="space-y-4">
+                    <!-- Nombre -->
                     <div>
-                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Nombre y Apellidos</label>
-                        <input type="text" id="res_nombre" placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none">
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
+                        <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                    </div>
+
+                    <!-- Teléfono (CAMPO NUEVO CLAVE) -->
+                    <div>
+                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
+                        <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-1">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Destino</label>
-                            <select id="res_destino" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
-                                <option value="">Elegir...</option>
+                        <!-- Destino -->
+                        <div class="col-span-2">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
+                            <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                <option value="">Elegir Destino...</option>
                                 <option value="Acapulco">Acapulco</option>
                                 <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
                                 <option value="Cancún">Cancún</option>
+                                <option value="Monterrey">Monterrey</option>
                                 <option value="Chihuahua">Chihuahua</option>
                                 <option value="Ciudad Juárez">Ciudad Juárez</option>
                                 <option value="Ciudad Obregón">Ciudad Obregón</option>
@@ -101,7 +111,6 @@
                                 <option value="Los Cabos">Los Cabos</option>
                                 <option value="Mazatlán">Mazatlán</option>
                                 <option value="Mexicali">Mexicali</option>
-                                <option value="Monterrey">Monterrey</option>
                                 <option value="Mérida">Mérida</option>
                                 <option value="Oaxaca">Oaxaca</option>
                                 <option value="Playa del Carmen">Playa del Carmen</option>
@@ -113,43 +122,43 @@
                                 <option value="Toluca">Toluca</option>
                                 <option value="Torreón">Torreón</option>
                                 <option value="Veracruz">Veracruz</option>
-                                <option value="Otro">Otro</option>
                             </select>
                         </div>
-                        <div class="col-span-1">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5 ml-1">Vehículo</label>
-                            <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
-                                <option value="Económico (Sedán)">Sedán</option>
-                                <option value="SUV Familiar">SUV</option>
-                                <option value="Premium / Lujo">Premium</option>
-                                <option value="Van de Pasajeros">Van</option>
-                            </select>
+                    </div>
+
+                    <!-- Fechas y Horas -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
+                            <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
+                            <input type="time" id="res_hora_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0 ml-1">Fecha Entrega</label>
-                            <input type="date" id="res_fecha_inicio" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none text-sm">
-                            <input type="time" id="res_hora_inicio" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none text-sm">
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Devolución</label>
+                            <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                         </div>
-                        <div class="space-y-2">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0 ml-1">Fecha Devolución</label>
-                            <input type="date" id="res_fecha_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none text-sm">
-                            <input type="time" id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none text-sm">
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
+                            <input type="time" id="res_hora_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                         </div>
                     </div>
 
-                    <button type="button" onclick="enviarWhatsapp()" class="w-full bg-orange-500 hover:bg-blue-900 text-white font-black py-4 rounded-xl uppercase text-xs tracking-[0.2em] transition-all shadow-xl shadow-orange-500/20 mt-4 flex items-center justify-center gap-3">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.316 1.592 5.43 0 9.856-4.426 9.858-9.855.002-5.43-4.425-9.856-9.855-9.856-5.431 0-9.856 4.426-9.858 9.856-.001 1.938.529 3.791 1.542 5.374l-.926 3.379 3.479-.912zm10.962-7.5c-.124-.193-.458-.31-.965-.564s-2.987-1.472-3.451-1.642-.803-.255-1.136.255-1.291 1.642-1.583 1.981-.584.381-1.092.127-2.147-.791-4.093-2.529c-1.514-1.35-2.536-3.018-2.833-3.526s-.031-.783.223-1.036c.228-.227.508-.59.762-.885.253-.294.339-.504.508-.842s.084-.633-.042-.887c-.127-.254-1.136-2.738-1.557-3.755-.409-1.018-.838-.887-1.136-.902-.294-.015-.631-.018-.968-.018s-.887.127-1.35.633-1.776 1.731-1.776 4.221 1.819 4.897 2.072 5.236c.254.339 3.58 5.463 8.673 7.662 1.211.523 2.156.835 2.895 1.069 1.217.387 2.324.332 3.201.201.977-.146 2.987-1.22 3.409-2.4 1.111-3.111.458-3.662.332-3.882z"/></svg>
-                        Solicitar Cotización
+                    <!-- Botón de Envío -->
+                    <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3">
+                        <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
                     </button>
                 </form>
             </div>
         </div>
     </header>
 
-    <!-- Sección de Destinos Rápidos -->
+    <!-- Sección de Cobertura Nacional -->
     <section class="py-16 bg-slate-50 px-4">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
@@ -158,28 +167,51 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 text-white py-12 px-4 border-t border-slate-900">
-        <div class="max-w-7xl mx-auto text-center md:text-left grid md:grid-cols-2 gap-8 items-center">
-            <div class="flex flex-col items-center md:items-start">
+    <footer class="bg-slate-900 text-white py-12 px-4 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
                 <span class="font-black text-xl text-white block uppercase tracking-tighter">TU AUTO <span class="text-orange-500">de Renta</span></span>
                 <span class="text-slate-600 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
                 
-                <a href="https://www.facebook.com/share/129uK2k8mXk/" target="_blank" class="flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all group">
-                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                <a href="https://www.facebook.com/share/129uK2k8mXk/" target="_blank" class="inline-flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all">
+                    <i class="fab fa-facebook-f"></i>
                     <span class="text-[10px] font-black uppercase tracking-widest">Síguenos en Facebook</span>
                 </a>
             </div>
-            <div class="md:text-right">
-                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">WhatsApp Directo</p>
-                <a href="https://wa.me/527792179612" class="text-2xl font-black text-orange-500">779 217 9612</a>
-            </div>
+            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em] text-center md:text-right">
+                © 2026 Tu Auto de Renta. Todos los derechos reservados.
+            </p>
         </div>
     </footer>
 
-    <script>
-        // Lista completa de destinos (Originales + Nuevos)
+    <!-- SDK e Integración de Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Configuración dinámica provista por tu hosting en el Canvas
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let db = null;
+        let auth = null;
+
+        // Inicializar Firebase si la configuración está disponible
+        if (firebaseConfig) {
+            try {
+                const app = initializeApp(firebaseConfig);
+                auth = getAuth(app);
+                db = getFirestore(app);
+                signInAnonymously(auth); // Autenticación anónima silenciosa
+            } catch (e) {
+                console.error("Firebase no se pudo inicializar en ambiente local:", e);
+            }
+        }
+
+        // Cargar destinos dinámicos ordenados alfabéticamente
         const destinos = [
-            "Acapulco", "CDMX", "Cancún", "Chihuahua", "Ciudad Juárez", 
+            "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
             "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
             "Hermosillo", "Hidalgo", "Huatulco", "Ixtapa", "La Paz", 
             "León", "Loreto", "Los Cabos", "Mazatlán", "Mexicali", 
@@ -189,51 +221,67 @@
         ];
         
         const grid = document.getElementById('destinos-grid');
-        
         destinos.sort().forEach(dest => {
             const btn = document.createElement('button');
+            btn.type = "button";
             btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all";
             btn.innerText = dest;
             btn.onclick = () => {
-                document.getElementById('res_destino').value = (dest === "CDMX") ? "CDMX / Aeropuerto" : dest;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                document.getElementById('res_destino').value = dest;
+                document.getElementById('res_destino').scrollIntoView({ behavior: 'smooth' });
             };
             grid.appendChild(btn);
         });
 
-        function enviarWhatsapp() {
-            const nombre = document.getElementById('res_nombre').value;
+        // Manejador del Formulario
+        document.getElementById('reserva-form').onsubmit = async function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('res_nombre').value.trim();
+            const telefono = document.getElementById('res_telefono').value.trim();
             const destino = document.getElementById('res_destino').value;
-            const auto = document.getElementById('res_auto').value;
-            const f_ini = document.getElementById('res_fecha_inicio').value;
-            const h_ini = document.getElementById('res_hora_inicio').value;
+            const f_ini = document.getElementById('res_fecha_ini').value;
+            const h_ini = document.getElementById('res_hora_ini').value;
             const f_fin = document.getElementById('res_fecha_fin').value;
             const h_fin = document.getElementById('res_hora_fin').value;
 
-            if(!nombre || !destino || !f_ini || !f_fin || !h_ini || !h_fin) {
-                // Usamos un modal o aviso interno en lugar de alert() para mejor UI
-                const msg = "Por favor completa todos los campos (Nombre, Destino, Fechas y Horarios).";
-                alert(msg);
+            // Validación de Teléfono (10 dígitos en México)
+            if (telefono.replace(/\D/g, '').length < 10) {
+                alert("Por favor ingresa un número de teléfono válido de 10 dígitos.");
                 return;
             }
 
-            const mensaje = `🚗 *NUEVA RESERVACIÓN* 🚗%0A` +
-                            `--------------------------------%0A` +
-                            `👤 *Cliente:* ${nombre}%0A` +
-                            `📍 *Destino:* ${destino}%0A` +
-                            `🚘 *Vehículo:* ${auto}%0A%0A` +
-                            `🛫 *Entrega:* ${f_ini} a las ${h_ini} hrs%0A` +
-                            `🛬 *Devolución:* ${f_fin} a las ${h_fin} hrs%0A` +
-                            `--------------------------------%0A` +
-                            `✨ _Enviado desde Tu Auto de Renta by Jasso Mobility_`;
+            // 1. Guardar Prospecto automáticamente en el CRM Cloud (Firestore) si está activo
+            if (db) {
+                try {
+                    const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leads');
+                    await addDoc(colRef, {
+                        nombre: nombre,
+                        telefono: telefono,
+                        estatus: "Vigente",
+                        fuente: "Sitio Web",
+                        statuswa: "Nuevo Contacto",
+                        obs: `Reserva web en ${destino} del ${f_ini} al ${f_fin}`,
+                        intentos: [true, false, false],
+                        ultimo: new Date().toLocaleDateString('es-MX')
+                    });
+                } catch (err) {
+                    console.error("Error guardando en la base de datos:", err);
+                }
+            }
 
-            const url = `https://wa.me/527792179612?text=${mensaje}`;
+            // 2. Formatear y Enviar Mensaje a tu WhatsApp
+            const txt = `*¡Hola Jasso Mobility! Quiero una cotización* 🚗✨\n\n` +
+                        `👤 *Nombre:* ${nombre}\n` +
+                        `📱 *WhatsApp:* ${telefono}\n` +
+                        `📍 *Destino:* ${destino}\n` +
+                        `📅 *Entrega:* ${f_ini} a las ${h_ini} hrs.\n` +
+                        `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n\n` +
+                        `_Generado automáticamente desde mi cotización web._`;
+
+            const url = `https://wa.me/527792179612?text=${encodeURIComponent(txt)}`;
             window.open(url, '_blank');
-        }
-
-        const hoy = new Date().toISOString().split('T')[0];
-        document.getElementById('res_fecha_inicio').min = hoy;
-        document.getElementById('res_fecha_fin').min = hoy;
+        };
     </script>
 </body>
 </html>
