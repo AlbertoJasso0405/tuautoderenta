@@ -10,47 +10,22 @@
     <style>
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; background-color: #ffffff; }
         .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); }
-        .city-card:hover {
-            background-color: #1e3a8a;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        input[type="date"]::-webkit-calendar-picker-indicator,
-        input[type="time"]::-webkit-calendar-picker-indicator {
-            cursor: pointer;
-            opacity: 0.6;
-        }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="bg-slate-50 text-slate-900">
 
-    <!-- Navegación -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <svg width="45" height="45" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="35" cy="45" r="7" fill="#1e3a8a" />
-                    <circle cx="65" cy="45" r="7" fill="#1e3a8a" />
-                    <path d="M 20,60 Q 50,90 80,60" fill="none" stroke="#f97316" stroke-width="8" stroke-linecap="round" />
-                </svg>
-                <div class="leading-none">
-                    <span class="font-black text-xl text-blue-900 block uppercase tracking-tighter">TU AUTO</span>
-                    <span class="text-orange-500 font-black text-xl block uppercase tracking-tighter -mt-1">de Renta</span>
+    <header class="hero-gradient text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="font-black text-2xl text-white uppercase tracking-tighter">TU AUTO <span class="text-orange-500">de Renta</span></span>
                     <span class="text-slate-400 font-bold text-[8px] tracking-[0.2em] uppercase block mt-1">BY JASSO MOBILITY</span>
                 </div>
-            </div>
+                
+                <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest inline-block mb-6">
+                    779 217 9612
+                </a>
 
-            <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest">
-                779 217 9612
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero con Motor de Reservas -->
-    <header class="hero-gradient text-white py-12 md:py-20 px-4 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-            <div>
                 <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
                 <p class="text-lg text-blue-100/80 mb-8 font-light">
                     Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Tus datos de contacto se guardan de forma segura para darte un servicio personalizado.
@@ -65,7 +40,7 @@
                 </div>
             </div>
 
-            <!-- Panel de Reservación Actualizado con Campo de Teléfono -->
+            <!-- Panel de Reservación Actualizado -->
             <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
@@ -79,22 +54,21 @@
                         <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                     </div>
 
-                    <!-- Teléfono (CAMPO NUEVO CLAVE) -->
+                    <!-- Teléfono -->
                     <div>
                         <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
                         <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                     </div>
 
+                    <!-- Destino y Vehículo -->
                     <div class="grid grid-cols-2 gap-4">
-                        <!-- Destino -->
-                        <div class="col-span-2">
+                        <div class="col-span-1">
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
                             <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
                                 <option value="">Elegir Destino...</option>
                                 <option value="Acapulco">Acapulco</option>
                                 <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
                                 <option value="Cancún">Cancún</option>
-                                <option value="Monterrey">Monterrey</option>
                                 <option value="Chihuahua">Chihuahua</option>
                                 <option value="Ciudad Juárez">Ciudad Juárez</option>
                                 <option value="Ciudad Obregón">Ciudad Obregón</option>
@@ -102,7 +76,6 @@
                                 <option value="Durango">Durango</option>
                                 <option value="Guadalajara">Guadalajara</option>
                                 <option value="Hermosillo">Hermosillo</option>
-                                <option value="Hidalgo">Hidalgo</option>
                                 <option value="Huatulco">Huatulco</option>
                                 <option value="Ixtapa">Ixtapa</option>
                                 <option value="La Paz">La Paz</option>
@@ -111,17 +84,29 @@
                                 <option value="Los Cabos">Los Cabos</option>
                                 <option value="Mazatlán">Mazatlán</option>
                                 <option value="Mexicali">Mexicali</option>
+                                <option value="Monterrey">Monterrey</option>
                                 <option value="Mérida">Mérida</option>
                                 <option value="Oaxaca">Oaxaca</option>
-                                <option value="Playa del Carmen">Playa del Carmen</option>
                                 <option value="Puebla">Puebla</option>
-                                <option value="Puerto Escondido">Puerto Escondido</option>
+                                <option value="Puerto Vallarta">Puerto Vallarta</option>
                                 <option value="Querétaro">Querétaro</option>
-                                <option value="Saltillo">Saltillo</option>
+                                <option value="San Luis Potosí">San Luis Potosí</option>
                                 <option value="Tijuana">Tijuana</option>
                                 <option value="Toluca">Toluca</option>
                                 <option value="Torreón">Torreón</option>
+                                <option value="Tuxtla Gutiérrez">Tuxtla Gutiérrez</option>
                                 <option value="Veracruz">Veracruz</option>
+                                <option value="Villahermosa">Villahermosa</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="col-span-1">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Vehículo</label>
+                            <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                <option value="Económico (Sedán)">Sedán</option>
+                                <option value="SUV Familiar">SUV</option>
+                                <option value="Premium / Lujo">Premium</option>
+                                <option value="Van de Pasajeros">Van</option>
                             </select>
                         </div>
                     </div>
@@ -150,7 +135,7 @@
                     </div>
 
                     <!-- Botón de Envío -->
-                    <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3">
+                    <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
                         <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
                     </button>
                 </form>
@@ -162,7 +147,7 @@
     <section class="py-16 bg-slate-50 px-4">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="destinos-grid"></div>
+            <div id="destinos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
         </div>
     </section>
 
@@ -172,13 +157,19 @@
             <div>
                 <span class="font-black text-xl text-white block uppercase tracking-tighter">TU AUTO <span class="text-orange-500">de Renta</span></span>
                 <span class="text-slate-600 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
-                
+
                 <a href="https://www.facebook.com/share/129uK2k8mXk/" target="_blank" class="inline-flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all">
                     <i class="fab fa-facebook-f"></i>
                     <span class="text-[10px] font-black uppercase tracking-widest">Síguenos en Facebook</span>
                 </a>
             </div>
-            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em] text-center md:text-right">
+            <div class="md:text-right">
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">WhatsApp Directo</p>
+                <a href="https://wa.me/527792179612" class="text-2xl font-black text-orange-500">779 217 9612</a>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-800/50">
+            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em] text-center">
                 © 2026 Tu Auto de Renta. Todos los derechos reservados.
             </p>
         </div>
@@ -190,48 +181,54 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuración dinámica provista por tu hosting en el Canvas
+        // Configuración dinámica provista por el hosting
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
         let db = null;
         let auth = null;
 
-        // Inicializar Firebase si la configuración está disponible
         if (firebaseConfig) {
             try {
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
-                signInAnonymously(auth); // Autenticación anónima silenciosa
+                signInAnonymously(auth);
             } catch (e) {
                 console.error("Firebase no se pudo inicializar en ambiente local:", e);
             }
         }
 
-        // Cargar destinos dinámicos ordenados alfabéticamente
+        // Lista de destinos actualizada (Sin Hidalgo y con nuevos destinos nacionales)
         const destinos = [
             "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
             "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
-            "Hermosillo", "Hidalgo", "Huatulco", "Ixtapa", "La Paz", 
+            "Hermosillo", "Huatulco", "Ixtapa", "La Paz", 
             "León", "Loreto", "Los Cabos", "Mazatlán", "Mexicali", 
-            "Monterrey", "Mérida", "Oaxaca", "Playa del Carmen", 
-            "Puebla", "Puerto Escondido", "Querétaro", "Saltillo", 
-            "Tijuana", "Toluca", "Torreón", "Veracruz"
+            "Monterrey", "Mérida", "Oaxaca", "Puebla", "Puerto Vallarta", 
+            "Querétaro", "San Luis Potosí", "Tijuana", "Toluca", "Torreón", 
+            "Tuxtla Gutiérrez", "Veracruz", "Villahermosa"
         ];
-        
+
         const grid = document.getElementById('destinos-grid');
+        
         destinos.sort().forEach(dest => {
             const btn = document.createElement('button');
             btn.type = "button";
-            btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all";
+            btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all hover:border-orange-500 hover:text-orange-500 cursor-pointer";
             btn.innerText = dest;
             btn.onclick = () => {
-                document.getElementById('res_destino').value = dest;
-                document.getElementById('res_destino').scrollIntoView({ behavior: 'smooth' });
+                const selectDestino = document.getElementById('res_destino');
+                selectDestino.value = dest;
+                selectDestino.scrollIntoView({ behavior: 'smooth', block: 'center' });
             };
             grid.appendChild(btn);
         });
+
+        // Configurar fecha mínima (hoy)
+        const hoy = new Date().toISOString().split('T')[0];
+        document.getElementById('res_fecha_ini').min = hoy;
+        document.getElementById('res_fecha_fin').min = hoy;
 
         // Manejador del Formulario
         document.getElementById('reserva-form').onsubmit = async function(e) {
@@ -240,18 +237,18 @@
             const nombre = document.getElementById('res_nombre').value.trim();
             const telefono = document.getElementById('res_telefono').value.trim();
             const destino = document.getElementById('res_destino').value;
+            const auto = document.getElementById('res_auto').value;
             const f_ini = document.getElementById('res_fecha_ini').value;
             const h_ini = document.getElementById('res_hora_ini').value;
             const f_fin = document.getElementById('res_fecha_fin').value;
             const h_fin = document.getElementById('res_hora_fin').value;
 
-            // Validación de Teléfono (10 dígitos en México)
             if (telefono.replace(/\D/g, '').length < 10) {
                 alert("Por favor ingresa un número de teléfono válido de 10 dígitos.");
                 return;
             }
 
-            // 1. Guardar Prospecto automáticamente en el CRM Cloud (Firestore) si está activo
+            // 1. Guardar Prospecto en Firestore
             if (db) {
                 try {
                     const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leads');
@@ -261,7 +258,7 @@
                         estatus: "Vigente",
                         fuente: "Sitio Web",
                         statuswa: "Nuevo Contacto",
-                        obs: `Reserva web en ${destino} del ${f_ini} al ${f_fin}`,
+                        obs: `Reserva web en ${destino} (${auto}) del ${f_ini} al ${f_fin}`,
                         intentos: [true, false, false],
                         ultimo: new Date().toLocaleDateString('es-MX')
                     });
@@ -270,11 +267,12 @@
                 }
             }
 
-            // 2. Formatear y Enviar Mensaje a tu WhatsApp
+            // 2. Formatear y Enviar Mensaje a WhatsApp Directo
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
                         `📱 *WhatsApp:* ${telefono}\n` +
                         `📍 *Destino:* ${destino}\n` +
+                        `🚘 *Vehículo:* ${auto}\n` +
                         `📅 *Entrega:* ${f_ini} a las ${h_ini} hrs.\n` +
                         `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n\n` +
                         `_Generado automáticamente desde mi cotización web._`;
