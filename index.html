@@ -27,9 +27,15 @@
                 </a>
 
                 <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
-                <p class="text-lg text-blue-100/80 mb-8 font-light">
+                <p class="text-lg text-blue-100/80 mb-6 font-light">
                     Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Tus datos de contacto se guardan de forma segura para darte un servicio personalizado.
                 </p>
+
+                <!-- IMAGEN ILUSTRATIVA DEL AUTO -->
+                <div class="mb-6">
+                    <img src="auto.jpg" alt="Auto Sedán Ejecutivo" class="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-300 object-cover">
+                </div>
+
                 <div class="hidden md:flex gap-4 items-center">
                     <div class="flex -space-x-2">
                         <div class="w-8 h-8 rounded-full bg-orange-500 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">✓</div>
@@ -181,7 +187,6 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuración dinámica provista por el hosting
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
 
@@ -199,7 +204,6 @@
             }
         }
 
-        // Lista de destinos actualizada (Sin Hidalgo y con nuevos destinos nacionales)
         const destinos = [
             "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
             "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
@@ -225,12 +229,10 @@
             grid.appendChild(btn);
         });
 
-        // Configurar fecha mínima (hoy)
         const hoy = new Date().toISOString().split('T')[0];
         document.getElementById('res_fecha_ini').min = hoy;
         document.getElementById('res_fecha_fin').min = hoy;
 
-        // Manejador del Formulario
         document.getElementById('reserva-form').onsubmit = async function(e) {
             e.preventDefault();
             
@@ -248,7 +250,6 @@
                 return;
             }
 
-            // 1. Guardar Prospecto en Firestore
             if (db) {
                 try {
                     const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leads');
@@ -267,7 +268,6 @@
                 }
             }
 
-            // 2. Formatear y Enviar Mensaje a WhatsApp Directo
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
                         `📱 *WhatsApp:* ${telefono}\n` +
