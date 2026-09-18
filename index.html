@@ -68,7 +68,7 @@
             </div>
 
             <!-- Panel de Reservación -->
-            <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative">
+            <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative" id="cotizador">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
                     <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Datos de Viaje</span>
@@ -130,10 +130,11 @@
                         <div class="col-span-1">
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Vehículo</label>
                             <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
-                                <option value="Económico (Sedán)">Sedán</option>
-                                <option value="SUV Familiar">SUV</option>
-                                <option value="Premium / Lujo">Premium</option>
-                                <option value="Van de Pasajeros">Van</option>
+                                <option value="Económico (Hyundai i10)">Económico (i10)</option>
+                                <option value="Mediano (Mirage G4)">Mediano (Mirage G4)</option>
+                                <option value="Estándar (Versa / K3)">Estándar (Versa / K3)</option>
+                                <option value="Grande (Kia K4 / Sentra)">Grande (K4 / Sentra)</option>
+                                <option value="Camioneta / Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
                             </select>
                         </div>
                     </div>
@@ -169,6 +170,146 @@
             </div>
         </div>
     </header>
+
+    <!-- SECCIÓN DE FLOTA / CATÁLOGO DE AUTOS -->
+    <section class="py-16 bg-white px-4 border-b border-slate-200" id="flota">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="bg-blue-100 text-blue-900 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-3">Modelos Disponibles</span>
+                <h2 class="text-3xl md:text-5xl font-black text-blue-900 uppercase tracking-tighter">Nuestra Flota</h2>
+                <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Vehículos de modelo reciente, inspeccionados y asegurados para tu máximo confort.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Auto 1: Económico -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200">
+                            <img src="i10-1.jpeg" alt="Hyundai i10 Sedán" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Económico</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xl text-blue-900 mb-1">Hyundai i10 Sedán</h3>
+                            <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Económico</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 4 Pasajeros</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 2 Maletas</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Aire Acondicionado</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-orange-500"></i> Rinde Rendimiento</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="seleccionarAuto('Económico (Hyundai i10)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                            Cotizar esta categoría
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auto 2: Mediano -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200">
+                            <img src="mirage-1.jpeg" alt="Mitsubishi Mirage G4" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Mediano</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xl text-blue-900 mb-1">Mitsubishi Mirage G4</h3>
+                            <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Mediano</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 2 Maletas Grandes</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Aire Acondicionado</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-cogs text-orange-500"></i> Automático</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="seleccionarAuto('Mediano (Mirage G4)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                            Cotizar esta categoría
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auto 3: Estándar -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200">
+                            <img src="versa.jpeg" alt="Nissan Versa" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Estándar</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xl text-blue-900 mb-1">Nissan Versa / Kia K3</h3>
+                            <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Estándar</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 3 Maletas</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Climatizador</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-orange-500"></i> Seguridad Activa</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="seleccionarAuto('Estándar (Versa / K3)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                            Cotizar esta categoría
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auto 4: Grande / Ejecutivo -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-slate-200">
+                            <img src="k4.jpeg" alt="Kia K4 / Sentra" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Grande / Ejecutivo</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xl text-blue-900 mb-1">Kia K4 / Nissan Sentra</h3>
+                            <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Grande</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 3 Maletas Grandes</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-car text-orange-500"></i> Confort Premium</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-mobile-alt text-orange-500"></i> Pantalla Táctil</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="seleccionarAuto('Grande (Kia K4 / Sentra)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                            Cotizar esta categoría
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Auto 5: Camioneta / Van -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div>
+                        <div class="relative h-48 bg-slate-200">
+                            <img src="hiace.jpeg" alt="Toyota Hiace / Urvan" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Pasajeros</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-black text-xl text-blue-900 mb-1">Toyota Hiace / Nissan Urvan</h3>
+                            <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Van</p>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                <div class="flex items-center gap-2"><i class="fas fa-users text-orange-500"></i> 12-15 Pasajeros</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-boxes text-orange-500"></i> Amplio Equipaje</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> A/C Trasero</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-bus text-orange-500"></i> Ideal Grupos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="seleccionarAuto('Camioneta / Van (Hiace / Urvan)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                            Cotizar esta categoría
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- SECCIÓN DE REQUISITOS DE RENTA -->
     <section class="py-16 bg-slate-100 px-4 border-b border-slate-200">
@@ -424,6 +565,13 @@
         const hoy = new Date().toISOString().split('T')[0];
         document.getElementById('res_fecha_ini').min = hoy;
         document.getElementById('res_fecha_fin').min = hoy;
+
+        // Función para seleccionar auto desde la galería
+        window.seleccionarAuto = function(valorAuto) {
+            const selectAuto = document.getElementById('res_auto');
+            selectAuto.value = valorAuto;
+            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        };
 
         document.getElementById('reserva-form').onsubmit = async function(e) {
             e.preventDefault();
