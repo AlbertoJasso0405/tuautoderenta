@@ -135,6 +135,7 @@
                                 <option value="Estándar (Versa / K3)">Estándar (Versa / K3)</option>
                                 <option value="Grande (Kia K4 / Sentra)">Grande (K4 / Sentra)</option>
                                 <option value="Camioneta / Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
+                                <option value="Categoría Especial / Modelo Específico">Especial / Solicitar Modelo</option>
                             </select>
                         </div>
                     </div>
@@ -171,7 +172,7 @@
         </div>
     </header>
 
-    <!-- SECCIÓN DE FLOTA / CATÁLOGO DE AUTOS -->
+    <!-- SECCIÓN DE FLOTA / CATÁLOGO DE AUTOS CON CARRUSEL -->
     <section class="py-16 bg-white px-4 border-b border-slate-200" id="flota">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
@@ -182,12 +183,23 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Auto 1: Económico -->
+                <!-- Auto 1: Económico (Carrusel) -->
                 <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 bg-slate-200">
-                            <img src="i10-1.jpeg" alt="Hyundai i10 Sedán" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Económico</span>
+                        <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-i10">
+                            <img src="i10-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                            <img src="i10-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Económico</span>
+                            
+                            <!-- Controles del Carrusel -->
+                            <button onclick="cambiarFoto('carrusel-i10', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="cambiarFoto('carrusel-i10', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                            
+                            <!-- Indicadores -->
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                            </div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-black text-xl text-blue-900 mb-1">Hyundai i10 Sedán</h3>
@@ -196,7 +208,7 @@
                                 <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 4 Pasajeros</div>
                                 <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 2 Maletas</div>
                                 <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Aire Acondicionado</div>
-                                <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-orange-500"></i> Rinde Rendimiento</div>
+                                <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-orange-500"></i> Excelente Rendimiento</div>
                             </div>
                         </div>
                     </div>
@@ -207,12 +219,23 @@
                     </div>
                 </div>
 
-                <!-- Auto 2: Mediano -->
+                <!-- Auto 2: Mediano (Carrusel) -->
                 <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 bg-slate-200">
-                            <img src="mirage-1.jpeg" alt="Mitsubishi Mirage G4" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Mediano</span>
+                        <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-mirage">
+                            <img src="mirage-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                            <img src="mirage-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Mediano</span>
+                            
+                            <!-- Controles del Carrusel -->
+                            <button onclick="cambiarFoto('carrusel-mirage', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="cambiarFoto('carrusel-mirage', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                            
+                            <!-- Indicadores -->
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                            </div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-black text-xl text-blue-900 mb-1">Mitsubishi Mirage G4</h3>
@@ -232,12 +255,23 @@
                     </div>
                 </div>
 
-                <!-- Auto 3: Estándar -->
+                <!-- Auto 3: Estándar (Carrusel) -->
                 <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 bg-slate-200">
-                            <img src="versa.jpeg" alt="Nissan Versa" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Estándar</span>
+                        <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-estandar">
+                            <img src="versa.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                            <img src="k3.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Estándar</span>
+                            
+                            <!-- Controles del Carrusel -->
+                            <button onclick="cambiarFoto('carrusel-estandar', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="cambiarFoto('carrusel-estandar', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                            
+                            <!-- Indicadores -->
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                            </div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-black text-xl text-blue-900 mb-1">Nissan Versa / Kia K3</h3>
@@ -257,12 +291,23 @@
                     </div>
                 </div>
 
-                <!-- Auto 4: Grande / Ejecutivo -->
+                <!-- Auto 4: Grande / Ejecutivo (Carrusel) -->
                 <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 bg-slate-200">
-                            <img src="k4.jpeg" alt="Kia K4 / Sentra" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Grande / Ejecutivo</span>
+                        <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-grande">
+                            <img src="k4.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                            <img src="sentra.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                            <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Grande / Ejecutivo</span>
+                            
+                            <!-- Controles del Carrusel -->
+                            <button onclick="cambiarFoto('carrusel-grande', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="cambiarFoto('carrusel-grande', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                            
+                            <!-- Indicadores -->
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                            </div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-black text-xl text-blue-900 mb-1">Kia K4 / Nissan Sentra</h3>
@@ -282,12 +327,23 @@
                     </div>
                 </div>
 
-                <!-- Auto 5: Camioneta / Van -->
-                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                <!-- Auto 5: Camioneta / Van (Carrusel) -->
+                <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                     <div>
-                        <div class="relative h-48 bg-slate-200">
-                            <img src="hiace.jpeg" alt="Toyota Hiace / Urvan" class="w-full h-full object-cover">
-                            <span class="absolute top-3 right-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider">Pasajeros</span>
+                        <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-van">
+                            <img src="hiace.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                            <img src="urvan.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                            <span class="absolute top-3 right-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Pasajeros</span>
+                            
+                            <!-- Controles del Carrusel -->
+                            <button onclick="cambiarFoto('carrusel-van', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                            <button onclick="cambiarFoto('carrusel-van', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                            
+                            <!-- Indicadores -->
+                            <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                            </div>
                         </div>
                         <div class="p-6">
                             <h3 class="font-black text-xl text-blue-900 mb-1">Toyota Hiace / Nissan Urvan</h3>
@@ -304,6 +360,28 @@
                         <button onclick="seleccionarAuto('Camioneta / Van (Hiace / Urvan)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
                             Cotizar esta categoría
                         </button>
+                    </div>
+                </div>
+
+                <!-- TARJETA DESTACADA: CATEGORÍAS ESPECIALES -->
+                <div class="bg-gradient-to-br from-blue-950 to-blue-900 text-white rounded-3xl p-6 border border-blue-800 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl mb-4">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="bg-orange-500/20 text-orange-400 text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Atención Especializada</span>
+                        <h3 class="font-black text-2xl text-white mt-2 mb-2">Categorías Especiales</h3>
+                        <p class="text-xs text-blue-100/80 leading-relaxed mb-4 font-light">
+                            ¿Buscas un vehículo de lujo, Pick-up, SUV de 7 pasajeros o un modelo en específico?
+                        </p>
+                        <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-xs text-blue-200 font-medium mb-4">
+                            💬 <strong>Pregunta directamente a un ejecutivo por disponibilidad y modelos específicos.</strong>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="https://wa.me/527792179612?text=*¡Hola!* Quiero consultar disponibilidad para un modelo o categoría especial de vehículo. 🚗✨" target="_blank" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest text-center block">
+                            <i class="fab fa-whatsapp text-sm"></i> Consultar a un Ejecutivo
+                        </a>
                     </div>
                 </div>
 
@@ -360,7 +438,7 @@
             <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl flex items-start gap-3">
                 <span class="text-amber-500 font-black text-xl leading-none">*</span>
                 <p class="text-xs text-amber-900 font-medium leading-relaxed">
-                    <strong>¿Deseas rentar con tarjeta de débito?</strong> Pregunta directamente a tu asesor por WhatsApp sobre la disponibilidad, políticas especiales y condiciones de garantía aplicables para pagos con tarjeta de débito.
+                    <strong>¿Deseas rentar con tarjeta de débito?</strong> Pregunta directamente a tu ejecutivo por WhatsApp sobre la disponibilidad, políticas especiales y condiciones de garantía aplicables para pagos con tarjeta de débito.
                 </p>
             </div>
         </div>
@@ -565,6 +643,28 @@
         const hoy = new Date().toISOString().split('T')[0];
         document.getElementById('res_fecha_ini').min = hoy;
         document.getElementById('res_fecha_fin').min = hoy;
+
+        // Función para cambiar fotos en los carruseles
+        window.cambiarFoto = function(idCarrusel, direccion) {
+            const contenedor = document.getElementById(idCarrusel);
+            const imagenes = contenedor.querySelectorAll('.carrusel-img');
+            const dots = contenedor.querySelectorAll('.dots span');
+            let indexActual = 0;
+
+            imagenes.forEach((img, idx) => {
+                if (!img.classList.contains('hidden')) indexActual = idx;
+            });
+
+            imagenes[indexActual].classList.add('hidden');
+            dots[indexActual].className = 'w-2 h-2 rounded-full bg-white/50';
+
+            let nuevoIndex = indexActual + direccion;
+            if (nuevoIndex >= imagenes.length) nuevoIndex = 0;
+            if (nuevoIndex < 0) nuevoIndex = imagenes.length - 1;
+
+            imagenes[nuevoIndex].classList.remove('hidden');
+            dots[nuevoIndex].className = 'w-2 h-2 rounded-full bg-orange-500';
+        };
 
         // Función para seleccionar auto desde la galería
         window.seleccionarAuto = function(valorAuto) {
