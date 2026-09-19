@@ -33,17 +33,18 @@
 <body class="bg-slate-50 text-slate-900 pb-20 md:pb-0">
 
     <!-- BARRA SUPERIOR DE NAVEGACIÓN FIJA (NAVBAR) -->
-    <nav class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md text-white border-b border-slate-800 py-3 px-4 shadow-lg">
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 py-3 px-4 shadow-lg">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <img src="logo.jpg" alt="Logo" class="h-8 w-auto rounded">
-                <span class="font-black text-xs uppercase tracking-widest text-slate-200 hidden sm:inline">Tu Auto de Renta</span>
-            </div>
+            <!-- LOGO COMO BOTÓN DE INICIO EN NAVBAR -->
+            <button onclick="cambiarPestana('inicio')" class="flex items-center gap-3 focus:outline-none group">
+                <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-8 w-auto rounded group-hover:opacity-90 transition-opacity">
+                <span class="font-black text-xs uppercase tracking-widest text-slate-200 hidden sm:inline group-hover:text-orange-400 transition-colors">Tu Auto de Renta</span>
+            </button>
             
             <!-- Links rápidos de Navegación -->
             <div class="flex items-center gap-2 sm:gap-6 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-                <button onclick="irACotizar()" class="text-orange-400 hover:text-orange-300 transition-all flex items-center gap-1">
-                    <i class="fas fa-calculator"></i> <span class="hidden md:inline">Cotizar</span>
+                <button onclick="cambiarPestana('inicio')" class="text-orange-400 hover:text-orange-300 transition-all flex items-center gap-1">
+                    <i class="fas fa-calculator"></i> <span class="hidden md:inline">Inicio / Cotizar</span>
                 </button>
                 <button onclick="cambiarPestana('flota')" class="hover:text-orange-400 transition-all">Flota</button>
                 <button onclick="cambiarPestana('requisitos')" class="hover:text-orange-400 transition-all">Requisitos</button>
@@ -53,151 +54,13 @@
         </div>
     </nav>
 
-    <!-- ENCABEZADO Y MOTOR DE RESERVAS (SIEMPRE VISIBLE EN INICIO) -->
-    <header class="hero-gradient text-white py-12 px-4" id="cotizador">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-            <div>
-                <!-- LOGO OFICIAL -->
-                <div class="flex items-center gap-4 mb-6">
-                    <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-20 md:h-24 w-auto object-contain rounded-lg">
-                    <div>
-                        <span class="text-slate-300 font-bold text-[9px] tracking-[0.25em] uppercase block">BY JASSO MOBILITY</span>
-                    </div>
-                </div>
-                
-                <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest inline-block mb-6">
-                    779 217 9612
-                </a>
-
-                <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
-                <p class="text-lg text-blue-100/80 mb-6 font-light">
-                    Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Trabajamos en alianza con las principales marcas líderes del mercado para garantizarte las mejores tarifas, disponibilidad y un servicio seguro y personalizado.
-                </p>
-
-                <!-- IMAGEN ILUSTRATIVA DEL AUTO -->
-                <div class="mb-6">
-                    <img src="auto.jpg" alt="Auto Sedán Ejecutivo" class="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-300 object-cover">
-                </div>
-
-                <div class="hidden md:flex gap-4 items-center">
-                    <div class="flex -space-x-2">
-                        <div class="w-8 h-8 rounded-full bg-orange-500 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">✓</div>
-                        <div class="w-8 h-8 rounded-full bg-blue-700 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">★</div>
-                        <div class="w-8 h-8 rounded-full bg-blue-800 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">♥</div>
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Seguro, rápido y sin cargos sorpresa</span>
-                </div>
-            </div>
-
-            <!-- Panel de Reservación -->
-            <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
-                    <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Datos de Viaje</span>
-                </div>
-
-                <form id="reserva-form" class="space-y-4">
-                    <!-- Nombre -->
-                    <div>
-                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
-                        <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
-                    </div>
-
-                    <!-- Teléfono -->
-                    <div>
-                        <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
-                        <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
-                    </div>
-
-                    <!-- Destino y Vehículo -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="col-span-1">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
-                            <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
-                                <option value="">Elegir Destino...</option>
-                                <option value="Acapulco">Acapulco</option>
-                                <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
-                                <option value="Cancún">Cancún</option>
-                                <option value="Chihuahua">Chihuahua</option>
-                                <option value="Ciudad Juárez">Ciudad Juárez</option>
-                                <option value="Ciudad Obregón">Ciudad Obregón</option>
-                                <option value="Culiacán">Culiacán</option>
-                                <option value="Durango">Durango</option>
-                                <option value="Guadalajara">Guadalajara</option>
-                                <option value="Hermosillo">Hermosillo</option>
-                                <option value="Huatulco">Huatulco</option>
-                                <option value="Ixtapa">Ixtapa</option>
-                                <option value="La Paz">La Paz</option>
-                                <option value="León">León</option>
-                                <option value="Loreto">Loreto</option>
-                                <option value="Los Cabos">Los Cabos</option>
-                                <option value="Mazatlán">Mazatlán</option>
-                                <option value="Mexicali">Mexicali</option>
-                                <option value="Monterrey">Monterrey</option>
-                                <option value="Mérida">Mérida</option>
-                                <option value="Oaxaca">Oaxaca</option>
-                                <option value="Puebla">Puebla</option>
-                                <option value="Puerto Vallarta">Puerto Vallarta</option>
-                                <option value="Querétaro">Querétaro</option>
-                                <option value="San Luis Potosí">San Luis Potosí</option>
-                                <option value="Tijuana">Tijuana</option>
-                                <option value="Toluca">Toluca</option>
-                                <option value="Torreón">Torreón</option>
-                                <option value="Tuxtla Gutiérrez">Tuxtla Gutiérrez</option>
-                                <option value="Veracruz">Veracruz</option>
-                                <option value="Villahermosa">Villahermosa</option>
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="col-span-1">
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Vehículo</label>
-                            <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
-                                <option value="Económico (Hyundai i10)">Económico (i10)</option>
-                                <option value="Mediano (Mirage G4)">Mediano (Mirage G4)</option>
-                                <option value="Estándar (Versa / K3)">Estándar (Versa / K3)</option>
-                                <option value="Grande (Kia K4 / Sentra)">Grande (K4 / Sentra)</option>
-                                <option value="Camioneta / Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
-                                <option value="Categoría Especial / Modelo Específico">Especial / Solicitar Modelo</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Fechas y Horas -->
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
-                            <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
-                            <input type="time" id="res_hora_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Devolución</label>
-                            <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
-                            <input type="time" id="res_hora_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
-                        </div>
-                    </div>
-
-                    <!-- Botón de Envío -->
-                    <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
-                        <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
-                    </button>
-                </form>
-            </div>
-        </div>
-    </header>
-
-    <!-- BARRA DE PESTAÑAS (TABS) PARA EXPLORAR INFORMACIÓN -->
+    <!-- BARRA DE PESTAÑAS (TABS) PRINCIPAL -->
     <section class="bg-slate-200 border-b border-slate-300 sticky top-[53px] z-40 py-3 px-2">
-        <div class="max-w-4xl mx-auto flex justify-center gap-2 sm:gap-4 overflow-x-auto">
-            <button onclick="cambiarPestana('flota')" id="tab-flota" class="btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm">
+        <div class="max-w-4xl mx-auto flex justify-center gap-2 sm:gap-3 overflow-x-auto">
+            <button onclick="cambiarPestana('inicio')" id="tab-inicio" class="btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm">
+                <i class="fas fa-calculator mr-1"></i> Inicio / Cotizar
+            </button>
+            <button onclick="cambiarPestana('flota')" id="tab-flota" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
                 <i class="fas fa-car mr-1"></i> Nuestra Flota
             </button>
             <button onclick="cambiarPestana('requisitos')" id="tab-requisitos" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
@@ -213,10 +76,153 @@
     </section>
 
     <!-- CONTENEDOR DE PESTAÑAS -->
-    <main class="min-h-[500px]">
+    <main class="min-h-[600px]">
 
-        <!-- PESTAÑA 1: FLOTA / CATÁLOGO DE AUTOS -->
-        <section class="pestana-contenido py-12 bg-white px-4" id="pestana-flota">
+        <!-- PESTAÑA 1: INICIO / MOTOR DE RESERVAS -->
+        <section class="pestana-contenido hero-gradient text-white py-12 px-4" id="pestana-inicio">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center" id="cotizador">
+                <div>
+                    <!-- LOGO PRINCIPAL COMO BOTÓN DE INICIO -->
+                    <div class="flex items-center gap-4 mb-6">
+                        <button onclick="cambiarPestana('inicio')" class="focus:outline-none transition-transform hover:scale-105 active:scale-95 text-left">
+                            <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-20 md:h-24 w-auto object-contain rounded-lg shadow-md cursor-pointer">
+                        </button>
+                        <div>
+                            <span class="text-slate-300 font-bold text-[9px] tracking-[0.25em] uppercase block">BY JASSO MOBILITY</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest inline-block mb-6">
+                        779 217 9612
+                    </a>
+
+                    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
+                    <p class="text-lg text-blue-100/80 mb-6 font-light">
+                        Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Trabajamos en alianza con las principales marcas líderes del mercado para garantizarte las mejores tarifas, disponibilidad y un servicio seguro y personalizado.
+                    </p>
+
+                    <!-- IMAGEN ILUSTRATIVA DEL AUTO -->
+                    <div class="mb-6">
+                        <img src="auto.jpg" alt="Auto Sedán Ejecutivo" class="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-300 object-cover">
+                    </div>
+
+                    <div class="hidden md:flex gap-4 items-center">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-orange-500 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">✓</div>
+                            <div class="w-8 h-8 rounded-full bg-blue-700 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">★</div>
+                            <div class="w-8 h-8 rounded-full bg-blue-800 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">♥</div>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Seguro, rápido y sin cargos sorpresa</span>
+                    </div>
+                </div>
+
+                <!-- Panel de Reservación -->
+                <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Datos de Viaje</span>
+                    </div>
+
+                    <form id="reserva-form" class="space-y-4">
+                        <!-- Nombre -->
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
+                            <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div>
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
+                            <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                        </div>
+
+                        <!-- Destino y Vehículo -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="col-span-1">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
+                                <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                    <option value="">Elegir Destino...</option>
+                                    <option value="Acapulco">Acapulco</option>
+                                    <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
+                                    <option value="Cancún">Cancún</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Ciudad Juárez">Ciudad Juárez</option>
+                                    <option value="Ciudad Obregón">Ciudad Obregón</option>
+                                    <option value="Culiacán">Culiacán</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Guadalajara">Guadalajara</option>
+                                    <option value="Hermosillo">Hermosillo</option>
+                                    <option value="Huatulco">Huatulco</option>
+                                    <option value="Ixtapa">Ixtapa</option>
+                                    <option value="La Paz">La Paz</option>
+                                    <option value="León">León</option>
+                                    <option value="Loreto">Loreto</option>
+                                    <option value="Los Cabos">Los Cabos</option>
+                                    <option value="Mazatlán">Mazatlán</option>
+                                    <option value="Mexicali">Mexicali</option>
+                                    <option value="Monterrey">Monterrey</option>
+                                    <option value="Mérida">Mérida</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Puerto Vallarta">Puerto Vallarta</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Tijuana">Tijuana</option>
+                                    <option value="Toluca">Toluca</option>
+                                    <option value="Torreón">Torreón</option>
+                                    <option value="Tuxtla Gutiérrez">Tuxtla Gutiérrez</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Villahermosa">Villahermosa</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Vehículo</label>
+                                <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                    <option value="Económico (Hyundai i10)">Económico (i10)</option>
+                                    <option value="Mediano (Mirage G4)">Mediano (Mirage G4)</option>
+                                    <option value="Estándar (Versa / K3)">Estándar (Versa / K3)</option>
+                                    <option value="Grande (Kia K4 / Sentra)">Grande (K4 / Sentra)</option>
+                                    <option value="Camioneta / Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
+                                    <option value="Categoría Especial / Modelo Específico">Especial / Solicitar Modelo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Fechas y Horas -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
+                                <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
+                                <input type="time" id="res_hora_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Devolución</label>
+                                <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
+                                <input type="time" id="res_hora_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                        </div>
+
+                        <!-- Botón de Envío -->
+                        <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
+                            <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 2: FLOTA / CATÁLOGO DE AUTOS -->
+        <section class="pestana-contenido hidden py-12 bg-white px-4" id="pestana-flota">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-10">
                     <span class="bg-blue-100 text-blue-900 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-3">Modelos Disponibles</span>
@@ -422,7 +428,7 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 2: REQUISITOS DE RENTA -->
+        <!-- PESTAÑA 3: REQUISITOS DE RENTA -->
         <section class="pestana-contenido hidden py-12 bg-slate-100 px-4" id="pestana-requisitos">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-10">
@@ -477,7 +483,7 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 3: COBERTURAS -->
+        <!-- PESTAÑA 4: COBERTURAS -->
         <section class="pestana-contenido hidden py-12 bg-white px-4" id="pestana-coberturas">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-10">
@@ -593,7 +599,7 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 4: COBERTURA NACIONAL -->
+        <!-- PESTAÑA 5: COBERTURA NACIONAL -->
         <section class="pestana-contenido hidden py-12 bg-slate-50 px-4" id="pestana-destinos">
             <div class="max-w-6xl mx-auto">
                 <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
@@ -604,7 +610,7 @@
     </main>
 
     <!-- BOTÓN FLOTANTE PERMANENTE DE "COTIZAR AHORA" -->
-    <button onclick="irACotizar()" class="fixed bottom-5 right-5 z-50 bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 border-2 border-white">
+    <button onclick="cambiarPestana('inicio')" class="fixed bottom-5 right-5 z-50 bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 border-2 border-white">
         <i class="fas fa-calculator text-base"></i> Cotizar Ahora
     </button>
 
@@ -612,7 +618,9 @@
     <footer class="bg-slate-900 text-white py-12 px-4 border-t border-slate-800">
         <div class="max-w-6xl mx-auto text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
-                <img src="logo.jpg" alt="Tu Auto de Renta" class="h-10 w-auto object-contain mb-2 mx-auto md:mx-0">
+                <button onclick="cambiarPestana('inicio')" class="focus:outline-none transition-transform hover:scale-105 text-left">
+                    <img src="logo.jpg" alt="Tu Auto de Renta" class="h-10 w-auto object-contain mb-2 mx-auto md:mx-0 rounded">
+                </button>
                 <span class="text-slate-500 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
 
                 <a href="https://www.facebook.com/profile.php?id=61578401788094" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all">
@@ -675,7 +683,7 @@
             btn.onclick = () => {
                 const selectDestino = document.getElementById('res_destino');
                 selectDestino.value = dest;
-                irACotizar();
+                cambiarPestana('inicio');
             };
             grid.appendChild(btn);
         });
@@ -684,7 +692,7 @@
         document.getElementById('res_fecha_ini').min = hoy;
         document.getElementById('res_fecha_fin').min = hoy;
 
-        // LÓGICA DE PESTAÑAS (TABS)
+        // LÓGICA DE PESTAÑAS (TABS EXCLUSIVAS)
         window.cambiarPestana = function(idPestana) {
             document.querySelectorAll('.pestana-contenido').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.btn-tab').forEach(btn => {
@@ -696,11 +704,8 @@
 
             if (pestanaActiva) pestanaActiva.classList.remove('hidden');
             if (btnActivo) btnActivo.className = 'btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm';
-        };
 
-        // FUNCIÓN REGRESAR A COTIZAR
-        window.irACotizar = function() {
-            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         // FUNCIÓN CAMBIAR FOTOS EN CARRUSEL
@@ -729,7 +734,7 @@
         window.seleccionarAuto = function(valorAuto) {
             const selectAuto = document.getElementById('res_auto');
             selectAuto.value = valorAuto;
-            irACotizar();
+            cambiarPestana('inicio');
         };
 
         document.getElementById('reserva-form').onsubmit = async function(e) {
