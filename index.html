@@ -106,9 +106,10 @@
                         779 217 9612
                     </a>
 
-                    <h1 class="text-4xl md:text-6xl font-black mb-6 leading-[1.1]">Tu viaje comienza aquí.</h1>
-                    <p class="text-lg text-blue-100/80 mb-6 font-light">
-                        Cotiza en segundos con el motor de reservaciones oficial de Jasso Mobility. Trabajamos en alianza con las principales marcas líderes del mercado para garantizarte las mejores tarifas, disponibilidad y un servicio seguro y personalizado.
+                    <!-- TITULAR Y SUBTITULAR OPCIÓN 2 (ALTO IMPACTO Y ATENCIÓN PERSONALIZADA) -->
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.1]">Más que un auto, te damos tranquilidad.</h1>
+                    <p class="text-base md:text-lg text-blue-100/90 mb-6 font-light leading-relaxed">
+                        Olvídate de los trámites complicados y las sorpresas. En <strong>Tu Auto de Renta</strong>, un experto local te guía de la mano para elegir el auto ideal para tu viaje y te acompaña personalmente por WhatsApp ante cualquier inquietud. Reserva con la certeza de que siempre habrá alguien listo para ayudarte.
                     </p>
 
                     <!-- IMAGEN ILUSTRATIVA DEL AUTO -->
@@ -122,15 +123,18 @@
                             <div class="w-8 h-8 rounded-full bg-blue-700 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">★</div>
                             <div class="w-8 h-8 rounded-full bg-blue-800 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">♥</div>
                         </div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Seguro, rápido y sin cargos sorpresa</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Ejecutivo Asignado 24/7 • Sin Filas ni Sorpresas</span>
                     </div>
                 </div>
 
                 <!-- Panel de Reservación (CUADRO BLANCO DE RESERVA) -->
                 <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative scroll-mt-28" id="cuadro-reserva">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
-                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Datos de Viaje</span>
+                        <div>
+                            <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
+                            <p class="text-[10px] font-bold text-slate-400">Atención Personalizada e Inmediata</p>
+                        </div>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Atención VIP</span>
                     </div>
 
                     <form id="reserva-form" class="space-y-4">
@@ -222,9 +226,9 @@
                             </div>
                         </div>
 
-                        <!-- Botón de Envío -->
+                        <!-- Botón de Envío con Llamado a la Acción de Alto Impacto -->
                         <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
-                            <i class="fab fa-whatsapp text-lg"></i> Cotizar por WhatsApp
+                            <i class="fab fa-whatsapp text-lg"></i> Reservar con Atención VIP ✨
                         </button>
                     </form>
                 </div>
@@ -801,7 +805,7 @@
                 }
             }
 
-            const txt = `*¡Hola Jasso Mobility! Quiero una cotización* 🚗✨\n\n` +
+            const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
                         `📱 *WhatsApp:* ${telefono}\n` +
                         `📍 *Destino:* ${destino}\n` +
