@@ -43,10 +43,10 @@
                 <p class="text-slate-400 text-xs mt-1">Listado de prospectos e intenciones de renta en tiempo real</p>
             </div>
             <div class="flex gap-3">
-                <button onclick="cargarTodasLasReservas()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl uppercase text-xs tracking-widest flex items-center gap-2 transition-all">
+                <button id="btn-actualizar" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl uppercase text-xs tracking-widest flex items-center gap-2 transition-all cursor-pointer">
                     <i class="fas fa-sync-alt"></i> Actualizar
                 </button>
-                <button onclick="cerrarSesion()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-black px-4 py-3 rounded-xl uppercase text-xs tracking-widest transition-all">
+                <button onclick="cerrarSesion()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-black px-4 py-3 rounded-xl uppercase text-xs tracking-widest transition-all cursor-pointer">
                     <i class="fas fa-sign-out-alt"></i> Salir
                 </button>
             </div>
@@ -69,7 +69,7 @@
                     <tbody id="tabla-reservas-body" class="divide-y divide-slate-800 text-xs font-medium">
                         <tr>
                             <td colspan="7" class="p-8 text-center text-slate-500 font-bold">
-                                Cargando reservaciones...
+                                Cargando reservaciones desde Firebase...
                             </td>
                         </tr>
                     </tbody>
@@ -78,10 +78,10 @@
         </div>
     </div>
 
-    <!-- SCRIPT CÓDIGO CRM INTEGRADO -->
+    <!-- SCRIPT DE CONSULTA DIRECTA A FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAZaPnLcdV2uCdWhuqQs13xaUruARAKz4M",
@@ -119,27 +119,21 @@
             location.reload();
         };
 
-        window.cargarTodasLasReservas = async function() {
+        async function cargarTodasLasReservas() {
             const tbody = document.getElementById('tabla-reservas-body');
-            tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Cargando información...</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Consultando reservaciones en tiempo real...</td></tr>`;
 
             let listaTotal = [];
 
-            // 1. Obtener reservas guardadas localmente
             try {
-                const locales = JSON.parse(localStorage.getItem('reservas_locales') || '[]');
-                listaTotal = listaTotal.concat(locales);
-            } catch(e) {}
-
-            // 2. Intentar obtener reservas de Firebase
-            try {
-                const q = query(collection(db, "reservas_web"), orderBy("fecha_registro", "desc"));
-                const querySnapshot = await getDocs(q);
+                const querySnapshot = await getDocs(collection(db, "reservas_web"));
                 querySnapshot.forEach((doc) => {
                     listaTotal.push(doc.data());
                 });
             } catch(e) {
-                console.log("Firebase en espera:", e);
+                console.error("Error consultando Firebase:", e);
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-red-400 font-bold">Error de conexión con la base de datos: ${e.message}</td></tr>`;
+                return;
             }
 
             if (listaTotal.length === 0) {
@@ -148,7 +142,7 @@
             }
 
             tbody.innerHTML = '';
-            listaTotal.forEach(res => {
+            listaTotal.reverse().forEach(res => {
                 const telLimpio = res.telefono ? res.telefono.replace(/\D/g, '') : '';
                 const linkWa = `https://wa.me/52${telLimpio}`;
                 
@@ -177,7 +171,9 @@
                 `;
                 tbody.appendChild(tr);
             });
-        };
+        }
+
+        document.getElementById('btn-actualizar').addEventListener('click', cargarTodasLasReservas);
 
         if (sessionStorage.getItem('crm_auth') === 'true') {
             mostrarPanel();
