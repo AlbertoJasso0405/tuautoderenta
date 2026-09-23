@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Reservaciones | Tu Auto de Renta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <!-- ENCABEZADO -->
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-slate-800/80 p-6 rounded-3xl border border-slate-700">
+            <div>
+                <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-2">Panel de Control CRM</span>
+                <h1 class="text-2xl md:text-3xl font-black text-white">Reservaciones Recibidas</h1>
+                <p class="text-xs text-slate-400">Listado en tiempo real de cotizaciones web</p>
+            </div>
+            <button onclick="cargarReservas()" class="bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+                <i class="fas fa-sync-alt"></i> Actualizar Lista
+            </button>
+        </div>
+
+        <!-- TABLA DE RESERVACIONES -->
+        <div class="bg-slate-800 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-300">
+                    <thead class="bg-slate-950 text-slate-400 uppercase font-black tracking-wider border-b border-slate-700 text-[10px]">
+                        <tr>
+                            <th class="p-4">Fecha Reg.</th>
+                            <th class="p-4">Cliente / WhatsApp</th>
+                            <th class="p-4">Destino</th>
+                            <th class="p-4">Vehículo</th>
+                            <th class="p-4">Periodo de Renta</th>
+                            <th class="p-4">Solicitudes Especiales</th>
+                            <th class="p-4 text-center">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-reservas" class="divide-y divide-slate-700/50">
+                        <tr>
+                            <td colspan="7" class="p-8 text-center text-slate-400 font-medium">
+                                <i class="fas fa-spinner fa-spin mr-2 text-orange-500"></i> Cargando reservas desde la nube...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // CONFIGURACIÓN DE FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyDummyKeyForPublicAccess",
+            authDomain: "tu-auto-de-renta.firebaseapp.com",
+            projectId: "tu-auto-de-renta",
+            storageBucket: "tu-auto-de-renta.appspot.com",
+            messagingSenderId: "100000000000",
+            appId: "1:100000000000:web:dummyappid"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        window.cargarReservas = async function() {
+            const tbody = document.getElementById('tabla-reservas');
+            tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-medium"><i class="fas fa-spinner fa-spin mr-2 text-orange-500"></i> Cargando reservas...</td></tr>`;
+
+            try {
+                const q = query(collection(db, "reservas_web"), orderBy("fecha_registro", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400">No hay reservaciones registradas aún.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-700/30 transition-colors";
+                    
+                    const fReg = data.fecha_registro ? new Date(data.fecha_registro).toLocaleString('es-MX', {dateStyle: 'short', timeStyle: 'short'}) : 'N/A';
+                    
+                    tr.innerHTML = `
+                        <td class="p-4 font-bold text-slate-400 text-[11px]">${fReg}</td>
+                        <td class="p-4">
+                            <div class="font-black text-white text-sm">${data.nombre || 'N/A'}</div>
+                            <div class="text-orange-400 font-bold">${data.telefono || 'N/A'}</div>
+                        </td>
+                        <td class="p-4 font-bold text-slate-200">${data.destino || 'N/A'}</td>
+                        <td class="p-4 font-bold text-slate-200">${data.auto || 'N/A'}</td>
+                        <td class="p-4 text-[11px]">
+                            <div><strong class="text-slate-400">Del:</strong> ${data.fecha_entrega || ''}</div>
+                            <div><strong class="text-slate-400">Al:</strong> ${data.fecha_devolucion || ''}</div>
+                        </td>
+                        <td class="p-4">
+                            <span class="bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-lg text-[11px] font-medium text-orange-300 inline-block">
+                                ${data.solicitudes_especiales || 'Ninguna'}
+                            </span>
+                        </td>
+                        <td class="p-4 text-center">
+                            <a href="https://wa.me/52${(data.telefono || '').replace(/\D/g,'')}?text=${encodeURIComponent('Hola ' + (data.nombre || '') + ', te escribo de Tu Auto de Renta respecto a tu cotización para ' + (data.destino || ''))}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white font-bold px-3 py-1.5 rounded-lg text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5">
+                                <i class="fab fa-whatsapp"></i> Contactar
+                            </a>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error("Error cargando reservas:", err);
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-red-400 font-bold">Error al conectar con la base de datos. Verifica la configuración.</td></tr>`;
+            }
+        };
+
+        cargarReservas();
+    </script>
+</body>
+</html>
