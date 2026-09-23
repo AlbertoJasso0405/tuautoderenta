@@ -103,7 +103,7 @@
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.1]">Más que un auto, te damos tranquilidad.</h1>
                     <p class="text-base md:text-lg text-blue-100/90 mb-6 font-light leading-relaxed">
-                        Olvídate de los trámites complicados y las sorpresas. En <strong>Tu Auto de Renta</strong>, un experto local te guía de la mano para elegir el auto ideal para tu viaje y te acompaña personally por WhatsApp ante cualquier inquietud. Reserva con la certeza de que siempre habrá alguien listo para ayudarte.
+                        Olvídate de los trámites complicados y las sorpresas. En <strong>Tu Auto de Renta</strong>, un experto local te guía de la mano para elegir el auto ideal para tu viaje y te acompaña personalmente por WhatsApp ante cualquier inquietud. Reserva con la certeza de que siempre habrá alguien listo para ayudarte.
                     </p>
 
                     <div class="mb-6">
@@ -254,7 +254,7 @@
                             </div>
                         </div>
 
-                        <button type="button" id="btn-submit" onclick="procesarReservaDirecta()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4 cursor-pointer">
+                        <button type="button" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4 cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> Reservar con Atención VIP ✨
                         </button>
                     </form>
@@ -649,8 +649,23 @@
         </div>
     </footer>
 
-    <!-- LÓGICA DIRECTA DE ENVÍO -->
-    <script>
+    <!-- FIREBASE MÓDULO GUARDA RESERVA EN NUBE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAZaPnLcdV2uCdWhuqQs13xaUruARAKz4M",
+            authDomain: "tu-auto-de-renta-2d81c.firebaseapp.com",
+            projectId: "tu-auto-de-renta-2d81c",
+            storageBucket: "tu-auto-de-renta-2d81c.firebasestorage.app",
+            messagingSenderId: "918947560890",
+            appId: "1:918947560890:web:c8105926cca2f95d287183"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
         const destinos = [
             "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
             "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
@@ -681,9 +696,14 @@
             const hoy = new Date().toISOString().split('T')[0];
             if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
             if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
+
+            const btnSubmit = document.getElementById('btn-submit');
+            if(btnSubmit) {
+                btnSubmit.addEventListener('click', procesarReserva);
+            }
         });
 
-        function toggleSolicitudesEspeciales(mostrar) {
+        window.toggleSolicitudesEspeciales = function(mostrar) {
             const cont = document.getElementById('contenedor-solicitudes-especiales');
             if (mostrar) {
                 cont.classList.remove('hidden');
@@ -695,9 +715,9 @@
                 document.getElementById('chk_combustible').checked = false;
                 document.getElementById('txt_otras_solicitudes').value = '';
             }
-        }
+        };
 
-        function cambiarPestana(idPestana) {
+        window.cambiarPestana = function(idPestana) {
             document.querySelectorAll('.pestana-contenido').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.btn-tab').forEach(btn => {
                 btn.className = 'btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300';
@@ -710,9 +730,9 @@
             if (btnActivo) btnActivo.className = 'btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm';
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        };
 
-        function irACotizarFormulario() {
+        window.irACotizarFormulario = function() {
             cambiarPestana('inicio');
             setTimeout(() => {
                 const el = document.getElementById('cuadro-reserva');
@@ -720,9 +740,9 @@
                     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }, 100);
-        }
+        };
 
-        function cambiarFoto(idCarrusel, direccion) {
+        window.cambiarFoto = function(idCarrusel, direccion) {
             const contenedor = document.getElementById(idCarrusel);
             const imagenes = contenedor.querySelectorAll('.carrusel-img');
             const dots = contenedor.querySelectorAll('.dots span');
@@ -741,15 +761,15 @@
 
             imagenes[nuevoIndex].classList.remove('hidden');
             dots[nuevoIndex].className = 'w-2 h-2 rounded-full bg-orange-500';
-        }
+        };
 
-        function seleccionarAuto(valorAuto) {
+        window.seleccionarAuto = function(valorAuto) {
             const selectAuto = document.getElementById('res_auto');
             if (selectAuto) selectAuto.value = valorAuto;
             irACotizarFormulario();
-        }
+        };
 
-        function procesarReservaDirecta() {
+        async function procesarReserva() {
             const nombre = document.getElementById('res_nombre').value.trim();
             const telefono = document.getElementById('res_telefono').value.trim();
             const destino = document.getElementById('res_destino').value;
@@ -792,21 +812,9 @@
 
             const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
 
-            const nuevaReserva = {
-                nombre: nombre,
-                telefono: telefono,
-                destino: destino,
-                auto: auto,
-                fecha_entrega: `${f_ini} ${h_ini}`,
-                fecha_devolucion: `${f_fin} ${h_fin}`,
-                solicitudes_especiales: listaExtrasStr,
-                fecha_registro: new Date().toLocaleString()
-            };
-
-            // Guardar localmente
-            let reservasPrevias = JSON.parse(localStorage.getItem('reservas_locales') || '[]');
-            reservasPrevias.unshift(nuevaReserva);
-            localStorage.setItem('reservas_locales', JSON.stringify(reservasPrevias));
+            const btnSubmit = document.getElementById('btn-submit');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> Guardando en CRM...`;
 
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
@@ -819,6 +827,22 @@
                         `_Generado automáticamente desde mi cotización web._`;
 
             localStorage.setItem('wa_mensaje_reserva', txt);
+
+            try {
+                await addDoc(collection(db, "reservas_web"), {
+                    nombre: nombre,
+                    telefono: telefono,
+                    destino: destino,
+                    auto: auto,
+                    fecha_entrega: `${f_ini} ${h_ini}`,
+                    fecha_devolucion: `${f_fin} ${h_fin}`,
+                    solicitudes_especiales: listaExtrasStr,
+                    fecha_registro: new Date().toLocaleString("es-MX")
+                });
+            } catch (err) {
+                console.error("Error guardando en Firebase:", err);
+            }
+
             window.location.href = "gracias.html";
         }
     </script>
