@@ -649,7 +649,7 @@
         </div>
     </footer>
 
-    <!-- FIREBASE Y LÓGICA DE ENVÍO DIRECTO -->
+    <!-- FIREBASE Y LÓGICA CON TIMEOUT DE SEGURIDAD -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -697,7 +697,6 @@
             if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
             if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
 
-            // ASIGNAR EVENTO AL BOTÓN DE RESERVA
             const btnSubmit = document.getElementById('btn-submit');
             if(btnSubmit) {
                 btnSubmit.addEventListener('click', procesarReserva);
@@ -815,22 +814,7 @@
 
             const btnSubmit = document.getElementById('btn-submit');
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> Guardando reservación...`;
-
-            try {
-                await addDoc(collection(db, "reservas_web"), {
-                    nombre: nombre,
-                    telefono: telefono,
-                    destino: destino,
-                    auto: auto,
-                    fecha_entrega: `${f_ini} ${h_ini}`,
-                    fecha_devolucion: `${f_fin} ${h_fin}`,
-                    solicitudes_especiales: listaExtrasStr,
-                    fecha_registro: new Date().toISOString()
-                });
-            } catch (err) {
-                console.error("Error guardando reserva en Firebase:", err);
-            }
+            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> Procesando reservación...`;
 
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
@@ -843,6 +827,27 @@
                         `_Generado automáticamente desde mi cotización web._`;
 
             localStorage.setItem('wa_mensaje_reserva', txt);
+
+            // PROCESO CON TIMEOUT MÁXIMO DE 1.5 SEGUNDOS PARA NUNCA BLOQUEAR AL USUARIO
+            const guardarEnFirebase = addDoc(collection(db, "reservas_web"), {
+                nombre: nombre,
+                telefono: telefono,
+                destino: destino,
+                auto: auto,
+                fecha_entrega: `${f_ini} ${h_ini}`,
+                fecha_devolucion: `${f_fin} ${h_fin}`,
+                solicitudes_especiales: listaExtrasStr,
+                fecha_registro: new Date().toISOString()
+            });
+
+            const timeoutSeguridad = new Promise((resolve) => setTimeout(resolve, 1500));
+
+            try {
+                await Promise.race([guardarEnFirebase, timeoutSeguridad]);
+            } catch (err) {
+                console.error("Firebase no respondió a tiempo:", err);
+            }
+
             window.location.href = "gracias.html";
         }
     </script>
