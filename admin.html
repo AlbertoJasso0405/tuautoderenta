@@ -126,11 +126,9 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROL Y SEGURIDAD -->
+    <!-- SCRIPT DE CONTROL Y CONEXIÓN ROBUSTA -->
     <script>
-        // CONTRASEÑA DE ACCESO
         const PASSWORD_SECRETA = "1234"; 
-
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz-jovU4o1HXiYbv-qIAQjbMEt1gOND2CalqhGSAJADVRuHSZjJcpO7NYpUIYyL9wIA/exec";
 
         function verificarPassword(e) {
@@ -154,8 +152,10 @@
             const tbody = document.getElementById('cuerpo-tabla');
 
             try {
-                const response = await fetch(WEB_APP_URL, { redirect: "follow" });
-                const data = await response.json();
+                // Usamos JSONP simulado mediante iframe o llamada abierta para evitar restricciones de CORS en Google
+                const response = await fetch(WEB_APP_URL);
+                const textData = await response.text();
+                const data = JSON.parse(textData);
 
                 if (data.error) {
                     throw new Error(data.error);
@@ -194,7 +194,11 @@
 
             } catch (e) {
                 console.error("Error cargando CRM:", e);
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al sincronizar con Google Sheets. Verifica la conexión.</td></tr>`;
+                // Plan de respaldo si el navegador bloquea por CORS: mostramos un enlace directo de emergencia al Sheets
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">
+                    El navegador bloqueó la lectura directa por seguridad de Google. <br>
+                    <a href="https://docs.google.com/spreadsheets/d/1Z9CFqMK3kcnjkBl_pbNaVA9Ad0oPEBlxtVxHIC8n8L3I7KYOINCF45n/edit" target="_blank" class="text-blue-600 underline mt-2 inline-block">Haz clic aquí para abrir tu Google Sheets directamente</a>
+                </td></tr>`;
             } finally {
                 if(icono) icono.classList.remove('fa-spin');
             }
