@@ -133,18 +133,18 @@
                     <form id="reserva-form" class="space-y-4">
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
-                            <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                            <input type="text" id="res_nombre" placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
-                            <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
+                            <input type="tel" id="res_telefono" placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col-span-1">
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
-                                <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                <select id="res_destino" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
                                     <option value="">Elegir Destino...</option>
                                     <option value="Acapulco">Acapulco</option>
                                     <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
@@ -196,22 +196,22 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
-                                <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <input type="date" id="res_fecha_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
-                                <input type="time" id="res_hora_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <input type="time" id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Devolución</label>
-                                <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <input type="date" id="res_fecha_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
-                                <input type="time" id="res_hora_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <input type="time" id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                         </div>
 
@@ -254,7 +254,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
+                        <button type="button" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4 cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> Reservar con Atención VIP ✨
                         </button>
                     </form>
@@ -649,7 +649,7 @@
         </div>
     </footer>
 
-    <!-- FIREBASE Y LÓGICA DE ENVÍO -->
+    <!-- FIREBASE Y LÓGICA DE ENVÍO DIRECTO -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -694,8 +694,14 @@
             }
 
             const hoy = new Date().toISOString().split('T')[0];
-            if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').min = hoy;
-            if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').min = hoy;
+            if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
+            if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
+
+            // ASIGNAR EVENTO AL BOTÓN DE RESERVA
+            const btnSubmit = document.getElementById('btn-submit');
+            if(btnSubmit) {
+                btnSubmit.addEventListener('click', procesarReserva);
+            }
         });
 
         window.toggleSolicitudesEspeciales = function(mostrar) {
@@ -764,20 +770,31 @@
             irACotizarFormulario();
         };
 
-        document.getElementById('reserva-form').onsubmit = async function(e) {
-            e.preventDefault();
-            
+        async function procesarReserva() {
             const nombre = document.getElementById('res_nombre').value.trim();
             const telefono = document.getElementById('res_telefono').value.trim();
             const destino = document.getElementById('res_destino').value;
             const auto = document.getElementById('res_auto').value;
             const f_ini = document.getElementById('res_fecha_ini').value;
-            const h_ini = document.getElementById('res_hora_ini').value;
+            const h_ini = document.getElementById('res_hora_ini').value || '12:00';
             const f_fin = document.getElementById('res_fecha_fin').value;
-            const h_fin = document.getElementById('res_hora_fin').value;
+            const h_fin = document.getElementById('res_hora_fin').value || '12:00';
 
-            if (telefono.replace(/\D/g, '').length < 10) {
-                alert("Por favor ingresa un número de teléfono válido de 10 dígitos.");
+            if (!nombre) {
+                alert("Por favor ingresa tu Nombre y Apellidos.");
+                document.getElementById('res_nombre').focus();
+                return;
+            }
+
+            if (!telefono) {
+                alert("Por favor ingresa tu número de WhatsApp.");
+                document.getElementById('res_telefono').focus();
+                return;
+            }
+
+            if (!destino) {
+                alert("Por favor selecciona un Destino de Entrega.");
+                document.getElementById('res_destino').focus();
                 return;
             }
 
@@ -795,6 +812,10 @@
             }
 
             const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
+
+            const btnSubmit = document.getElementById('btn-submit');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fas fa-spinner fa-spin text-lg"></i> Guardando reservación...`;
 
             try {
                 await addDoc(collection(db, "reservas_web"), {
@@ -823,7 +844,7 @@
 
             localStorage.setItem('wa_mensaje_reserva', txt);
             window.location.href = "gracias.html";
-        };
+        }
     </script>
 </body>
 </html>
