@@ -11,19 +11,50 @@
         body { font-family: 'Outfit', sans-serif; background-color: #0f172a; }
     </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen p-4 md:p-8">
+<body class="bg-slate-900 text-white min-h-screen p-4 md:p-8 flex flex-col justify-center items-center">
 
-    <div class="max-w-7xl mx-auto">
+    <!-- FORMULARIO DE LOGIN (INICIO DE SESIÓN SEGURO) -->
+    <div id="pantalla-login" class="max-w-md w-full bg-slate-800 border border-slate-700 rounded-3xl p-8 shadow-2xl relative text-center">
+        <div class="w-16 h-16 bg-orange-500/20 text-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl border border-orange-500/30">
+            <i class="fas fa-lock"></i>
+        </div>
+        <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest block w-max mx-auto mb-2">Acceso Restringido</span>
+        <h2 class="text-2xl font-black text-white mb-2">Panel de Control CRM</h2>
+        <p class="text-xs text-slate-400 mb-6">Ingresa tus credenciales de administrador para continuar.</p>
+
+        <form id="form-login" onsubmit="validarAcceso(event)" class="space-y-4 text-left">
+            <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Usuario / Email</label>
+                <input type="text" id="login_user" required placeholder="admin" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs font-bold text-white outline-none focus:ring-2 focus:ring-orange-500 transition-all">
+            </div>
+            <div>
+                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Contraseña</label>
+                <input type="password" id="login_pass" required placeholder="••••••••" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs font-bold text-white outline-none focus:ring-2 focus:ring-orange-500 transition-all">
+            </div>
+            <p id="error-login" class="text-red-400 text-xs font-bold hidden text-center"><i class="fas fa-exclamation-triangle"></i> Usuario o contraseña incorrectos.</p>
+            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3.5 rounded-xl uppercase text-xs tracking-widest transition-all shadow-lg shadow-orange-500/20">
+                Iniciar Sesión <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+        </form>
+    </div>
+
+    <!-- PANEL PRINCIPAL DEL CRM (OCULTO HASTA INICIAR SESIÓN) -->
+    <div id="pantalla-crm" class="hidden max-w-7xl w-full mx-auto">
         <!-- ENCABEZADO -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 bg-slate-800/80 p-6 rounded-3xl border border-slate-700">
             <div>
-                <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-2">Panel de Control CRM</span>
+                <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-2">Jasso Mobility CRM</span>
                 <h1 class="text-2xl md:text-3xl font-black text-white">Reservaciones Recibidas</h1>
-                <p class="text-xs text-slate-400">Listado en tiempo real de cotizaciones web</p>
+                <p class="text-xs text-slate-400">Listado de prospectos e intenciones de renta en tiempo real</p>
             </div>
-            <button onclick="cargarReservas()" class="bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
-                <i class="fas fa-sync-alt"></i> Actualizar Lista
-            </button>
+            <div class="flex items-center gap-3">
+                <button onclick="cargarReservas()" class="bg-slate-700 hover:bg-slate-600 text-white font-black px-4 py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+                    <i class="fas fa-sync-alt"></i> Actualizar
+                </button>
+                <button onclick="cerrarSesion()" class="bg-red-500/20 hover:bg-red-500 text-red-300 hover:text-white border border-red-500/30 font-black px-4 py-2.5 rounded-xl text-xs uppercase tracking-widest flex items-center gap-2 transition-all">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
         </div>
 
         <!-- TABLA DE RESERVACIONES -->
@@ -53,12 +84,11 @@
         </div>
     </div>
 
-    <!-- FIREBASE SDK -->
+    <!-- FIREBASE SDK & LÓGICA DE AUTENTICACIÓN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // CONFIGURACIÓN DE FIREBASE
         const firebaseConfig = {
             apiKey: "AIzaSyDummyKeyForPublicAccess",
             authDomain: "tu-auto-de-renta.firebaseapp.com",
@@ -70,6 +100,38 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
+        // CREDENCIALES
+        const USER_CORRECTO = "admin";
+        const PASS_CORRECTA = "Jasso2026*";
+
+        window.validarAcceso = function(e) {
+            e.preventDefault();
+            const u = document.getElementById('login_user').value.trim();
+            const p = document.getElementById('login_pass').value.trim();
+            const err = document.getElementById('error-login');
+
+            if (u === USER_CORRECTO && p === PASS_CORRECTA) {
+                sessionStorage.setItem('crm_autenticado', 'true');
+                mostrarCRM();
+            } else {
+                err.classList.remove('hidden');
+            }
+        };
+
+        window.cerrarSesion = function() {
+            sessionStorage.removeItem('crm_autenticado');
+            document.getElementById('pantalla-crm').classList.add('hidden');
+            document.getElementById('pantalla-login').classList.remove('hidden');
+            document.getElementById('form-login').reset();
+            document.getElementById('error-login').classList.add('hidden');
+        };
+
+        function mostrarCRM() {
+            document.getElementById('pantalla-login').classList.add('hidden');
+            document.getElementById('pantalla-crm').classList.remove('hidden');
+            cargarReservas();
+        }
 
         window.cargarReservas = async function() {
             const tbody = document.getElementById('tabla-reservas');
@@ -110,7 +172,7 @@
                             </span>
                         </td>
                         <td class="p-4 text-center">
-                            <a href="https://wa.me/52${(data.telefono || '').replace(/\D/g,'')}?text=${encodeURIComponent('Hola ' + (data.nombre || '') + ', te escribo de Tu Auto de Renta respecto a tu cotización para ' + (data.destino || ''))}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white font-bold px-3 py-1.5 rounded-lg text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5">
+                            <a href="https://wa.me/52${(data.telefono || '').replace(/\D/g,'')}?text=${encodeURIComponent('Hola ' + (data.nombre || '') + ', te escribo de Tu Auto de Renta respecto a tu cotización para ' + (data.destino || ''))}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white font-bold px-3 py-1.5 rounded-lg text-[11px] uppercase tracking-wider inline-flex items-center gap-1.5 shadow-md">
                                 <i class="fab fa-whatsapp"></i> Contactar
                             </a>
                         </td>
@@ -119,11 +181,14 @@
                 });
             } catch (err) {
                 console.error("Error cargando reservas:", err);
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-red-400 font-bold">Error al conectar con la base de datos. Verifica la configuración.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-red-400 font-bold">Error al conectar con la base de datos.</td></tr>`;
             }
         };
 
-        cargarReservas();
+        // Verificar si la sesión ya estaba iniciada en esta pestaña del navegador
+        if (sessionStorage.getItem('crm_autenticado') === 'true') {
+            mostrarCRM();
+        }
     </script>
 </body>
 </html>
