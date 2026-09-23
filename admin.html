@@ -3,140 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasso Mobility CRM | Panel Admin</title>
+    <title>Panel CRM | Tu Auto de Renta</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        body { font-family: 'Outfit', sans-serif; background-color: #f8fafc; }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8">
+<body class="text-slate-900 min-h-screen pb-12">
 
-    <!-- SECCIÓN DE LOGIN -->
-    <div id="login-screen" class="max-w-md mx-auto mt-20 bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl">
-        <div class="text-center mb-6">
-            <span class="text-orange-500 font-black text-xs tracking-widest uppercase">By Jasso Mobility</span>
-            <h1 class="text-2xl font-black text-white mt-1">Acceso Administrativo</h1>
-        </div>
-        <form id="login-form" class="space-y-4" onsubmit="event.preventDefault(); validarLogin();">
-            <div>
-                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Usuario</label>
-                <input type="text" id="admin_user" required class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500">
+    <!-- NAVBAR ADMINISTRACIÓN -->
+    <nav class="bg-slate-900 text-white py-4 px-6 shadow-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-orange-500 text-white p-2.5 rounded-xl font-black text-sm">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div>
+                    <h1 class="font-black text-sm uppercase tracking-wider">Panel CRM • Tu Auto de Renta</h1>
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Gestión de Reservaciones</span>
+                </div>
             </div>
-            <div>
-                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Contraseña</label>
-                <input type="password" id="admin_pass" required class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500">
-            </div>
-            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3.5 rounded-xl transition-all uppercase text-xs tracking-widest mt-2 cursor-pointer">
-                Iniciar Sesión
-            </button>
-        </form>
-    </div>
-
-    <!-- PANEL PRINCIPAL DE RESERVAS -->
-    <div id="crm-panel" class="hidden max-w-7xl mx-auto">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <span class="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-orange-500/20">Jasso Mobility CRM</span>
-                <h1 class="text-3xl font-black text-white mt-2">Reservaciones Recibidas</h1>
-                <p class="text-slate-400 text-xs mt-1">Listado de prospectos en tiempo real</p>
-            </div>
-            <div class="flex gap-3">
-                <button onclick="cargarReservasAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl uppercase text-xs tracking-widest flex items-center gap-2 transition-all cursor-pointer">
-                    <i class="fas fa-sync-alt"></i> Actualizar
+            <div class="flex items-center gap-3">
+                <button onclick="cargarReservaciones()" class="bg-blue-900 hover:bg-blue-800 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer shadow">
+                    <i class="fas fa-sync-alt" id="icono-sync"></i> Actualizar Datos
                 </button>
-                <button onclick="cerrarSesion()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-black px-4 py-3 rounded-xl uppercase text-xs tracking-widest transition-all cursor-pointer">
-                    <i class="fas fa-sign-out-alt"></i> Salir
-                </button>
+                <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all">
+                    Ver Sitio Web
+                </a>
             </div>
         </div>
+    </nav>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-6 mt-8">
+        
+        <!-- ESTADÍSTICAS RÁPIDAS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Total Reservaciones</p>
+                    <h3 class="text-3xl font-black text-blue-900" id="stat-total">0</h3>
+                </div>
+                <div class="w-12 h-12 bg-blue-50 text-blue-900 rounded-2xl flex items-center justify-center text-xl">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Estado de Conexión</p>
+                    <h3 class="text-sm font-black text-emerald-600 flex items-center gap-2 mt-2">
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span> Sincronizado con Sheets
+                    </h3>
+                </div>
+                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl">
+                    <i class="fas fa-database"></i>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Buscador Rápido</p>
+                    <input type="text" id="buscador" onkeyup="filtrarTabla()" placeholder="Filtrar por nombre o destino..." class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500 mt-1">
+                </div>
+                <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center text-xl">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- TABLA DE RESERVAS -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-200 flex justify-between items-center">
+                <h2 class="font-black text-lg text-blue-900 uppercase tracking-tight">Listado de Prospectos y Reservas</h2>
+                <span class="text-xs font-bold text-slate-400" id="ultima-actualizacion">Actualizado hace un momento</span>
+            </div>
+
             <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse">
+                <table class="w-full text-left border-collapse" id="tabla-reservas">
                     <thead>
-                        <tr class="bg-slate-950/50 text-slate-400 text-[10px] uppercase font-black tracking-widest border-b border-slate-800">
-                            <th class="p-4">Fecha Reg.</th>
-                            <th class="p-4">Cliente / WhatsApp</th>
+                        <tr class="bg-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-widest border-b border-slate-200">
+                            <th class="p-4">Fecha Registro</th>
+                            <th class="p-4">Cliente</th>
+                            <th class="p-4">WhatsApp</th>
                             <th class="p-4">Destino</th>
                             <th class="p-4">Vehículo</th>
                             <th class="p-4">Periodo de Renta</th>
-                            <th class="p-4 text-center">Acción</th>
+                            <th class="p-4">Solicitudes Especiales</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-reservas-body" class="divide-y divide-slate-800 text-xs font-medium"></tbody>
+                    <tbody class="divide-y divide-slate-100 text-xs font-medium text-slate-700" id="cuerpo-tabla">
+                        <tr>
+                            <td colspan="7" class="p-8 text-center text-slate-400 font-bold">
+                                <i class="fas fa-spinner fa-spin mr-2"></i> Cargando reservaciones desde Google Sheets...
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
-    </div>
 
+    </main>
+
+    <!-- SCRIPT DE CONEXIÓN CON GOOGLE APPS SCRIPT -->
     <script>
-        function validarLogin() {
-            const u = document.getElementById('admin_user').value.trim();
-            const p = document.getElementById('admin_pass').value.trim();
+        // URL NUEVA ACTUALIZADA CONECTADA A GOOGLE APPS SCRIPT
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyJZkBlJKL61KsC5qdmCeTmozPCuraQcROv_QGJb90XGgRYbsr4NyqCKbSKIZgSWZdw/exec";
 
-            if (u === 'admin' && p === 'Jasso2026*') {
-                sessionStorage.setItem('crm_auth', 'true');
-                mostrarPanel();
-            } else {
-                alert('Usuario o contraseña incorrectos.');
+        document.addEventListener("DOMContentLoaded", function() {
+            cargarReservaciones();
+        });
+
+        async function cargarReservaciones() {
+            const icono = document.getElementById('icono-sync');
+            if(icono) icono.classList.add('fa-spin');
+            
+            const tbody = document.getElementById('cuerpo-tabla');
+
+            try {
+                const response = await fetch(WEB_APP_URL);
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                document.getElementById('stat-total').innerText = data.length;
+                document.getElementById('ultima-actualizacion').innerText = "Actualizado: " + new Date().toLocaleTimeString();
+
+                if (data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold">No hay reservaciones registradas aún.</td></tr>`;
+                    if(icono) icono.classList.remove('fa-spin');
+                    return;
+                }
+
+                let html = "";
+                // Invertir para mostrar los más recientes primero
+                data.reverse().forEach(item => {
+                    const telLimpio = item.whatsapp ? item.whatsapp.replace(/\D/g, '') : '';
+                    html += `
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-bold text-slate-500 text-[11px]">${item.fecha || ''}</td>
+                            <td class="p-4 font-black text-blue-900">${item.nombre || ''}</td>
+                            <td class="p-4">
+                                <a href="https://wa.me/52${telLimpio}?text=¡Hola%20${encodeURIComponent(item.nombre || '')}!%20Vemos%20tu%20solicitud%20de%20reserva%20en%20Tu%20Auto%20de%20Renta..." target="_blank" class="bg-emerald-50 text-emerald-600 hover:bg-emerald-500 hover:text-white px-3 py-1.5 rounded-lg font-bold text-[11px] inline-flex items-center gap-1.5 transition-all">
+                                    <i class="fab fa-whatsapp"></i> ${item.whatsapp || ''}
+                                </a>
+                            </td>
+                            <td class="p-4 font-bold text-slate-800">${item.destino || ''}</td>
+                            <td class="p-4"><span class="bg-blue-50 text-blue-900 px-2.5 py-1 rounded-md font-bold text-[10px]">${item.vehiculo || ''}</span></td>
+                            <td class="p-4 font-semibold text-slate-600">${item.periodo || ''}</td>
+                            <td class="p-4 text-slate-500">${item.solicitudes || 'Ninguna'}</td>
+                        </tr>
+                    `;
+                });
+
+                tbody.innerHTML = html;
+
+            } catch (e) {
+                console.error("Error cargando CRM:", e);
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al sincronizar con Google Sheets. Verifica la implementación del Script.</td></tr>`;
+            } finally {
+                if(icono) icono.classList.remove('fa-spin');
             }
         }
 
-        function mostrarPanel() {
-            document.getElementById('login-screen').classList.add('hidden');
-            document.getElementById('crm-panel').classList.remove('hidden');
-            cargarReservasAdmin();
-        }
+        function filtrarTabla() {
+            const filtro = document.getElementById('buscador').value.toLowerCase();
+            const filas = document.querySelectorAll('#cuerpo-tabla tr');
 
-        function cerrarSesion() {
-            sessionStorage.removeItem('crm_auth');
-            location.reload();
-        }
-
-        function cargarReservasAdmin() {
-            const tbody = document.getElementById('tabla-reservas-body');
-            const reservas = JSON.parse(localStorage.getItem('jasso_reservas_globales') || '[]');
-
-            if (reservas.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-500 font-bold">No hay reservaciones registradas aún.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = '';
-            reservas.forEach(res => {
-                const telLimpio = res.telefono ? res.telefono.replace(/\D/g, '') : '';
-                const linkWa = `https://wa.me/52${telLimpio}`;
-                
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-800/50 transition-colors";
-                tr.innerHTML = `
-                    <td class="p-4 text-slate-400 font-mono text-[11px]">${res.fecha_registro}</td>
-                    <td class="p-4 font-bold text-white">
-                        ${res.nombre}<br>
-                        <a href="${linkWa}" target="_blank" class="text-emerald-400 hover:underline flex items-center gap-1 mt-0.5 text-[11px]">
-                            <i class="fab fa-whatsapp"></i> ${res.telefono}
-                        </a>
-                    </td>
-                    <td class="p-4 text-orange-400 font-bold">${res.destino}</td>
-                    <td class="p-4 text-slate-300 font-semibold">${res.auto}</td>
-                    <td class="p-4 text-slate-400 text-[11px]">
-                        <strong>Entrega:</strong> ${res.fecha_entrega}<br>
-                        <strong>Devolución:</strong> ${res.fecha_devolucion}
-                    </td>
-                    <td class="p-4 text-center">
-                        <a href="${linkWa}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider inline-flex items-center gap-1">
-                            <i class="fab fa-whatsapp"></i> Contactar
-                        </a>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+            filas.forEach(fila => {
+                const texto = fila.innerText.toLowerCase();
+                if (texto.includes(filtro)) {
+                    fila.style.display = "";
+                } else {
+                    fila.style.display = "none";
+                }
             });
-        }
-
-        if (sessionStorage.getItem('crm_auth') === 'true') {
-            mostrarPanel();
         }
     </script>
 </body>
