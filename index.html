@@ -47,7 +47,7 @@
                         <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">VIP</span>
                     </div>
 
-                    <form id="reserva-form" class="space-y-4" onsubmit="event.preventDefault(); procesarReservaLocal();">
+                    <form id="reserva-form" class="space-y-4" onsubmit="event.preventDefault(); enviarReservaASheets();">
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Nombre y Apellidos</label>
                             <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500">
@@ -112,7 +112,7 @@
             document.getElementById('res_fecha_fin').value = hoy;
         });
 
-        function procesarReservaLocal() {
+        async function enviarReservaASheets() {
             const nombre = document.getElementById('res_nombre').value.trim();
             const telefono = document.getElementById('res_telefono').value.trim();
             const destino = document.getElementById('res_destino').value;
@@ -120,23 +120,36 @@
             const f_ini = document.getElementById('res_fecha_ini').value;
             const f_fin = document.getElementById('res_fecha_fin').value;
 
-            const nuevaReserva = {
-                id: Date.now(),
+            const btn = document.getElementById('btn-submit');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Registrando reserva...`;
+
+            const datosReserva = {
+                fecha: new Date().toLocaleString("es-MX"),
                 nombre: nombre,
-                telefono: telefono,
+                whatsapp: telefono,
                 destino: destino,
-                auto: auto,
-                fecha_entrega: f_ini,
-                fecha_devolucion: f_fin,
-                fecha_registro: new Date().toLocaleString("es-MX")
+                vehiculo: auto,
+                periodo: `Del ${f_ini} al ${f_fin}`,
+                solicitudes: "Ninguna"
             };
 
-            // Guardar en almacenamiento global compartido simulado
-            let reservas = JSON.parse(localStorage.getItem('jasso_reservas_globales') || '[]');
-            reservas.unshift(nuevaReserva);
-            localStorage.setItem('jasso_reservas_globales', JSON.stringify(reservas));
+            // ⚠️ PEGA TU URL DE GOOGLE APPS SCRIPT AQUÍ ENTRE LAS COMILLAS
+            const WEB_APP_URL = "TU_URL_DE_GOOGLE_SHEETS_AQUI";
 
-            // Generar enlace WhatsApp
+            try {
+                if (WEB_APP_URL !== "TU_URL_DE_GOOGLE_SHEETS_AQUI") {
+                    await fetch(WEB_APP_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(datosReserva)
+                    });
+                }
+            } catch (e) {
+                console.error("Error enviando a Sheets:", e);
+            }
+
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
                         `📱 *WhatsApp:* ${telefono}\n` +
