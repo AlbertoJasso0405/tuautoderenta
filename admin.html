@@ -126,7 +126,7 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROL Y CONEXIÓN ROBUSTA -->
+    <!-- SCRIPT DE CONEXIÓN CON JSONP (LIBRE DE CORS) -->
     <script>
         const PASSWORD_SECRETA = "1234"; 
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz-jovU4o1HXiYbv-qIAQjbMEt1gOND2CalqhGSAJADVRuHSZjJcpO7NYpUIYyL9wIA/exec";
@@ -145,63 +145,65 @@
             }
         }
 
-        async function cargarReservaciones() {
+        function cargarReservaciones() {
             const icono = document.getElementById('icono-sync');
             if(icono) icono.classList.add('fa-spin');
             
             const tbody = document.getElementById('cuerpo-tabla');
+            tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Sincronizando con Google Sheets...</td></tr>`;
 
-            try {
-                // Usamos JSONP simulado mediante iframe o llamada abierta para evitar restricciones de CORS en Google
-                const response = await fetch(WEB_APP_URL);
-                const textData = await response.text();
-                const data = JSON.parse(textData);
-
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-
-                document.getElementById('stat-total').innerText = data.length;
-                document.getElementById('ultima-actualizacion').innerText = "Actualizado: " + new Date().toLocaleTimeString();
-
-                if (data.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold">No hay reservaciones registradas aún.</td></tr>`;
-                    if(icono) icono.classList.remove('fa-spin');
-                    return;
-                }
-
-                let html = "";
-                data.reverse().forEach(item => {
-                    const telLimpio = item.whatsapp ? item.whatsapp.replace(/\D/g, '') : '';
-                    html += `
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="p-4 font-bold text-slate-500 text-[11px]">${item.fecha || ''}</td>
-                            <td class="p-4 font-black text-blue-900">${item.nombre || ''}</td>
-                            <td class="p-4">
-                                <a href="https://wa.me/52${telLimpio}?text=¡Hola%20${encodeURIComponent(item.nombre || '')}!%20Vemos%20tu%20solicitud%20de%20reserva%20en%20Tu%20Auto%20de%20Renta..." target="_blank" class="bg-emerald-50 text-emerald-600 hover:bg-emerald-500 hover:text-white px-3 py-1.5 rounded-lg font-bold text-[11px] inline-flex items-center gap-1.5 transition-all">
-                                    <i class="fab fa-whatsapp"></i> ${item.whatsapp || ''}
-                                </a>
-                            </td>
-                            <td class="p-4 font-bold text-slate-800">${item.destino || ''}</td>
-                            <td class="p-4"><span class="bg-blue-50 text-blue-900 px-2.5 py-1 rounded-md font-bold text-[10px]">${item.vehiculo || ''}</span></td>
-                            <td class="p-4 font-semibold text-slate-600">${item.periodo || ''}</td>
-                            <td class="p-4 text-slate-500">${item.solicitudes || 'Ninguna'}</td>
-                        </tr>
-                    `;
-                });
-
-                tbody.innerHTML = html;
-
-            } catch (e) {
-                console.error("Error cargando CRM:", e);
-                // Plan de respaldo si el navegador bloquea por CORS: mostramos un enlace directo de emergencia al Sheets
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">
-                    El navegador bloqueó la lectura directa por seguridad de Google. <br>
-                    <a href="https://docs.google.com/spreadsheets/d/1Z9CFqMK3kcnjkBl_pbNaVA9Ad0oPEBlxtVxHIC8n8L3I7KYOINCF45n/edit" target="_blank" class="text-blue-600 underline mt-2 inline-block">Haz clic aquí para abrir tu Google Sheets directamente</a>
-                </td></tr>`;
-            } finally {
+            // Creamos un script dinámico para consumir los datos de forma segura sin bloqueos
+            const script = document.createElement('script');
+            script.src = `${WEB_APP_URL}?callback=procesarDatos`;
+            
+            script.onerror = function() {
                 if(icono) icono.classList.remove('fa-spin');
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error de red al conectar con Google Sheets.</td></tr>`;
+            };
+
+            document.body.appendChild(script);
+        }
+
+        function procesarDatos(data) {
+            const icono = document.getElementById('icono-sync');
+            if(icono) icono.classList.remove('fa-spin');
+            
+            const tbody = document.getElementById('cuerpo-tabla');
+
+            if (!data || data.error) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al procesar los datos de Google Sheets.</td></tr>`;
+                return;
             }
+
+            document.getElementById('stat-total').innerText = data.length;
+            document.getElementById('ultima-actualizacion').innerText = "Actualizado: " + new Date().toLocaleTimeString();
+
+            if (data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold">No hay reservaciones registradas aún.</td></tr>`;
+                return;
+            }
+
+            let html = "";
+            data.reverse().forEach(item => {
+                const telLimpio = item.whatsapp ? item.whatsapp.replace(/\D/g, '') : '';
+                html += `
+                    <tr class="hover:bg-slate-50 transition-colors">
+                        <td class="p-4 font-bold text-slate-500 text-[11px]">${item.fecha || ''}</td>
+                        <td class="p-4 font-black text-blue-900">${item.nombre || ''}</td>
+                        <td class="p-4">
+                            <a href="https://wa.me/52${telLimpio}?text=¡Hola%20${encodeURIComponent(item.nombre || '')}!%20Vemos%20tu%20solicitud%20de%20reserva%20en%20Tu%20Auto%20de%20Renta..." target="_blank" class="bg-emerald-50 text-emerald-600 hover:bg-emerald-500 hover:text-white px-3 py-1.5 rounded-lg font-bold text-[11px] inline-flex items-center gap-1.5 transition-all">
+                                <i class="fab fa-whatsapp"></i> ${item.whatsapp || ''}
+                            </a>
+                        </td>
+                        <td class="p-4 font-bold text-slate-800">${item.destino || ''}</td>
+                        <td class="p-4"><span class="bg-blue-50 text-blue-900 px-2.5 py-1 rounded-md font-bold text-[10px]">${item.vehiculo || ''}</span></td>
+                        <td class="p-4 font-semibold text-slate-600">${item.periodo || ''}</td>
+                        <td class="p-4 text-slate-500">${item.solicitudes || 'Ninguna'}</td>
+                    </tr>
+                `;
+            });
+
+            tbody.innerHTML = html;
         }
 
         function filtrarTabla() {
