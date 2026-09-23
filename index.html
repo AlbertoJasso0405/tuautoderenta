@@ -12,7 +12,7 @@
         .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); }
     </style>
 
-    <!-- Google tag (gtag.js) - Google Analytics 4 (NUEVO ID OFICIAL) -->
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJY8TZ1D6Q"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,20 +38,17 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2305706456831293&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
 </head>
 <body class="bg-slate-50 text-slate-900 pb-20 md:pb-0">
 
-    <!-- BARRA SUPERIOR DE NAVEGACIÓN FIJA (NAVBAR) -->
+    <!-- NAVBAR -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 py-3 px-4 shadow-lg">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <!-- LOGO COMO BOTÓN DE INICIO EN NAVBAR -->
             <button onclick="irACotizarFormulario()" class="flex items-center gap-3 focus:outline-none group">
                 <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-8 w-auto rounded group-hover:opacity-90 transition-opacity">
                 <span class="font-black text-xs uppercase tracking-widest text-slate-200 hidden sm:inline group-hover:text-orange-400 transition-colors">Tu Auto de Renta</span>
             </button>
             
-            <!-- Links rápidos de Navegación -->
             <div class="flex items-center gap-2 sm:gap-6 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
                 <button onclick="irACotizarFormulario()" class="text-orange-400 hover:text-orange-300 transition-all flex items-center gap-1">
                     <i class="fas fa-calculator"></i> <span class="hidden md:inline">Inicio / Cotizar</span>
@@ -64,7 +61,7 @@
         </div>
     </nav>
 
-    <!-- BARRA DE PESTAÑAS (TABS) PRINCIPAL -->
+    <!-- BARRA DE PESTAÑAS (TABS) -->
     <section class="bg-slate-200 border-b border-slate-300 sticky top-[53px] z-40 py-3 px-2">
         <div class="max-w-4xl mx-auto flex justify-center gap-2 sm:gap-3 overflow-x-auto">
             <button onclick="irACotizarFormulario()" id="tab-inicio" class="btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm">
@@ -92,7 +89,6 @@
         <section class="pestana-contenido hero-gradient text-white py-12 px-4" id="pestana-inicio">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <!-- LOGO PRINCIPAL COMO BOTÓN DE INICIO -->
                     <div class="flex items-center gap-4 mb-6">
                         <button onclick="irACotizarFormulario()" class="focus:outline-none transition-transform hover:scale-105 active:scale-95 text-left">
                             <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-20 md:h-24 w-auto object-contain rounded-lg shadow-md cursor-pointer">
@@ -106,13 +102,11 @@
                         779 217 9612
                     </a>
 
-                    <!-- TITULAR Y SUBTITULAR OPCIÓN 2 (ALTO IMPACTO Y ATENCIÓN PERSONALIZADA) -->
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.1]">Más que un auto, te damos tranquilidad.</h1>
                     <p class="text-base md:text-lg text-blue-100/90 mb-6 font-light leading-relaxed">
                         Olvídate de los trámites complicados y las sorpresas. En <strong>Tu Auto de Renta</strong>, un experto local te guía de la mano para elegir el auto ideal para tu viaje y te acompaña personalmente por WhatsApp ante cualquier inquietud. Reserva con la certeza de que siempre habrá alguien listo para ayudarte.
                     </p>
 
-                    <!-- IMAGEN ILUSTRATIVA DEL AUTO -->
                     <div class="mb-6">
                         <img src="auto.jpg" alt="Auto Sedán Ejecutivo" class="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-300 object-cover">
                     </div>
@@ -127,7 +121,7 @@
                     </div>
                 </div>
 
-                <!-- Panel de Reservación (CUADRO BLANCO DE RESERVA) -->
+                <!-- Panel de Reservación -->
                 <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative scroll-mt-28" id="cuadro-reserva">
                     <div class="flex justify-between items-center mb-6">
                         <div>
@@ -138,19 +132,16 @@
                     </div>
 
                     <form id="reserva-form" class="space-y-4">
-                        <!-- Nombre -->
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
                             <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
-                        <!-- Teléfono -->
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
                             <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
-                        <!-- Destino y Vehículo -->
                         <div class="grid grid-cols-2 gap-4">
                             <div class="col-span-1">
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
@@ -203,7 +194,6 @@
                             </div>
                         </div>
 
-                        <!-- Fechas y Horas -->
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
@@ -226,7 +216,46 @@
                             </div>
                         </div>
 
-                        <!-- Botón de Envío con Llamado a la Acción de Alto Impacto -->
+                        <!-- SECCIÓN DE SOLICITUDES ESPECIALES CONDICIONADAS -->
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                            <label class="block text-[11px] font-black text-blue-900 uppercase tracking-widest mb-2">¿Requiere Solicitudes Especiales?</label>
+                            <div class="flex gap-4 mb-2">
+                                <label class="inline-flex items-center text-xs font-bold text-slate-700 cursor-pointer">
+                                    <input type="radio" name="solicitud_especial_toggle" value="no" checked onchange="toggleSolicitudesEspeciales(false)" class="text-orange-500 focus:ring-orange-500">
+                                    <span class="ml-2">No por el momento</span>
+                                </label>
+                                <label class="inline-flex items-center text-xs font-bold text-slate-700 cursor-pointer">
+                                    <input type="radio" name="solicitud_especial_toggle" value="si" onchange="toggleSolicitudesEspeciales(true)" class="text-orange-500 focus:ring-orange-500">
+                                    <span class="ml-2">Sí, deseo agregar</span>
+                                </label>
+                            </div>
+
+                            <!-- Opciones que se abren solo al seleccionar "SÍ" -->
+                            <div id="contenedor-solicitudes-especiales" class="hidden mt-4 pt-3 border-t border-slate-200 space-y-2.5 text-xs font-medium text-slate-700">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_silla_bebe" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Silla de Bebé / Asiento Infantil</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_conductor_adicional" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Conductor Adicional</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_conductor_menor" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Conductor Menor de Edad (21 a 24 años)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_combustible" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Combustible Prepagado</span>
+                                </label>
+                                <div class="pt-2">
+                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Otras solicitudes específicas:</label>
+                                    <input type="text" id="txt_otras_solicitudes" placeholder="Ej. Portaequipajes de toldo, GPS, etc." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Envío -->
                         <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4">
                             <i class="fab fa-whatsapp text-lg"></i> Reservar con Atención VIP ✨
                         </button>
@@ -235,7 +264,7 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 2: FLOTA / CATÁLOGO DE AUTOS -->
+        <!-- PESTAÑA 2: FLOTA -->
         <section class="pestana-contenido hidden py-12 bg-white px-4" id="pestana-flota">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-10">
@@ -245,7 +274,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
                     <!-- Auto 1: Económico -->
                     <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                         <div>
@@ -253,10 +281,8 @@
                                 <img src="i10-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
                                 <img src="i10-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
                                 <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Económico</span>
-                                
                                 <button onclick="cambiarFoto('carrusel-i10', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
                                 <button onclick="cambiarFoto('carrusel-i10', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
-                                
                                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
                                     <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                                     <span class="w-2 h-2 rounded-full bg-white/50"></span>
@@ -287,10 +313,8 @@
                                 <img src="mirage-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
                                 <img src="mirage-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
                                 <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Mediano</span>
-                                
                                 <button onclick="cambiarFoto('carrusel-mirage', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
                                 <button onclick="cambiarFoto('carrusel-mirage', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
-                                
                                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
                                     <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                                     <span class="w-2 h-2 rounded-full bg-white/50"></span>
@@ -321,10 +345,8 @@
                                 <img src="versa.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
                                 <img src="k3.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
                                 <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Estándar</span>
-                                
                                 <button onclick="cambiarFoto('carrusel-estandar', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
                                 <button onclick="cambiarFoto('carrusel-estandar', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
-                                
                                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
                                     <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                                     <span class="w-2 h-2 rounded-full bg-white/50"></span>
@@ -355,10 +377,8 @@
                                 <img src="k4.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
                                 <img src="sentra.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
                                 <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Grande / Ejecutivo</span>
-                                
                                 <button onclick="cambiarFoto('carrusel-grande', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
                                 <button onclick="cambiarFoto('carrusel-grande', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
-                                
                                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
                                     <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                                     <span class="w-2 h-2 rounded-full bg-white/50"></span>
@@ -389,10 +409,8 @@
                                 <img src="hiace.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
                                 <img src="urvan.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
                                 <span class="absolute top-3 right-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Pasajeros</span>
-                                
                                 <button onclick="cambiarFoto('carrusel-van', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
                                 <button onclick="cambiarFoto('carrusel-van', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
-                                
                                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
                                     <span class="w-2 h-2 rounded-full bg-orange-500"></span>
                                     <span class="w-2 h-2 rounded-full bg-white/50"></span>
@@ -416,7 +434,7 @@
                         </div>
                     </div>
 
-                    <!-- TARJETA DESTACADA: CATEGORÍAS ESPECIALES -->
+                    <!-- TARJETA DESTACADA: ESPECIALES -->
                     <div class="bg-gradient-to-br from-blue-950 to-blue-900 text-white rounded-3xl p-6 border border-blue-800 shadow-xl flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl mb-4">
@@ -442,7 +460,7 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 3: REQUISITOS DE RENTA -->
+        <!-- PESTAÑA 3: REQUISITOS -->
         <section class="pestana-contenido hidden py-12 bg-slate-100 px-4" id="pestana-requisitos">
             <div class="max-w-6xl mx-auto">
                 <div class="text-center mb-10">
@@ -452,7 +470,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <!-- Requisito 1: Tarjeta de Crédito -->
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                         <div class="w-12 h-12 bg-orange-500/10 text-orange-500 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-credit-card"></i>
@@ -463,7 +480,6 @@
                         </p>
                     </div>
 
-                    <!-- Requisito 2: Licencia de Conducir -->
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                         <div class="w-12 h-12 bg-blue-900/10 text-blue-900 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-id-card"></i>
@@ -474,7 +490,6 @@
                         </p>
                     </div>
 
-                    <!-- Requisito 3: Identificación Oficial -->
                     <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
                         <div class="w-12 h-12 bg-blue-900/10 text-blue-900 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-passport"></i>
@@ -487,7 +502,6 @@
                     </div>
                 </div>
 
-                <!-- Nota con Asterisco para Tarjetas de Débito -->
                 <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl flex items-start gap-3">
                     <span class="text-amber-500 font-black text-xl leading-none">*</span>
                     <p class="text-xs text-amber-900 font-medium leading-relaxed">
@@ -507,8 +521,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    
-                    <!-- COBERTURA OPCIONAL: CERO DEDUCIBLE -->
                     <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl border border-slate-800 md:col-span-2 lg:col-span-3 flex flex-col md:flex-row items-center gap-6">
                         <div class="w-16 h-16 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-3xl shrink-0">
                             <i class="fas fa-shield-virus"></i>
@@ -524,7 +536,6 @@
                         </div>
                     </div>
 
-                    <!-- Cobertura Base: Colisión (Deducible 10%) -->
                     <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
@@ -538,7 +549,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura Base: Daños a Terceros -->
                     <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all">
                         <div class="flex justify-between items-start mb-4">
                             <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
@@ -552,7 +562,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura: Robo -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
                         <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-key"></i>
@@ -563,7 +572,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura: Gastos Médicos -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
                         <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-notes-medical"></i>
@@ -574,7 +582,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura: Legal -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
                         <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-gavel"></i>
@@ -585,7 +592,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura: Impuestos -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
                         <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
                             <i class="fas fa-file-invoice-dollar"></i>
@@ -596,7 +602,6 @@
                         </p>
                     </div>
 
-                    <!-- Cobertura: Kilometraje Libre -->
                     <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 md:col-span-2 lg:col-span-3 hover:shadow-lg transition-all flex flex-col md:flex-row items-center gap-4">
                         <div class="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shrink-0">
                             <i class="fas fa-tachometer-alt"></i>
@@ -608,7 +613,6 @@
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -623,7 +627,7 @@
 
     </main>
 
-    <!-- BOTÓN FLOTANTE PERMANENTE DE "COTIZAR AHORA" (DESPLAZA DIRECTAMENTE AL FORMULARIO) -->
+    <!-- BOTÓN FLOTANTE PERMANENTE -->
     <button onclick="irACotizarFormulario()" class="fixed bottom-5 right-5 z-50 bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 border-2 border-white">
         <i class="fas fa-calculator text-base"></i> Cotizar Ahora
     </button>
@@ -654,7 +658,7 @@
         </div>
     </footer>
 
-    <!-- SDK e Integración de Firebase -->
+    <!-- LÓGICA JAVASCRIPT Y CONEXIÓN CON CRM / FIREBASE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -688,7 +692,6 @@
         ];
 
         const grid = document.getElementById('destinos-grid');
-        
         destinos.sort().forEach(dest => {
             const btn = document.createElement('button');
             btn.type = "button";
@@ -706,7 +709,22 @@
         document.getElementById('res_fecha_ini').min = hoy;
         document.getElementById('res_fecha_fin').min = hoy;
 
-        // LÓGICA DE PESTAÑAS (TABS EXCLUSIVAS)
+        // MANEJO DE MOSTRAR / OCULTAR SOLICITUDES ESPECIALES
+        window.toggleSolicitudesEspeciales = function(mostrar) {
+            const cont = document.getElementById('contenedor-solicitudes-especiales');
+            if (mostrar) {
+                cont.classList.remove('hidden');
+            } else {
+                cont.classList.add('hidden');
+                // Limpiar casillas
+                document.getElementById('chk_silla_bebe').checked = false;
+                document.getElementById('chk_conductor_adicional').checked = false;
+                document.getElementById('chk_conductor_menor').checked = false;
+                document.getElementById('chk_combustible').checked = false;
+                document.getElementById('txt_otras_solicitudes').value = '';
+            }
+        };
+
         window.cambiarPestana = function(idPestana) {
             document.querySelectorAll('.pestana-contenido').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.btn-tab').forEach(btn => {
@@ -722,7 +740,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // FUNCIÓN ENFOCADA EN MOSTRAR EL FORMULARIO EN MÓVILES Y LAPTOPS
         window.irACotizarFormulario = function() {
             cambiarPestana('inicio');
             setTimeout(() => {
@@ -733,7 +750,6 @@
             }, 100);
         };
 
-        // FUNCIÓN CAMBIAR FOTOS EN CARRUSEL
         window.cambiarFoto = function(idCarrusel, direccion) {
             const contenedor = document.getElementById(idCarrusel);
             const imagenes = contenedor.querySelectorAll('.carrusel-img');
@@ -755,13 +771,13 @@
             dots[nuevoIndex].className = 'w-2 h-2 rounded-full bg-orange-500';
         };
 
-        // FUNCIÓN SELECCIONAR AUTO DESDE LA GALERÍA
         window.seleccionarAuto = function(valorAuto) {
             const selectAuto = document.getElementById('res_auto');
             selectAuto.value = valorAuto;
             irACotizarFormulario();
         };
 
+        // PROCESAMIENTO DEL FORMULARIO Y REGISTRO EN EL CRM
         document.getElementById('reserva-form').onsubmit = async function(e) {
             e.preventDefault();
             
@@ -779,43 +795,62 @@
                 return;
             }
 
-            // RASTREO DE EVENTO LEAD EN META PIXEL
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Lead', {
-                    content_name: 'Cotización Renta de Auto',
-                    destination: destino
-                });
+            // RECOPILAR SOLICITUDES ESPECIALES
+            const requiereEspeciales = document.querySelector('input[name="solicitud_especial_toggle"]:checked').value === 'si';
+            let extras = [];
+
+            if (requiereEspeciales) {
+                if (document.getElementById('chk_silla_bebe').checked) extras.push("Silla de Bebé");
+                if (document.getElementById('chk_conductor_adicional').checked) extras.push("Conductor Adicional");
+                if (document.getElementById('chk_conductor_menor').checked) extras.push("Conductor Menor de Edad");
+                if (document.getElementById('chk_combustible').checked) extras.push("Combustible Prepagado");
+                
+                const otrosTxt = document.getElementById('txt_otras_solicitudes').value.trim();
+                if (otrosTxt) extras.push(`Otros: ${otrosTxt}`);
             }
 
+            const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
+
+            // 1. GUARDAR EN EL CRM (FIREBASE FIRESTORE)
             if (db) {
                 try {
                     const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'leads');
                     await addDoc(colRef, {
                         nombre: nombre,
                         telefono: telefono,
+                        destino: destino,
+                        auto: auto,
+                        fecha_entrega: `${f_ini} ${h_ini}`,
+                        fecha_devolucion: `${f_fin} ${h_fin}`,
+                        solicitudes_especiales: listaExtrasStr,
                         estatus: "Vigente",
-                        fuente: "Sitio Web",
+                        fuente: "Sitio Web (Meta Ads)",
                         statuswa: "Nuevo Contacto",
-                        obs: `Reserva web en ${destino} (${auto}) del ${f_ini} al ${f_fin}`,
+                        obs: `Reserva web en ${destino} (${auto}) del ${f_ini} al ${f_fin}. Extras: ${listaExtrasStr}`,
                         intentos: [true, false, false],
-                        ultimo: new Date().toLocaleDateString('es-MX')
+                        fecha_registro: new Date().toISOString()
                     });
                 } catch (err) {
-                    console.error("Error guardando en la base de datos:", err);
+                    console.error("Error guardando lead en el CRM:", err);
                 }
             }
 
+            // 2. CONSTRUIR MENSAJE COMPLETO PARA WHATSAPP
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
                         `👤 *Nombre:* ${nombre}\n` +
                         `📱 *WhatsApp:* ${telefono}\n` +
                         `📍 *Destino:* ${destino}\n` +
                         `🚘 *Vehículo:* ${auto}\n` +
                         `📅 *Entrega:* ${f_ini} a las ${h_ini} hrs.\n` +
-                        `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n\n` +
+                        `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n` +
+                        `✨ *Solicitudes Especiales:* ${listaExtrasStr}\n\n` +
                         `_Generado automáticamente desde mi cotización web._`;
 
-            const url = `https://wa.me/527792179612?text=${encodeURIComponent(txt)}`;
-            window.open(url, '_blank');
+            // Guardar temporalmente en el navegador para la página de gracias
+            localStorage.setItem('wa_mensaje_reserva', txt);
+
+            // 3. REDIRIGIR A LA PÁGINA DE GRACIAS (Donde dispara el píxel de Meta Lead)
+            window.location.href = "gracias.html";
         };
     </script>
 </body>
