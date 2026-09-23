@@ -11,6 +11,32 @@
         body { font-family: 'Outfit', sans-serif; scroll-behavior: smooth; background-color: #ffffff; }
         .hero-gradient { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); }
     </style>
+
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJY8TZ1D6Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HJY8TZ1D6Q');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2305706456831293');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2305706456831293&ev=PageView&noscript=1"
+    /></noscript>
 </head>
 <body class="bg-slate-50 text-slate-900 pb-20 md:pb-0">
 
@@ -18,99 +44,710 @@
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 py-3 px-4 shadow-lg">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <button onclick="irACotizarFormulario()" class="flex items-center gap-3 focus:outline-none group">
-                <span class="font-black text-xs uppercase tracking-widest text-slate-200">Tu Auto de Renta</span>
+                <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-8 w-auto rounded group-hover:opacity-90 transition-opacity">
+                <span class="font-black text-xs uppercase tracking-widest text-slate-200 hidden sm:inline group-hover:text-orange-400 transition-colors">Tu Auto de Renta</span>
             </button>
+            
             <div class="flex items-center gap-2 sm:gap-6 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
-                <button onclick="irACotizarFormulario()" class="text-orange-400 hover:text-orange-300">Cotizar</button>
-                <button onclick="cambiarPestana('flota')" class="hover:text-orange-400">Flota</button>
-                <button onclick="cambiarPestana('requisitos')" class="hover:text-orange-400">Requisitos</button>
-                <button onclick="cambiarPestana('coberturas')" class="hover:text-orange-400">Coberturas</button>
+                <button onclick="irACotizarFormulario()" class="text-orange-400 hover:text-orange-300 transition-all flex items-center gap-1">
+                    <i class="fas fa-calculator"></i> <span class="hidden md:inline">Inicio / Cotizar</span>
+                </button>
+                <button onclick="cambiarPestana('flota')" class="hover:text-orange-400 transition-all">Flota</button>
+                <button onclick="cambiarPestana('requisitos')" class="hover:text-orange-400 transition-all">Requisitos</button>
+                <button onclick="cambiarPestana('coberturas')" class="hover:text-orange-400 transition-all">Coberturas</button>
+                <button onclick="cambiarPestana('destinos')" class="hover:text-orange-400 transition-all">Cobertura Nacional</button>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
+    <!-- BARRA DE PESTAÑAS (TABS) -->
+    <section class="bg-slate-200 border-b border-slate-300 sticky top-[53px] z-40 py-3 px-2">
+        <div class="max-w-4xl mx-auto flex justify-center gap-2 sm:gap-3 overflow-x-auto">
+            <button onclick="irACotizarFormulario()" id="tab-inicio" class="btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm">
+                <i class="fas fa-calculator mr-1"></i> Inicio / Cotizar
+            </button>
+            <button onclick="cambiarPestana('flota')" id="tab-flota" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
+                <i class="fas fa-car mr-1"></i> Nuestra Flota
+            </button>
+            <button onclick="cambiarPestana('requisitos')" id="tab-requisitos" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
+                <i class="fas fa-clipboard-list mr-1"></i> Requisitos
+            </button>
+            <button onclick="cambiarPestana('coberturas')" id="tab-coberturas" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
+                <i class="fas fa-shield-alt mr-1"></i> Coberturas
+            </button>
+            <button onclick="cambiarPestana('destinos')" id="tab-destinos" class="btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300">
+                <i class="fas fa-map-marked-alt mr-1"></i> Cobertura Nacional
+            </button>
+        </div>
+    </section>
+
+    <!-- CONTENEDOR DE PESTAÑAS -->
     <main class="min-h-[600px]">
+
+        <!-- PESTAÑA 1: INICIO / MOTOR DE RESERVAS -->
         <section class="pestana-contenido hero-gradient text-white py-12 px-4" id="pestana-inicio">
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h1 class="text-4xl md:text-5xl font-black mb-6 leading-[1.1]">Más que un auto, te damos tranquilidad.</h1>
-                    <p class="text-base text-blue-100/90 mb-6 font-light">
-                        Reserva de forma rápida, segura y con un asesor personal asignado por WhatsApp para acompañarte en tu viaje.
+                    <div class="flex items-center gap-4 mb-6">
+                        <button onclick="irACotizarFormulario()" class="focus:outline-none transition-transform hover:scale-105 active:scale-95 text-left">
+                            <img src="logo.jpg" alt="Tu Auto de Renta Logo" class="h-20 md:h-24 w-auto object-contain rounded-lg shadow-md cursor-pointer">
+                        </button>
+                        <div>
+                            <span class="text-slate-300 font-bold text-[9px] tracking-[0.25em] uppercase block">BY JASSO MOBILITY</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/527792179612" class="bg-blue-900 text-white px-6 py-2.5 rounded-full font-black text-[10px] hover:bg-orange-500 transition-all uppercase tracking-widest inline-block mb-6">
+                        779 217 9612
+                    </a>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-[1.1]">Más que un auto, te damos tranquilidad.</h1>
+                    <p class="text-base md:text-lg text-blue-100/90 mb-6 font-light leading-relaxed">
+                        Olvídate de los trámites complicados y las sorpresas. En <strong>Tu Auto de Renta</strong>, un experto local te guía de la mano para elegir el auto ideal para tu viaje y te acompaña personalmente por WhatsApp ante cualquier inquietud. Reserva con la certeza de que siempre habrá alguien listo para ayudarte.
                     </p>
+
+                    <div class="mb-6">
+                        <img src="auto.jpg" alt="Auto Sedán Ejecutivo" class="w-full max-w-md rounded-2xl shadow-2xl border border-white/10 hover:scale-[1.02] transition-transform duration-300 object-cover">
+                    </div>
+
+                    <div class="hidden md:flex gap-4 items-center">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-orange-500 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">✓</div>
+                            <div class="w-8 h-8 rounded-full bg-blue-700 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">★</div>
+                            <div class="w-8 h-8 rounded-full bg-blue-800 border-2 border-blue-900 flex items-center justify-center text-[10px] font-bold text-white">♥</div>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-blue-200">Ejecutivo Asignado 24/7 • Sin Filas ni Sorpresas</span>
+                    </div>
                 </div>
 
                 <!-- Panel de Reservación -->
-                <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative" id="cuadro-reserva">
+                <div class="bg-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl text-slate-800 relative scroll-mt-28" id="cuadro-reserva">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
-                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase">VIP</span>
+                        <div>
+                            <h2 class="font-black text-xl uppercase tracking-tighter text-blue-900">Reservar Ahora</h2>
+                            <p class="text-[10px] font-bold text-slate-400">Atención Personalizada e Inmediata</p>
+                        </div>
+                        <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Atención VIP</span>
                     </div>
 
                     <form id="reserva-form" class="space-y-4" onsubmit="event.preventDefault(); enviarReservaASheets();">
                         <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Nombre y Apellidos</label>
-                            <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Nombre y Apellidos</label>
+                            <input type="text" id="res_nombre" required placeholder="Ej. Juan Pérez García" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
                         <div>
-                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Teléfono WhatsApp</label>
-                            <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Teléfono WhatsApp del Cliente</label>
+                            <input type="tel" id="res_telefono" required placeholder="Ej. 5512345678 (10 dígitos)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none transition-all">
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Destino</label>
-                                <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 outline-none">
-                                    <option value="">Seleccionar...</option>
+                            <div class="col-span-1">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Destino de Entrega</label>
+                                <select id="res_destino" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
+                                    <option value="">Elegir Destino...</option>
+                                    <option value="Acapulco">Acapulco</option>
                                     <option value="CDMX / Aeropuerto">CDMX / Aeropuerto</option>
                                     <option value="Cancún">Cancún</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Ciudad Juárez">Ciudad Juárez</option>
+                                    <option value="Ciudad Obregón">Ciudad Obregón</option>
+                                    <option value="Culiacán">Culiacán</option>
+                                    <option value="Durango">Durango</option>
                                     <option value="Guadalajara">Guadalajara</option>
-                                    <option value="Mérida">Mérida</option>
-                                    <option value="Monterrey">Monterrey</option>
+                                    <option value="Hermosillo">Hermosillo</option>
+                                    <option value="Huatulco">Huatulco</option>
+                                    <option value="Ixtapa">Ixtapa</option>
+                                    <option value="La Paz">La Paz</option>
+                                    <option value="León">León</option>
+                                    <option value="Loreto">Loreto</option>
                                     <option value="Los Cabos">Los Cabos</option>
-                                    <option value="Pachuca / Hidalgo">Pachuca / Hidalgo</option>
-                                    <option value="Tizayuca">Tizayuca</option>
+                                    <option value="Mazatlán">Mazatlán</option>
+                                    <option value="Mexicali">Mexicali</option>
+                                    <option value="Monterrey">Monterrey</option>
+                                    <option value="Mérida">Mérida</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Puerto Vallarta">Puerto Vallarta</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Tijuana">Tijuana</option>
+                                    <option value="Toluca">Toluca</option>
+                                    <option value="Torreón">Torreón</option>
+                                    <option value="Tuxtla Gutiérrez">Tuxtla Gutiérrez</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Villahermosa">Villahermosa</option>
+                                    <option value="Otro">Otro</option>
                                 </select>
                             </div>
-                            <div>
-                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Vehículo</label>
-                                <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 outline-none">
+                            <div class="col-span-1">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Vehículo</label>
+                                <select id="res_auto" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 font-bold text-slate-700 focus:ring-2 focus:ring-orange-500 outline-none cursor-pointer">
                                     <option value="Económico (Hyundai i10)">Económico (i10)</option>
-                                    <option value="Mediano (Mirage G4)">Mediano (Mirage)</option>
+                                    <option value="Mediano (Mirage G4)">Mediano (Mirage G4)</option>
                                     <option value="Estándar (Versa / K3)">Estándar (Versa / K3)</option>
                                     <option value="Grande (Kia K4 / Sentra)">Grande (K4 / Sentra)</option>
-                                    <option value="Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
+                                    <option value="Camioneta / Van (Hiace / Urvan)">Van (Hiace / Urvan)</option>
+                                    <option value="Categoría Especial / Modelo Específico">Especial / Solicitar Modelo</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Fecha Entrega</label>
-                                <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 text-xs">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Entrega</label>
+                                <input type="date" id="res_fecha_ini" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                             <div>
-                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Fecha Devolución</label>
-                                <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 text-xs">
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
+                                <input type="time" id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
                             </div>
                         </div>
 
-                        <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4 cursor-pointer">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Fecha Devolución</label>
+                                <input type="date" id="res_fecha_fin" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
+                                <input type="time" id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                            </div>
+                        </div>
+
+                        <!-- SECCIÓN DE SOLICITUDES ESPECIALES CONDICIONADAS -->
+                        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                            <label class="block text-[11px] font-black text-blue-900 uppercase tracking-widest mb-2">¿Requiere Solicitudes Especiales?</label>
+                            <div class="flex gap-4 mb-2">
+                                <label class="inline-flex items-center text-xs font-bold text-slate-700 cursor-pointer">
+                                    <input type="radio" name="solicitud_especial_toggle" value="no" checked onchange="toggleSolicitudesEspeciales(false)" class="text-orange-500 focus:ring-orange-500">
+                                    <span class="ml-2">No por el momento</span>
+                                </label>
+                                <label class="inline-flex items-center text-xs font-bold text-slate-700 cursor-pointer">
+                                    <input type="radio" name="solicitud_especial_toggle" value="si" onchange="toggleSolicitudesEspeciales(true)" class="text-orange-500 focus:ring-orange-500">
+                                    <span class="ml-2">Sí, deseo agregar</span>
+                                </label>
+                            </div>
+
+                            <!-- Opciones desplegables dinámicas -->
+                            <div id="contenedor-solicitudes-especiales" class="hidden mt-4 pt-3 border-t border-slate-200 space-y-2.5 text-xs font-medium text-slate-700">
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_silla_bebe" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Silla de Bebé / Asiento Infantil</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_conductor_adicional" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Conductor Adicional</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_conductor_menor" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Conductor Menor de Edad (21 a 24 años)</span>
+                                </label>
+                                <label class="flex items-center gap-2 cursor-pointer">
+                                    <input type="checkbox" id="chk_combustible" class="rounded text-orange-500 focus:ring-orange-500 w-4 h-4">
+                                    <span>Combustible Prepagado</span>
+                                </label>
+                                <div class="pt-2">
+                                    <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Otras solicitudes específicas:</label>
+                                    <input type="text" id="txt_otras_solicitudes" placeholder="Ej. Portaequipajes de toldo, GPS, etc." class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 outline-none focus:ring-2 focus:ring-orange-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/25 uppercase text-xs tracking-widest flex items-center justify-center gap-3 mt-4 cursor-pointer">
                             <i class="fab fa-whatsapp text-lg"></i> Reservar con Atención VIP ✨
                         </button>
                     </form>
                 </div>
             </div>
         </section>
+
+        <!-- PESTAÑA 2: FLOTA -->
+        <section class="pestana-contenido hidden py-12 bg-white px-4" id="pestana-flota">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-100 text-blue-900 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-3">Modelos Disponibles</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-blue-900 uppercase tracking-tighter">Nuestra Flota</h2>
+                    <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Vehículos de modelo reciente, inspeccionados y asegurados para tu máximo confort.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-i10">
+                                <img src="i10-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                                <img src="i10-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                                <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Económico</span>
+                                <button onclick="cambiarFoto('carrusel-i10', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="cambiarFoto('carrusel-i10', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-black text-xl text-blue-900 mb-1">Hyundai i10 Sedán</h3>
+                                <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Económico</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                    <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 4 Pasajeros</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 2 Maletas</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Aire Acondicionado</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-gas-pump text-orange-500"></i> Excelente Rendimiento</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="seleccionarAuto('Económico (Hyundai i10)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest cursor-pointer">
+                                Cotizar esta categoría
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-mirage">
+                                <img src="mirage-1.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                                <img src="mirage-2.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                                <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Mediano</span>
+                                <button onclick="cambiarFoto('carrusel-mirage', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="cambiarFoto('carrusel-mirage', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-black text-xl text-blue-900 mb-1">Mitsubishi Mirage G4</h3>
+                                <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Mediano</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                    <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 2 Maletas Grandes</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Aire Acondicionado</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-cogs text-orange-500"></i> Automático</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="seleccionarAuto('Mediano (Mirage G4)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest cursor-pointer">
+                                Cotizar esta categoría
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-estandar">
+                                <img src="versa.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                                <img src="k3.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                                <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Estándar</span>
+                                <button onclick="cambiarFoto('carrusel-estandar', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="cambiarFoto('carrusel-estandar', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-black text-xl text-blue-900 mb-1">Nissan Versa / Kia K3</h3>
+                                <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Estándar</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                    <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 3 Maletas</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> Climatizador</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-shield-alt text-orange-500"></i> Seguridad Activa</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="seleccionarAuto('Estándar (Versa / K3)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest cursor-pointer">
+                                Cotizar esta categoría
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-grande">
+                                <img src="k4.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                                <img src="sentra.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                                <span class="absolute top-3 right-3 bg-blue-900 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Grande / Ejecutivo</span>
+                                <button onclick="cambiarFoto('carrusel-grande', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="cambiarFoto('carrusel-grande', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-black text-xl text-blue-900 mb-1">Kia K4 / Nissan Sentra</h3>
+                                <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Grande</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                    <div class="flex items-center gap-2"><i class="fas fa-user text-orange-500"></i> 5 Pasajeros</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-suitcase text-orange-500"></i> 3 Maletas Grandes</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-car text-orange-500"></i> Confort Premium</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-mobile-alt text-orange-500"></i> Pantalla Táctil</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="seleccionarAuto('Grande (Kia K4 / Sentra)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest cursor-pointer">
+                                Cotizar esta categoría
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-52 bg-slate-900 overflow-hidden group" id="carrusel-van">
+                                <img src="hiace.jpeg" class="carrusel-img w-full h-full object-cover transition-opacity duration-300">
+                                <img src="urvan.jpeg" class="carrusel-img hidden w-full h-full object-cover transition-opacity duration-300">
+                                <span class="absolute top-3 right-3 bg-orange-500 text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider z-10">Pasajeros</span>
+                                <button onclick="cambiarFoto('carrusel-van', -1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-left"></i></button>
+                                <button onclick="cambiarFoto('carrusel-van', 1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-xs transition-all z-10"><i class="fas fa-chevron-right"></i></button>
+                                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-10 dots">
+                                    <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    <span class="w-2 h-2 rounded-full bg-white/50"></span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-black text-xl text-blue-900 mb-1">Toyota Hiace / Nissan Urvan</h3>
+                                <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Van</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
+                                    <div class="flex items-center gap-2"><i class="fas fa-users text-orange-500"></i> 12-15 Pasajeros</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-boxes text-orange-500"></i> Amplio Equipaje</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-snowflake text-orange-500"></i> A/C Trasero</div>
+                                    <div class="flex items-center gap-2"><i class="fas fa-bus text-orange-500"></i> Ideal Grupos</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <button onclick="seleccionarAuto('Camioneta / Van (Hiace / Urvan)')" class="w-full bg-slate-900 hover:bg-orange-500 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest cursor-pointer">
+                                Cotizar esta categoría
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-blue-950 to-blue-900 text-white rounded-3xl p-6 border border-blue-800 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl mb-4">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="bg-orange-500/20 text-orange-400 text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Atención Especializada</span>
+                            <h3 class="font-black text-2xl text-white mt-2 mb-2">Categorías Especiales</h3>
+                            <p class="text-xs text-blue-100/80 leading-relaxed mb-4 font-light">
+                                ¿Buscas un vehículo de lujo, Pick-up, SUV de 7 pasajeros o un modelo en específico?
+                            </p>
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/10 text-xs text-blue-200 font-medium mb-4">
+                                💬 <strong>Pregunta directamente a un ejecutivo por disponibilidad y modelos específicos.</strong>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/527792179612?text=*¡Hola!* Quiero consultar disponibilidad para un modelo o categoría especial de vehículo. 🚗✨" target="_blank" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3 rounded-xl transition-all text-xs uppercase tracking-widest text-center block">
+                                <i class="fab fa-whatsapp text-sm"></i> Consultar a un Ejecutivo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 3: REQUISITOS -->
+        <section class="pestana-contenido hidden py-12 bg-slate-100 px-4" id="pestana-requisitos">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="bg-blue-900 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-3">Información Importante</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-blue-900 uppercase tracking-tighter">Requisitos para Renta</h2>
+                    <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Presenta la siguiente documentación vigente al momento de recoger tu vehículo.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        <div class="w-12 h-12 bg-orange-500/10 text-orange-500 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Tarjeta de Crédito</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Debe contar con saldo disponible para el depósito en garantía (entre <strong>$3,000 y $10,000 MXN</strong>, según el tipo de auto y cobertura adquirida) más el importe total de la renta.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        <div class="w-12 h-12 bg-blue-900/10 text-blue-900 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Licencia Vigente</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Licencia de conducir física y vigente del titular de la reservación (nacional o internacional).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                        <div class="w-12 h-12 bg-blue-900/10 text-blue-900 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-passport"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Identificación Oficial</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            <strong>Mexicanos:</strong> Credencial INE / Cédula / Pasaporte vigente.<br>
+                            <strong>Extranjeros:</strong> Pasaporte vigente.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-xl flex items-start gap-3">
+                    <span class="text-amber-500 font-black text-xl leading-none">*</span>
+                    <p class="text-xs text-amber-900 font-medium leading-relaxed">
+                        <strong>¿Deseas rentar con tarjeta de débito?</strong> Pregunta directamente a tu ejecutivo por WhatsApp sobre la disponibilidad, políticas especiales y condiciones de garantía aplicables para pagos con tarjeta de débito.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 4: COBERTURAS -->
+        <section class="pestana-contenido hidden py-12 bg-white px-4" id="pestana-coberturas">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="bg-orange-100 text-orange-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-3">Protección Transparente</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-blue-900 uppercase tracking-tighter">Coberturas</h2>
+                    <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Conoce las protecciones incluidas en tu alquiler y las opciones de cobertura adicional disponibles.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl border border-slate-800 md:col-span-2 lg:col-span-3 flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-16 h-16 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-3xl shrink-0">
+                            <i class="fas fa-shield-virus"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="bg-orange-500 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Cobertura Opcional</span>
+                            </div>
+                            <h3 class="font-black text-2xl mb-2 text-white">Cobertura Cero Deducible</h3>
+                            <p class="text-xs text-slate-300 leading-relaxed font-light">
+                                Protección adicional que elimina al 100% el pago de deducible en caso de siniestro. Esta cobertura se puede agregar de manera opcional, siempre y cuando se tengan contratados los seguros de colisión y daños a terceros.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
+                                <i class="fas fa-car-crash"></i>
+                            </div>
+                            <span class="bg-blue-100 text-blue-900 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">Incluido</span>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Protección por Colisión</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Cubre la reparación o reposición del auto en caso de daños por accidente vial, aplicando un deducible del 10% sobre el valor comercial del vehículo.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <span class="bg-blue-100 text-blue-900 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">Incluido</span>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Daños a Terceros (RC)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Cubre la responsabilidad civil por afectación a bienes materiales o lesiones corporales a terceras personas.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Seguro contra Robo Total</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Protección con indemnización por el valor establecido del auto en caso de ser víctima de la delincuencia.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-notes-medical"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Gastos Médicos a Ocupantes</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Asistencia médica y hospitalización para los pasajeros del vehículo a consecuencia de un accidente.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Asistencia Legal</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Asesoría jurídica y gestoría de trámites legales derivados de un siniestro automovilístico.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Impuestos Incluidos</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Todas las reservaciones incluyen IVA y tasas correspondientes, garantizando transparencia total.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 md:col-span-2 lg:col-span-3 hover:shadow-lg transition-all flex flex-col md:flex-row items-center gap-4">
+                        <div class="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shrink-0">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg text-blue-900 mb-1">Kilometraje Sin Límite</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                                Viaja largas distancias sin preocuparte por cobros extras por kilómetro recorrido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 5: COBERTURA NACIONAL -->
+        <section class="pestana-contenido hidden py-12 bg-slate-50 px-4" id="pestana-destinos">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
+                <div id="destinos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- BOTÓN FLOTANTE PERMANENTE -->
+    <button onclick="irACotizarFormulario()" class="fixed bottom-5 right-5 z-50 bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 border-2 border-white cursor-pointer">
+        <i class="fas fa-calculator text-base"></i> Cotizar Ahora
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 px-4 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <button onclick="irACotizarFormulario()" class="focus:outline-none transition-transform hover:scale-105 text-left">
+                    <img src="logo.jpg" alt="Tu Auto de Renta" class="h-10 w-auto object-contain mb-2 mx-auto md:mx-0 rounded">
+                </button>
+                <span class="text-slate-500 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
+
+                <a href="https://www.facebook.com/profile.php?id=61578401788094" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Síguenos en Facebook</span>
+                </a>
+            </div>
+            <div class="md:text-right">
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">WhatsApp Directo</p>
+                <a href="https://wa.me/527792179612" class="text-2xl font-black text-orange-500">779 217 9612</a>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-800/50">
+            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em] text-center">
+                © 2026 Tu Auto de Renta. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS COMPLETOS -->
     <script>
+        const destinos = [
+            "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
+            "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
+            "Hermosillo", "Huatulco", "Ixtapa", "La Paz", 
+            "León", "Loreto", "Los Cabos", "Mazatlán", "Mexicali", 
+            "Monterrey", "Mérida", "Oaxaca", "Puebla", "Puerto Vallarta", 
+            "Querétaro", "San Luis Potosí", "Tijuana", "Toluca", "Torreón", 
+            "Tuxtla Gutiérrez", "Veracruz", "Villahermosa"
+        ];
+
         document.addEventListener("DOMContentLoaded", function() {
+            const grid = document.getElementById('destinos-grid');
+            if(grid) {
+                destinos.sort().forEach(dest => {
+                    const btn = document.createElement('button');
+                    btn.type = "button";
+                    btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all hover:border-orange-500 hover:text-orange-500 cursor-pointer";
+                    btn.innerText = dest;
+                    btn.onclick = () => {
+                        const selectDestino = document.getElementById('res_destino');
+                        if (selectDestino) selectDestino.value = dest;
+                        irACotizarFormulario();
+                    };
+                    grid.appendChild(btn);
+                });
+            }
+
             const hoy = new Date().toISOString().split('T')[0];
-            document.getElementById('res_fecha_ini').value = hoy;
-            document.getElementById('res_fecha_fin').value = hoy;
+            if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
+            if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
         });
+
+        function toggleSolicitudesEspeciales(mostrar) {
+            const cont = document.getElementById('contenedor-solicitudes-especiales');
+            if (mostrar) {
+                cont.classList.remove('hidden');
+            } else {
+                cont.classList.add('hidden');
+                document.getElementById('chk_silla_bebe').checked = false;
+                document.getElementById('chk_conductor_adicional').checked = false;
+                document.getElementById('chk_conductor_menor').checked = false;
+                document.getElementById('chk_combustible').checked = false;
+                document.getElementById('txt_otras_solicitudes').value = '';
+            }
+        }
+
+        function cambiarPestana(idPestana) {
+            document.querySelectorAll('.pestana-contenido').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.btn-tab').forEach(btn => {
+                btn.className = 'btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300';
+            });
+
+            const pestanaActiva = document.getElementById(`pestana-${idPestana}`);
+            const btnActivo = document.getElementById(`tab-${idPestana}`);
+
+            if (pestanaActiva) pestanaActiva.classList.remove('hidden');
+            if (btnActivo) btnActivo.className = 'btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function irACotizarFormulario() {
+            cambiarPestana('inicio');
+            setTimeout(() => {
+                const el = document.getElementById('cuadro-reserva');
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        function cambiarFoto(idCarrusel, direccion) {
+            const contenedor = document.getElementById(idCarrusel);
+            const imagenes = contenedor.querySelectorAll('.carrusel-img');
+            const dots = contenedor.querySelectorAll('.dots span');
+            let indexActual = 0;
+
+            imagenes.forEach((img, idx) => {
+                if (!img.classList.contains('hidden')) indexActual = idx;
+            });
+
+            imagenes[indexActual].classList.add('hidden');
+            dots[indexActual].className = 'w-2 h-2 rounded-full bg-white/50';
+
+            let nuevoIndex = indexActual + direccion;
+            if (nuevoIndex >= imagenes.length) nuevoIndex = 0;
+            if (nuevoIndex < 0) nuevoIndex = imagenes.length - 1;
+
+            imagenes[nuevoIndex].classList.remove('hidden');
+            dots[nuevoIndex].className = 'w-2 h-2 rounded-full bg-orange-500';
+        }
+
+        function seleccionarAuto(valorAuto) {
+            const selectAuto = document.getElementById('res_auto');
+            if (selectAuto) selectAuto.value = valorAuto;
+            irACotizarFormulario();
+        }
 
         async function enviarReservaASheets() {
             const nombre = document.getElementById('res_nombre').value.trim();
@@ -118,11 +755,25 @@
             const destino = document.getElementById('res_destino').value;
             const auto = document.getElementById('res_auto').value;
             const f_ini = document.getElementById('res_fecha_ini').value;
+            const h_ini = document.getElementById('res_hora_ini').value || '12:00';
             const f_fin = document.getElementById('res_fecha_fin').value;
+            const h_fin = document.getElementById('res_hora_fin').value || '12:00';
 
             const btn = document.getElementById('btn-submit');
             btn.disabled = true;
             btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Registrando reserva...`;
+
+            let extras = [];
+            const requiereEspeciales = document.querySelector('input[name="solicitud_especial_toggle"]:checked')?.value === 'si';
+            if (requiereEspeciales) {
+                if (document.getElementById('chk_silla_bebe').checked) extras.push("Silla de Bebé");
+                if (document.getElementById('chk_conductor_adicional').checked) extras.push("Conductor Adicional");
+                if (document.getElementById('chk_conductor_menor').checked) extras.push("Conductor Menor");
+                if (document.getElementById('chk_combustible').checked) extras.push("Combustible Prepagado");
+                const otrosTxt = document.getElementById('txt_otras_solicitudes').value.trim();
+                if (otrosTxt) extras.push(`Otros: ${otrosTxt}`);
+            }
+            const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
 
             const datosReserva = {
                 fecha: new Date().toLocaleString("es-MX"),
@@ -130,8 +781,8 @@
                 whatsapp: telefono,
                 destino: destino,
                 vehiculo: auto,
-                periodo: `Del ${f_ini} al ${f_fin}`,
-                solicitudes: "Ninguna"
+                periodo: `Del ${f_ini} (${h_ini}) al ${f_fin} (${h_fin})`,
+                solicitudes: listaExtrasStr
             };
 
             // ⚠️ PEGA TU URL DE GOOGLE APPS SCRIPT AQUÍ ENTRE LAS COMILLAS
@@ -155,7 +806,9 @@
                         `📱 *WhatsApp:* ${telefono}\n` +
                         `📍 *Destino:* ${destino}\n` +
                         `🚘 *Vehículo:* ${auto}\n` +
-                        `📅 *Fechas:* ${f_ini} al ${f_fin}\n\n` +
+                        `📅 *Entrega:* ${f_ini} a las ${h_ini} hrs.\n` +
+                        `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n` +
+                        `✨ *Solicitudes Especiales:* ${listaExtrasStr}\n\n` +
                         `_Generado automáticamente desde mi cotización web._`;
 
             localStorage.setItem('wa_mensaje_reserva', txt);
