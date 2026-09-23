@@ -23,8 +23,8 @@
             <p class="text-xs text-slate-400 font-bold uppercase tracking-widest mb-6">Introduce tu clave de acceso</p>
             
             <form onsubmit="verificarPassword(event)" class="space-y-4">
-                <input type="password" id="input-password" placeholder="Contraseña de administración" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-center text-slate-800 outline-none focus:ring-2 focus:ring-orange-500 transition-all" required>
-                <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all shadow-md">
+                <input type="password" id="input-password" placeholder="Contraseña de administración" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-center text-slate-800 outline-none focus:ring-2 focus:ring-orange-500 transition-all" required autofocus>
+                <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 rounded-xl font-black text-xs uppercase tracking-wider transition-all shadow-md cursor-pointer">
                     Entrar al Panel
                 </button>
             </form>
@@ -128,7 +128,7 @@
 
     <!-- SCRIPT DE CONTROL Y SEGURIDAD -->
     <script>
-        // CAMBIA AQUÍ TU CONTRASEÑA SI LO DESEAS (por defecto está en 1234)
+        // CONTRASEÑA DE ACCESO
         const PASSWORD_SECRETA = "1234"; 
 
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz-jovU4o1HXiYbv-qIAQjbMEt1gOND2CalqhGSAJADVRuHSZjJcpO7NYpUIYyL9wIA/exec";
@@ -154,7 +154,6 @@
             const tbody = document.getElementById('cuerpo-tabla');
 
             try {
-                // Usamos no-cors o fetch adaptativo para evitar bloqueos del navegador
                 const response = await fetch(WEB_APP_URL, { redirect: "follow" });
                 const data = await response.json();
 
@@ -195,7 +194,7 @@
 
             } catch (e) {
                 console.error("Error cargando CRM:", e);
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center. text-rose-500 font-bold">Error al sincronizar con Google Sheets. Asegúrate de haber actualizado la implementación en Apps Script.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al sincronizar con Google Sheets. Verifica la conexión.</td></tr>`;
             } finally {
                 if(icono) icono.classList.remove('fa-spin');
             }
@@ -203,7 +202,7 @@
 
         function filtrarTabla() {
             const filtro = document.getElementById('buscador').value.toLowerCase();
-            The filas = document.querySelectorAll('#cuerpo-tabla tr');
+            const filas = document.querySelectorAll('#cuerpo-tabla tr');
 
             filas.forEach(fila => {
                 const texto = fila.innerText.toLowerCase();
