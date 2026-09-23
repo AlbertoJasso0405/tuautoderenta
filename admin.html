@@ -19,7 +19,7 @@
             <span class="text-orange-500 font-black text-xs tracking-widest uppercase">By Jasso Mobility</span>
             <h1 class="text-2xl font-black text-white mt-1">Acceso Administrativo</h1>
         </div>
-        <form id="login-form" class="space-y-4">
+        <form id="login-form" class="space-y-4" onsubmit="event.preventDefault(); validarLogin();">
             <div>
                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Usuario</label>
                 <input type="text" id="admin_user" required class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500">
@@ -28,7 +28,7 @@
                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Contraseña</label>
                 <input type="password" id="admin_pass" required class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-orange-500">
             </div>
-            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3.5 rounded-xl transition-all uppercase text-xs tracking-widest mt-2">
+            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-3.5 rounded-xl transition-all uppercase text-xs tracking-widest mt-2 cursor-pointer">
                 Iniciar Sesión
             </button>
         </form>
@@ -40,10 +40,10 @@
             <div>
                 <span class="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-orange-500/20">Jasso Mobility CRM</span>
                 <h1 class="text-3xl font-black text-white mt-2">Reservaciones Recibidas</h1>
-                <p class="text-slate-400 text-xs mt-1">Listado de prospectos e intenciones de renta en tiempo real</p>
+                <p class="text-slate-400 text-xs mt-1">Listado de prospectos en tiempo real</p>
             </div>
             <div class="flex gap-3">
-                <button id="btn-actualizar" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl uppercase text-xs tracking-widest flex items-center gap-2 transition-all cursor-pointer">
+                <button onclick="cargarReservasAdmin()" class="bg-blue-600 hover:bg-blue-700 text-white font-black px-5 py-3 rounded-xl uppercase text-xs tracking-widest flex items-center gap-2 transition-all cursor-pointer">
                     <i class="fas fa-sync-alt"></i> Actualizar
                 </button>
                 <button onclick="cerrarSesion()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-black px-4 py-3 rounded-xl uppercase text-xs tracking-widest transition-all cursor-pointer">
@@ -62,41 +62,17 @@
                             <th class="p-4">Destino</th>
                             <th class="p-4">Vehículo</th>
                             <th class="p-4">Periodo de Renta</th>
-                            <th class="p-4">Solicitudes Especiales</th>
                             <th class="p-4 text-center">Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="tabla-reservas-body" class="divide-y divide-slate-800 text-xs font-medium">
-                        <tr>
-                            <td colspan="7" class="p-8 text-center text-slate-500 font-bold">
-                                Cargando reservaciones desde Firebase...
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="tabla-reservas-body" class="divide-y divide-slate-800 text-xs font-medium"></tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT DE CONSULTA DIRECTA A FIREBASE -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAZaPnLcdV2uCdWhuqQs13xaUruARAKz4M",
-            authDomain: "tu-auto-de-renta-2d81c.firebaseapp.com",
-            projectId: "tu-auto-de-renta-2d81c",
-            storageBucket: "tu-auto-de-renta-2d81c.firebasestorage.app",
-            messagingSenderId: "918947560890",
-            appId: "1:918947560890:web:c8105926cca2f95d287183"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        document.getElementById('login-form').onsubmit = function(e) {
-            e.preventDefault();
+    <script>
+        function validarLogin() {
             const u = document.getElementById('admin_user').value.trim();
             const p = document.getElementById('admin_pass').value.trim();
 
@@ -106,65 +82,51 @@
             } else {
                 alert('Usuario o contraseña incorrectos.');
             }
-        };
+        }
 
         function mostrarPanel() {
             document.getElementById('login-screen').classList.add('hidden');
             document.getElementById('crm-panel').classList.remove('hidden');
-            cargarTodasLasReservas();
+            cargarReservasAdmin();
         }
 
-        window.cerrarSesion = function() {
+        function cerrarSesion() {
             sessionStorage.removeItem('crm_auth');
             location.reload();
-        };
+        }
 
-        async function cargarTodasLasReservas() {
+        function cargarReservasAdmin() {
             const tbody = document.getElementById('tabla-reservas-body');
-            tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Consultando reservaciones en tiempo real...</td></tr>`;
+            const reservas = JSON.parse(localStorage.getItem('jasso_reservas_globales') || '[]');
 
-            let listaTotal = [];
-
-            try {
-                const querySnapshot = await getDocs(collection(db, "reservas_web"));
-                querySnapshot.forEach((doc) => {
-                    listaTotal.push(doc.data());
-                });
-            } catch(e) {
-                console.error("Error consultando Firebase:", e);
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-red-400 font-bold">Error de conexión con la base de datos: ${e.message}</td></tr>`;
-                return;
-            }
-
-            if (listaTotal.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500 font-bold">No hay reservaciones registradas aún.</td></tr>`;
+            if (reservas.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-8 text-center text-slate-500 font-bold">No hay reservaciones registradas aún.</td></tr>`;
                 return;
             }
 
             tbody.innerHTML = '';
-            listaTotal.reverse().forEach(res => {
+            reservas.forEach(res => {
                 const telLimpio = res.telefono ? res.telefono.replace(/\D/g, '') : '';
                 const linkWa = `https://wa.me/52${telLimpio}`;
                 
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-800/50 transition-colors";
                 tr.innerHTML = `
-                    <td class="p-4 text-slate-400 font-mono text-[11px]">${res.fecha_registro || 'Reciente'}</td>
+                    <td class="p-4 text-slate-400 font-mono text-[11px]">${res.fecha_registro}</td>
                     <td class="p-4 font-bold text-white">
                         ${res.nombre}<br>
                         <a href="${linkWa}" target="_blank" class="text-emerald-400 hover:underline flex items-center gap-1 mt-0.5 text-[11px]">
                             <i class="fab fa-whatsapp"></i> ${res.telefono}
                         </a>
                     </td>
-                    <td class="p-4 text-orange-400 font-bold">${res.destino || 'N/A'}</td>
-                    <td class="p-4 text-slate-300 font-semibold">${res.auto || 'N/A'}</td>
+                    <td class="p-4 text-orange-400 font-bold">${res.destino}</td>
+                    <td class="p-4 text-slate-300 font-semibold">${res.auto}</td>
                     <td class="p-4 text-slate-400 text-[11px]">
-                        <strong>Entrega:</strong> ${res.fecha_entrega || 'N/A'}<br>
-                        <strong>Devolución:</strong> ${res.fecha_devolucion || 'N/A'}
+                        <strong>Entrega:</strong> ${res.fecha_entrega}<br>
+                        <strong>Devolución:</strong> ${res.fecha_devolucion}
                     </td>
-                    <td class="p-4 text-slate-400 text-[11px] max-w-xs">${res.solicitudes_especiales || 'Ninguna'}</td>
                     <td class="p-4 text-center">
-                        <a href="${linkWa}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider inline-flex items-center gap-1 transition-all">
+                        <a href="${linkWa}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider inline-flex items-center gap-1">
                             <i class="fab fa-whatsapp"></i> Contactar
                         </a>
                     </td>
@@ -172,8 +134,6 @@
                 tbody.appendChild(tr);
             });
         }
-
-        document.getElementById('btn-actualizar').addEventListener('click', cargarTodasLasReservas);
 
         if (sessionStorage.getItem('crm_auth') === 'true') {
             mostrarPanel();
