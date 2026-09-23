@@ -649,7 +649,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS COMPLETOS CON TU NUEVA URL INTEGRADA -->
+    <!-- SCRIPTS COMPLETOS CON GOOGLE SHEETS Y META ADS (LEAD) -->
     <script>
         const destinos = [
             "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
@@ -785,7 +785,6 @@
                 solicitudes: listaExtrasStr
             };
 
-            // URL DE GOOGLE APPS SCRIPT ACTUALIZADA
             const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxomXnJauBJ3AUtZQkNb-ytGcSBM16CVzzYdmLHsdHr94HL_Y1fNFHHTJPJv6d2NJuf/exec";
 
             try {
@@ -797,6 +796,11 @@
                 });
             } catch (e) {
                 console.error("Error enviando a Sheets:", e);
+            }
+
+            // Disparar evento de conversión Lead para Meta Ads
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', { content_name: 'Reservacion VIP', value: 1.00, currency: 'MXN' });
             }
 
             const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
