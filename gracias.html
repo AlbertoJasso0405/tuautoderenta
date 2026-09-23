@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Gracias por tu solicitud! | Tu Auto de Renta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; }
+    </style>
+
+    <!-- Google tag (gtag.js) - Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJY8TZ1D6Q"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HJY8TZ1D6Q');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2305706456831293');
+    
+    // RASTREO DEFINITIVO DE CONVERSIÓN LEAD EN META ADS
+    fbq('track', 'Lead');
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 text-white">
+
+    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden">
+        <div class="w-20 h-20 bg-orange-500/20 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl border border-orange-500/30 animate-pulse">
+            <i class="fas fa-check"></i>
+        </div>
+
+        <span class="bg-orange-500/10 text-orange-400 text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest block w-max mx-auto mb-3">Solicitud Registrada</span>
+        
+        <h1 class="text-3xl font-black text-white mb-3 leading-tight">¡Gracias por tu solicitud!</h1>
+        <p class="text-xs text-slate-300 font-light leading-relaxed mb-6">
+            Tu cotización con solicitudes especiales ha sido registrada con éxito en nuestro sistema. Tu ejecutivo asignado ya está revisando la disponibilidad de tu vehículo.
+        </p>
+
+        <div class="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/50 mb-6 text-left space-y-2 text-xs text-slate-300">
+            <p class="flex items-center gap-2 font-bold text-orange-400">
+                <i class="fas fa-shield-check"></i> Atención VIP Garantizada
+            </p>
+            <p class="text-[11px] text-slate-400 font-normal">
+                Para coordinar detalles de entrega o resolver dudas adicionales en tiempo real, haz clic en el siguiente botón para iniciar tu chat privado de WhatsApp.
+            </p>
+        </div>
+
+        <a id="btn-wa-gracias" href="https://wa.me/527792179612" target="_blank" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-2xl transition-all shadow-lg shadow-orange-500/20 uppercase text-xs tracking-widest flex items-center justify-center gap-3">
+            <i class="fab fa-whatsapp text-lg"></i> Abrir Chat en WhatsApp
+        </a>
+
+        <p class="text-[9px] text-slate-500 font-bold uppercase tracking-widest mt-6">
+            Tu Auto de Renta • By Jasso Mobility
+        </p>
+    </div>
+
+    <script>
+        const waTxt = localStorage.getItem('wa_mensaje_reserva');
+        if (waTxt) {
+            document.getElementById('btn-wa-gracias').href = `https://wa.me/527792179612?text=${encodeURIComponent(waTxt)}`;
+        }
+    </script>
+</body>
+</html>
