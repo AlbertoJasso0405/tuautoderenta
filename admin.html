@@ -126,9 +126,9 @@
 
     </main>
 
-    <!-- SCRIPT DE CONTROL Y CONEXIÓN -->
+    <!-- SCRIPT DE CONEXIÓN CON JSONP SEGURO -->
     <script>
-        const PASSWORD_SECRETA = "1234"; // Puedes cambiar tu contraseña aquí si lo deseas
+        const PASSWORD_SECRETA = "1234"; 
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxgUFu9khIfh2KO2rga2Blv7iNnma6kBn7d7qp-1k8wCDFzHL11lSPft_AXZHI8EqE3/exec";
 
         function verificarPassword(e) {
@@ -152,7 +152,6 @@
             const tbody = document.getElementById('cuerpo-tabla');
             tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Sincronizando con Google Sheets...</td></tr>`;
 
-            // Usamos un elemento script dinámico para consumir los datos de Apps Script sin bloqueos CORS
             const scriptOld = document.getElementById('jsonp-script');
             if(scriptOld) scriptOld.remove();
 
@@ -162,7 +161,7 @@
             
             script.onerror = function() {
                 if(icono) icono.classList.remove('fa-spin');
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al conectar con Google Sheets. Verifica tu conexión a internet.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error de red al conectar con Google Sheets.</td></tr>`;
             };
 
             document.body.appendChild(script);
@@ -188,7 +187,6 @@
             }
 
             let html = "";
-            // Mostramos las reservas más recientes primero
             data.reverse().forEach(item => {
                 const telLimpio = item.whatsapp ? String(item.whatsapp).replace(/\D/g, '') : '';
                 html += `
