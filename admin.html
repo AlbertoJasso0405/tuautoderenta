@@ -126,10 +126,10 @@
 
     </main>
 
-    <!-- SCRIPT DE CONEXIÓN CON JSONP (LIBRE DE CORS) -->
+    <!-- SCRIPT DE CONTROL Y CONEXIÓN -->
     <script>
-        const PASSWORD_SECRETA = "1234"; 
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz-jovU4o1HXiYbv-qIAQjbMEt1gOND2CalqhGSAJADVRuHSZjJcpO7NYpUIYyL9wIA/exec";
+        const PASSWORD_SECRETA = "1234"; // Puedes cambiar tu contraseña aquí si lo deseas
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxgUFu9khIfh2KO2rga2Blv7iNnma6kBn7d7qp-1k8wCDFzHL11lSPft_AXZHI8EqE3/exec";
 
         function verificarPassword(e) {
             e.preventDefault();
@@ -152,26 +152,30 @@
             const tbody = document.getElementById('cuerpo-tabla');
             tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold"><i class="fas fa-spinner fa-spin mr-2"></i> Sincronizando con Google Sheets...</td></tr>`;
 
-            // Creamos un script dinámico para consumir los datos de forma segura sin bloqueos
+            // Usamos un elemento script dinámico para consumir los datos de Apps Script sin bloqueos CORS
+            const scriptOld = document.getElementById('jsonp-script');
+            if(scriptOld) scriptOld.remove();
+
             const script = document.createElement('script');
-            script.src = `${WEB_APP_URL}?callback=procesarDatos`;
+            script.id = 'jsonp-script';
+            script.src = `${WEB_APP_URL}?callback=procesarDatosCRM`;
             
             script.onerror = function() {
                 if(icono) icono.classList.remove('fa-spin');
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error de red al conectar con Google Sheets.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al conectar con Google Sheets. Verifica tu conexión a internet.</td></tr>`;
             };
 
             document.body.appendChild(script);
         }
 
-        function procesarDatos(data) {
+        function procesarDatosCRM(data) {
             const icono = document.getElementById('icono-sync');
             if(icono) icono.classList.remove('fa-spin');
             
             const tbody = document.getElementById('cuerpo-tabla');
 
             if (!data || data.error) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al procesar los datos de Google Sheets.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-rose-500 font-bold">Error al procesar los datos de las reservaciones.</td></tr>`;
                 return;
             }
 
@@ -184,8 +188,9 @@
             }
 
             let html = "";
+            // Mostramos las reservas más recientes primero
             data.reverse().forEach(item => {
-                const telLimpio = item.whatsapp ? item.whatsapp.replace(/\D/g, '') : '';
+                const telLimpio = item.whatsapp ? String(item.whatsapp).replace(/\D/g, '') : '';
                 html += `
                     <tr class="hover:bg-slate-50 transition-colors">
                         <td class="p-4 font-bold text-slate-500 text-[11px]">${item.fecha || ''}</td>
