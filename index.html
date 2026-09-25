@@ -200,7 +200,9 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
-                                <input type="time" id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <select id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
+                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
+                                </select>
                             </div>
                         </div>
 
@@ -211,7 +213,9 @@
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
-                                <input type="time" id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs">
+                                <select id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
+                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
+                                </select>
                             </div>
                         </div>
 
@@ -649,7 +653,7 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS COMPLETOS CON GOOGLE SHEETS Y META ADS (LEAD) -->
+    <!-- SCRIPTS CON SELECTORES DE HORA DE 30 MINUTOS -->
     <script>
         const destinos = [
             "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
@@ -681,7 +685,39 @@
             const hoy = new Date().toISOString().split('T')[0];
             if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
             if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
+
+            // Rellenar selectores de hora en intervalos de 30 minutos
+            poblarSelectoresHora();
         });
+
+        function poblarSelectoresHora() {
+            const selectIni = document.getElementById('res_hora_ini');
+            const selectFin = document.getElementById('res_hora_fin');
+            if (!selectIni || !selectFin) return;
+
+            let opcionesHTML = '';
+            for (let hora = 0; hora < 24; hora++) {
+                for (let min = 0; min < 60; min += 30) {
+                    let h24 = String(hora).padStart(2, '0');
+                    let m = String(min).padStart(2, '0');
+                    let horaValor = `${h24}:${m}`;
+
+                    // Formato am/pm legible para el usuario
+                    let h12 = hora % 12 === 0 ? 12 : hora % 12;
+                    let ampm = hora >= 12 ? 'p. m.' : 'a. m.';
+                    let horaTexto = `${String(h12).padStart(2, '0')}:${m} ${ampm}`;
+
+                    opcionesHTML += `<option value="${horaValor}">${horaTexto}</option>`;
+                }
+            }
+
+            selectIni.innerHTML = opcionesHTML;
+            selectFin.innerHTML = opcionesHTML;
+
+            // Seleccionar por defecto las 12:00 p.m. o una hora estándar si se desea
+            selectIni.value = "12:00";
+            selectFin.value = "12:00";
+        }
 
         function toggleSolicitudesEspeciales(mostrar) {
             const cont = document.getElementById('contenedor-solicitudes-especiales');
