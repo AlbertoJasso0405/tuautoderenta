@@ -201,7 +201,7 @@
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
                                 <select id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
-                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
+                                    <!-- Se llenará automáticamente mediante script -->
                                 </select>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
                                 <select id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
-                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
+                                    <!-- Se llenará automáticamente mediante script -->
                                 </select>
                             </div>
                         </div>
@@ -275,7 +275,7 @@
                     <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Vehículos de modelo reciente, inspeccionados y asegurados para tu máximo confort.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
                     <!-- i10 ($499) -->
                     <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                         <div>
@@ -293,7 +293,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Hyundai i10 Sedán</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $499 <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $499* <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Económico</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -328,7 +328,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Mitsubishi Mirage G4</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $599 <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $599* <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Mediano</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -363,7 +363,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Nissan Versa / Kia K3</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $689 <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $689* <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Estándar</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -398,7 +398,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Kia K4 / Sentra</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $799 <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $799* <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Grande</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -467,6 +467,13 @@
                             </a>
                         </div>
                     </div>
+                </div>
+
+                <!-- NOTA LEGAL / TÉRMINOS DE TARIFA -->
+                <div class="bg-blue-50 border border-blue-200 p-5 rounded-2xl max-w-4xl mx-auto text-center">
+                    <p class="text-xs text-blue-900 font-medium leading-relaxed">
+                        * <strong>Tarifas de temporada baja</strong> incluyen seguro de colisión con deducible. <strong>No aplican</strong> fines de semana, puentes, días festivos ni temporadas vacacionales.
+                    </p>
                 </div>
             </div>
         </section>
@@ -819,8 +826,8 @@
                 if (document.getElementById('chk_conductor_adicional').checked) extras.push("Conductor Adicional");
                 if (document.getElementById('chk_conductor_menor').checked) extras.push("Conductor Menor");
                 if (document.getElementById('chk_combustible').checked) extras.push("Combustible Prepagado");
-                const otrosTxt = document.getElementById('txt_otras_solicitudes').value.trim();
-                if (otrosTxt) extras.push(`Otros: ${otrosTxt}`);
+                const outrosTxt = document.getElementById('txt_otras_solicitudes').value.trim();
+                if (outrosTxt) extras.push(`Otros: ${outrosTxt}`);
             }
             const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
 
