@@ -201,7 +201,7 @@
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Entrega</label>
                                 <select id="res_hora_ini" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
-                                    <!-- Se llenará automáticamente mediante script -->
+                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
                                 </select>
                             </div>
                         </div>
@@ -214,7 +214,7 @@
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1 ml-1">Hora Devolución</label>
                                 <select id="res_hora_fin" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 font-bold text-slate-700 outline-none text-xs cursor-pointer">
-                                    <!-- Se llenará automáticamente mediante script -->
+                                    <!-- Se llenará automáticamente con intervalos de 30 minutos -->
                                 </select>
                             </div>
                         </div>
@@ -275,7 +275,7 @@
                     <p class="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-normal">Vehículos de modelo reciente, inspeccionados y asegurados para tu máximo confort.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- i10 ($499) -->
                     <div class="bg-slate-50 rounded-3xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all flex flex-col justify-between">
                         <div>
@@ -293,7 +293,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Hyundai i10 Sedán</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $499* <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $499 <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Económico</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -328,7 +328,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Mitsubishi Mirage G4</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $599* <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $599 <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Mediano</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -363,7 +363,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Nissan Versa / Kia K3</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $689* <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $689 <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Estándar</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -398,7 +398,7 @@
                             <div class="p-6">
                                 <div class="flex justify-between items-baseline mb-1">
                                     <h3 class="font-black text-xl text-blue-900">Kia K4 / Sentra</h3>
-                                    <span class="text-orange-600 font-black text-sm">Desde $799* <span class="text-[10px] text-slate-500">/día</span></span>
+                                    <span class="text-orange-600 font-black text-sm">Desde $799 <span class="text-[10px] text-slate-500">/día</span></span>
                                 </div>
                                 <p class="text-xs text-slate-500 font-medium mb-4">o similar en categoría Grande</p>
                                 <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-600 font-bold mb-4">
@@ -467,13 +467,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-
-                <!-- NOTA LEGAL / TÉRMINOS DE TARIFA -->
-                <div class="bg-blue-50 border border-blue-200 p-5 rounded-2xl max-w-4xl mx-auto text-center">
-                    <p class="text-xs text-blue-900 font-medium leading-relaxed">
-                        * <strong>Tarifas de temporada baja</strong> incluyen seguro de colisión con deducible. <strong>No aplican</strong> fines de semana, puentes, días festivos ni temporadas vacacionales.
-                    </p>
                 </div>
             </div>
         </section>
@@ -559,4 +552,318 @@
                             <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
                                 <i class="fas fa-car-crash"></i>
                             </div>
-                            <span class="bg-blue-100 text-blue-900 text-[9px] font-black px-2
+                            <span class="bg-blue-100 text-blue-900 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">Incluido</span>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Protección por Colisión</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Cubre la reparación o reposición del auto en caso de daños por accidente vial, aplicando un deducible del 10% sobre el valor comercial del vehículo.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-200 hover:shadow-lg transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 bg-blue-900 text-white rounded-xl flex items-center justify-center text-xl">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <span class="bg-blue-100 text-blue-900 text-[9px] font-black px-2 py-0.5 rounded-md uppercase">Incluido</span>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Daños a Terceros (RC)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Cubre la responsabilidad civil por afectación a bienes materiales o lesiones corporales a terceras personas.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Seguro contra Robo Total</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Protección con indemnización por el valor establecido del auto en caso de ser víctima de la delincuencia.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-notes-medical"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Gastos Médicos a Ocupantes</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Asistencia médica y hospitalización para los pasajeros del vehículo a consecuencia de un accidente.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Asistencia Legal</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Asesoría jurídica y gestoría de trámites legales derivados de un siniestro automovilístico.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition-all">
+                        <div class="w-12 h-12 bg-slate-200 text-slate-700 rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <h3 class="font-black text-lg text-blue-900 mb-2">Impuestos Incluidos</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                            Todas las reservaciones incluyen IVA y tasas correspondientes, garantizando transparencia total.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 md:col-span-2 lg:col-span-3 hover:shadow-lg transition-all flex flex-col md:flex-row items-center gap-4">
+                        <div class="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shrink-0">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-black text-lg text-blue-900 mb-1">Kilometraje Sin Límite</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                                Viaja largas distancias sin preocuparte por cobros extras por kilómetro recorrido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 5: COBERTURA NACIONAL -->
+        <section class="pestana-contenido hidden py-12 bg-slate-50 px-4" id="pestana-destinos">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl font-black text-blue-900 uppercase tracking-tighter text-center mb-10">Cobertura Nacional</h2>
+                <div id="destinos-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTÓN FLOTANTE PERMANENTE -->
+    <button onclick="irACotizarFormulario()" class="fixed bottom-5 right-5 z-50 bg-orange-500 hover:bg-orange-600 text-white font-black px-5 py-3.5 rounded-full shadow-2xl flex items-center gap-2 uppercase text-xs tracking-widest transition-all hover:scale-105 active:scale-95 border-2 border-white cursor-pointer">
+        <i class="fas fa-calculator text-base"></i> Cotizar Ahora
+    </button>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12 px-4 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <button onclick="irACotizarFormulario()" class="focus:outline-none transition-transform hover:scale-105 text-left">
+                    <img src="logo.jpg" alt="Tu Auto de Renta" class="h-10 w-auto object-contain mb-2 mx-auto md:mx-0 rounded">
+                </button>
+                <span class="text-slate-500 font-bold text-[9px] tracking-[0.4em] uppercase block mb-6">BY JASSO MOBILITY</span>
+
+                <a href="https://www.facebook.com/profile.php?id=61578401788094" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white/5 px-5 py-2 rounded-full border border-white/10 hover:bg-blue-600 transition-all">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="text-[10px] font-black uppercase tracking-widest">Síguenos en Facebook</span>
+                </a>
+            </div>
+            <div class="md:text-right">
+                <p class="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-2">WhatsApp Directo</p>
+                <a href="https://wa.me/527792179612" class="text-2xl font-black text-orange-500">779 217 9612</a>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-800/50">
+            <p class="text-[9px] text-slate-600 font-bold uppercase tracking-[0.3em] text-center">
+                © 2026 Tu Auto de Renta. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        const destinos = [
+            "Acapulco", "CDMX / Aeropuerto", "Cancún", "Chihuahua", "Ciudad Juárez", 
+            "Ciudad Obregón", "Culiacán", "Durango", "Guadalajara", 
+            "Hermosillo", "Huatulco", "Ixtapa", "La Paz", 
+            "León", "Loreto", "Los Cabos", "Mazatlán", "Mexicali", 
+            "Monterrey", "Mérida", "Oaxaca", "Puebla", "Puerto Vallarta", 
+            "Querétaro", "San Luis Potosí", "Tijuana", "Toluca", "Torreón", 
+            "Tuxtla Gutiérrez", "Veracruz", "Villahermosa"
+        ];
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const grid = document.getElementById('destinos-grid');
+            if(grid) {
+                destinos.sort().forEach(dest => {
+                    const btn = document.createElement('button');
+                    btn.type = "button";
+                    btn.className = "city-card bg-white p-4 rounded-xl border border-slate-200 text-center font-black text-slate-600 uppercase text-[9px] tracking-widest transition-all hover:border-orange-500 hover:text-orange-500 cursor-pointer";
+                    btn.innerText = dest;
+                    btn.onclick = () => {
+                        const selectDestino = document.getElementById('res_destino');
+                        if (selectDestino) selectDestino.value = dest;
+                        irACotizarFormulario();
+                    };
+                    grid.appendChild(btn);
+                });
+            }
+
+            const hoy = new Date().toISOString().split('T')[0];
+            if (document.getElementById('res_fecha_ini')) document.getElementById('res_fecha_ini').value = hoy;
+            if (document.getElementById('res_fecha_fin')) document.getElementById('res_fecha_fin').value = hoy;
+
+            poblarSelectoresHora();
+        });
+
+        function poblarSelectoresHora() {
+            const selectIni = document.getElementById('res_hora_ini');
+            const selectFin = document.getElementById('res_hora_fin');
+            if (!selectIni || !selectFin) return;
+
+            let opcionesHTML = '';
+            for (let hora = 0; hora < 24; hora++) {
+                for (let min = 0; min < 60; min += 30) {
+                    let h24 = String(hora).padStart(2, '0');
+                    let m = String(min).padStart(2, '0');
+                    let horaValor = `${h24}:${m}`;
+
+                    let h12 = hora % 12 === 0 ? 12 : hora % 12;
+                    let ampm = hora >= 12 ? 'p. m.' : 'a. m.';
+                    let horaTexto = `${String(h12).padStart(2, '0')}:${m} ${ampm}`;
+
+                    opcionesHTML += `<option value="${horaValor}">${horaTexto}</option>`;
+                }
+            }
+
+            selectIni.innerHTML = opcionesHTML;
+            selectFin.innerHTML = opcionesHTML;
+
+            selectIni.value = "12:00";
+            selectFin.value = "12:00";
+        }
+
+        function toggleSolicitudesEspeciales(mostrar) {
+            const cont = document.getElementById('contenedor-solicitudes-especiales');
+            if (mostrar) {
+                cont.classList.remove('hidden');
+            } else {
+                cont.classList.add('hidden');
+                document.getElementById('chk_silla_bebe').checked = false;
+                document.getElementById('chk_conductor_adicional').checked = false;
+                document.getElementById('chk_conductor_menor').checked = false;
+                document.getElementById('chk_combustible').checked = false;
+                document.getElementById('txt_otras_solicitudes').value = '';
+            }
+        }
+
+        function cambiarPestana(idPestana) {
+            document.querySelectorAll('.pestana-contenido').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.btn-tab').forEach(btn => {
+                btn.className = 'btn-tab bg-white text-slate-700 hover:bg-slate-100 px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all border border-slate-300';
+            });
+
+            const pestanaActiva = document.getElementById(`pestana-${idPestana}`);
+            const btnActivo = document.getElementById(`tab-${idPestana}`);
+
+            if (pestanaActiva) pestanaActiva.classList.remove('hidden');
+            if (btnActivo) btnActivo.className = 'btn-tab bg-blue-900 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all shadow-sm';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function irACotizarFormulario() {
+            cambiarPestana('inicio');
+            setTimeout(() => {
+                const el = document.getElementById('cuadro-reserva');
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
+
+        function cambiarFoto(idCarrusel, direccion) {
+            const contenedor = document.getElementById(idCarrusel);
+            const imagenes = contenedor.querySelectorAll('.carrusel-img');
+            const dots = contenedor.querySelectorAll('.dots span');
+            let indexActual = 0;
+
+            imagenes.forEach((img, idx) => {
+                if (!img.classList.contains('hidden')) indexActual = idx;
+            });
+
+            imagenes[indexActual].classList.add('hidden');
+            dots[indexActual].className = 'w-2 h-2 rounded-full bg-white/50';
+
+            let nuevoIndex = indexActual + direccion;
+            if (nuevoIndex >= imagenes.length) nuevoIndex = 0;
+            if (nuevoIndex < 0) nuevoIndex = imagenes.length - 1;
+
+            imagenes[nuevoIndex].classList.remove('hidden');
+            dots[nuevoIndex].className = 'w-2 h-2 rounded-full bg-orange-500';
+        }
+
+        function seleccionarAuto(valorAuto) {
+            const selectAuto = document.getElementById('res_auto');
+            if (selectAuto) selectAuto.value = valorAuto;
+            irACotizarFormulario();
+        }
+
+        async function enviarReservaASheets() {
+            const nombre = document.getElementById('res_nombre').value.trim();
+            const telefono = document.getElementById('res_telefono').value.trim();
+            const destino = document.getElementById('res_destino').value;
+            const auto = document.getElementById('res_auto').value;
+            const f_ini = document.getElementById('res_fecha_ini').value;
+            const h_ini = document.getElementById('res_hora_ini').value || '12:00';
+            const f_fin = document.getElementById('res_fecha_fin').value;
+            const h_fin = document.getElementById('res_hora_fin').value || '12:00';
+
+            const btn = document.getElementById('btn-submit');
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Registrando reserva...`;
+
+            let extras = [];
+            const requiereEspeciales = document.querySelector('input[name="solicitud_especial_toggle"]:checked')?.value === 'si';
+            if (requiereEspeciales) {
+                if (document.getElementById('chk_silla_bebe').checked) extras.push("Silla de Bebé");
+                if (document.getElementById('chk_conductor_adicional').checked) extras.push("Conductor Adicional");
+                if (document.getElementById('chk_conductor_menor').checked) extras.push("Conductor Menor");
+                if (document.getElementById('chk_combustible').checked) extras.push("Combustible Prepagado");
+                const otrosTxt = document.getElementById('txt_otras_solicitudes').value.trim();
+                if (otrosTxt) extras.push(`Otros: ${otrosTxt}`);
+            }
+            const listaExtrasStr = extras.length > 0 ? extras.join(", ") : "Ninguna";
+
+            const datosReserva = {
+                fecha: new Date().toLocaleString("es-MX"),
+                nombre: nombre,
+                whatsapp: telefono,
+                destino: destino,
+                vehiculo: auto,
+                periodo: `Del ${f_ini} (${h_ini}) al ${f_fin} (${h_fin})`,
+                solicitudes: listaExtrasStr
+            };
+
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxomXnJauBJ3AUtZQkNb-ytGcSBM16CVzzYdmLHsdHr94HL_Y1fNFHHTJPJv6d2NJuf/exec";
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(datosReserva)
+                });
+            } catch (e) {
+                console.error("Error enviando a Sheets:", e);
+            }
+
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead', { content_name: 'Reservacion VIP', value: 1.00, currency: 'MXN' });
+            }
+
+            const txt = `*¡Hola Jasso Mobility! Quiero una cotización con Atención VIP* 🚗✨\n\n` +
+                        `👤 *Nombre:* ${nombre}\n` +
+                        `📱 *WhatsApp:* ${telefono}\n` +
+                        `📍 *Destino:* ${destino}\n` +
+                        `🚘 *Vehículo:* ${auto}\n` +
+                        `📅 *Entrega:* ${f_ini} a las ${h_ini} hrs.\n` +
+                        `📅 *Devolución:* ${f_fin} a las ${h_fin} hrs.\n` +
+                        `✨ *Solicitudes Especiales:* ${listaExtrasStr}\n\n` +
+                        `_Generado automáticamente desde mi cotización web._`;
+
+            localStorage.setItem('wa_mensaje_reserva', txt);
+            window.location.href = "gracias.html";
+        }
+    </script>
+</body>
+</html>
